@@ -13,17 +13,17 @@ public class TeleOpMain extends LinearOpMode {
     double slowSpeedMulti = 0.5;
 
     //Drive Wheels
-    private DcMotor FLMoto;
-    private DcMotor FRMoto;
-    private DcMotor BLMoto;
-    private DcMotor BRMoto;
+    private DcMotor leftFront;
+    private DcMotor rightFront;
+    private DcMotor leftBack;
+    private DcMotor rightBack;
 
   /*
   Where the motors are plugged into
   Control Hub:
   BRMoto - Motor Port 0
   BLMoto - Motor Port 1
-  FLMoto - Motor Port 2
+  leftFront - Motor Port 2
   FRMoto - Motor Port 3
 */
 
@@ -47,10 +47,10 @@ public class TeleOpMain extends LinearOpMode {
         //FR means "front right"				  //
         //FL means "front left"					  //
         //****************************************//
-        FLMoto = hardwareMap.dcMotor.get("FLMoto"); //Front left drive motor
-        FRMoto = hardwareMap.dcMotor.get("BRMoto"); //Front right drive motor
-        BLMoto = hardwareMap.dcMotor.get("BLMoto");
-        BRMoto = hardwareMap.dcMotor.get("FRMoto");
+        leftFront = hardwareMap.dcMotor.get("leftFront"); //Front left drive motor
+        rightFront = hardwareMap.dcMotor.get("rightFront"); //Front right drive motor
+        leftBack = hardwareMap.dcMotor.get("leftBack");
+        rightBack = hardwareMap.dcMotor.get("rightBack");
 
 
         double contPower = 0.0;
@@ -62,17 +62,17 @@ public class TeleOpMain extends LinearOpMode {
         //***************************************************//
         // Set direction of the main drive motors				   //
         //***************************************************//
-        FLMoto.setDirection(DcMotorSimple.Direction.FORWARD);
-        FRMoto.setDirection(DcMotorSimple.Direction.REVERSE);
-        BLMoto.setDirection(DcMotorSimple.Direction.FORWARD);
-        BRMoto.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftBack.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         //Set the zero power behavor of the main drive motors to FLOAT
-        FLMoto.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        FRMoto.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        BLMoto.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        BRMoto.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
 
         // You can give the sensor a gain value, will be multiplied by the sensor's raw value before the
@@ -116,26 +116,32 @@ public class TeleOpMain extends LinearOpMode {
 
             //regular drive controls
             //all to be multiplied by the speed modifier
-            FRMoto.setPower(gamepad1.right_stick_y * 1.5);
-            FLMoto.setPower(gamepad1.left_stick_y * 1.5);
-            BRMoto.setPower(gamepad1.right_stick_y * 1.5);
-            BLMoto.setPower(gamepad1.left_stick_y * 1.5);
+            rightFront.setPower(gamepad1.right_stick_y * 1.5);
+            leftFront.setPower(gamepad1.left_stick_y * 1.5);
+            rightBack.setPower(gamepad1.right_stick_y * 1.5);
+            leftBack.setPower(gamepad1.left_stick_y * 1.5);
 
             //Strafe Right using gamepad1 right_trigger
-            FRMoto.setPower(-gamepad1.right_trigger * 1.5);
-            FLMoto.setPower(-gamepad1.right_trigger * 1.5);
-            BRMoto.setPower(gamepad1.right_trigger * 1.5);
-            BLMoto.setPower(gamepad1.right_trigger * 1.5);
+            rightFront.setPower(-gamepad1.right_trigger * 1.5);
+            leftFront.setPower(-gamepad1.right_trigger * 1.5);
+            rightBack.setPower(gamepad1.right_trigger * 1.5);
+            leftBack.setPower(gamepad1.right_trigger * 1.5);
 
             // Strafe Left using gamepad1 left_trigger
-            FRMoto.setPower(gamepad1.left_trigger * 1.5);
-            FLMoto.setPower(gamepad1.left_trigger * 1.5);
-            BRMoto.setPower(-gamepad1.left_trigger * 1.5);
-            BLMoto.setPower(-gamepad1.left_trigger * 1.5);
+            rightFront.setPower(gamepad1.left_trigger * 1.5);
+            leftFront.setPower(gamepad1.left_trigger * 1.5);
+            rightBack.setPower(-gamepad1.left_trigger * 1.5);
+            leftBack.setPower(-gamepad1.left_trigger * 1.5);
         }
         //NO DRIVE CODE OUT SIDE OF THE OPMODEACTIVE LOOP WILL CAUSE PROBLEMS IN INSPECTION
-    }
 
+    }
+    void allDrive(float controlStick){
+        rightFront.setPower(controlStick * 1.5);
+        leftFront.setPower(controlStick * 1.5);
+        rightBack.setPower(controlStick * 1.5);
+        leftBack.setPower(controlStick * 1.5);
+    }
     protected enum DisplayKind {
         MANUAL,
         AUTO,
