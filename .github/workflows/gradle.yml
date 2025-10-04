@@ -1,4 +1,4 @@
-name: CyberKnightsBuildAndTest
+name: build
 
 on:
   push:
@@ -19,6 +19,9 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
+
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
