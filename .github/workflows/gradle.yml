@@ -1,4 +1,4 @@
-name: CyberKnightsBuildAndTest
+name: AjaxBuildAndTest
 
 on:
   push:
