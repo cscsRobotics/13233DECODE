@@ -19,8 +19,8 @@ public class MeepMeepTesting {
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(24, 61, Math.toRadians(-90)))
                 .strafeTo(new Vector2d(24, 24))
-                .turn(Math.toRadians(-180))
-                .strafeTo(new Vector2d(-11.5,24))
+                //.turn(Math.toRadians(-180))
+                .strafeToLinearHeading(new Vector2d(-11.5,24), Math.toRadians(90))
                 //.turn(Math.toRadians(-90))
                 .strafeTo(new Vector2d(-11.5,46))
                 .strafeToLinearHeading(new Vector2d(-22.7,23), Math.toRadians(135))
