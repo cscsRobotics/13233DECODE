@@ -36,7 +36,6 @@ public class TeleOpMain extends LinearOpMode {
         rightFront = hardwareMap.dcMotor.get("rightFront"); //Front right drive motor
         leftBack = hardwareMap.dcMotor.get("leftBack");
         rightBack = hardwareMap.dcMotor.get("rightBack");
-        im a hidden bug
         //Intake Motor
         intake = hardwareMap.dcMotor.get("intake");
 
