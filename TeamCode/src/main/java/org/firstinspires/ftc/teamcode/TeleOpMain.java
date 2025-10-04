@@ -18,6 +18,8 @@ public class TeleOpMain extends LinearOpMode {
     private DcMotor leftBack;
     private DcMotor rightBack;
 
+    private DcMotor intake;
+
   /*
   Where the motors are plugged into
   Control Hub:
@@ -52,6 +54,8 @@ public class TeleOpMain extends LinearOpMode {
         leftBack = hardwareMap.dcMotor.get("leftBack");
         rightBack = hardwareMap.dcMotor.get("rightBack");
 
+        intake = hardwareMap.dcMotor.get("intake");
+
 
         double contPower = 0.0;
 
@@ -66,6 +70,9 @@ public class TeleOpMain extends LinearOpMode {
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.FORWARD);
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        intake.setDirection(DcMotorSimple.Direction.REVERSE);
+
 
 
         //Set the zero power behavor of the main drive motors to FLOAT
@@ -104,44 +111,35 @@ public class TeleOpMain extends LinearOpMode {
             telemetry.addData("Status", "opModeIsActive");
             telemetry.update();
 
-            //Gamepad1
-
-            //slow mode
-            //changes the speed variable to 0.5 as long as the the a button is pressed
-            if (gamepad1.right_bumper) {
-                speed = slowSpeedMulti; //change to slow mode speed
-            } else {
-                speed = stdSpeedMulti; //change speed back to normal speed
-            }
-
             //regular drive controls
-            //all to be multiplied by the speed modifier
-            rightFront.setPower(gamepad1.right_stick_y * 1.5);
-            leftFront.setPower(gamepad1.left_stick_y * 1.5);
-            rightBack.setPower(gamepad1.right_stick_y * 1.5);
-            leftBack.setPower(gamepad1.left_stick_y * 1.5);
+            allDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
 
-            //Strafe Right using gamepad1 right_trigger
-            rightFront.setPower(-gamepad1.right_trigger * 1.5);
-            leftFront.setPower(-gamepad1.right_trigger * 1.5);
-            rightBack.setPower(gamepad1.right_trigger * 1.5);
-            leftBack.setPower(gamepad1.right_trigger * 1.5);
+            //Intake Control
+            intake(gamepad2.left_bumper, gamepad2.right_bumper);
 
-            // Strafe Left using gamepad1 left_trigger
-            rightFront.setPower(gamepad1.left_trigger * 1.5);
-            leftFront.setPower(gamepad1.left_trigger * 1.5);
-            rightBack.setPower(-gamepad1.left_trigger * 1.5);
-            leftBack.setPower(-gamepad1.left_trigger * 1.5);
         }
         //NO DRIVE CODE OUT SIDE OF THE OPMODEACTIVE LOOP WILL CAUSE PROBLEMS IN INSPECTION
 
     }
-    void allDrive(float controlStick){
-        rightFront.setPower(controlStick * 1.5);
-        leftFront.setPower(controlStick * 1.5);
-        rightBack.setPower(controlStick * 1.5);
-        leftBack.setPower(controlStick * 1.5);
+    void allDrive(float controlLeftStickY, float controlLeftStickX, float controlRightStick){
+        rightFront.setPower(controlLeftStickY + controlLeftStickX + controlRightStick);
+        leftFront.setPower(controlLeftStickY - controlLeftStickX - controlRightStick);
+        rightBack.setPower(controlLeftStickY - controlLeftStickX + controlRightStick);
+        leftBack.setPower(controlLeftStickY + controlLeftStickX - controlRightStick);
     }
+
+    void intake(boolean intakeForwardInput, boolean intakeReverseInput){
+        if(intakeForwardInput){
+            intake.setPower(1);
+        }
+        else if(intakeReverseInput){
+            intake.setPower(-1);
+        }
+        else{
+            intake.setPower(0);
+        }
+    }
+
     protected enum DisplayKind {
         MANUAL,
         AUTO,
