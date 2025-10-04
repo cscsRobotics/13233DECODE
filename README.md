@@ -1,3 +1,5 @@
+[![CyberKnightsBuildAndTest](https://github.com/cscsRobotics/13233DECODE/actions/workflows/gradle.yml/badge.svg?branch=main)](https://github.com/cscsRobotics/13233DECODE/actions/workflows/gradle.yml)
+
 ## NOTICE
 
 This repository contains the public FTC SDK for the DECODE (2025-2026) competition season.
