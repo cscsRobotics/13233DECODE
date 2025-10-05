@@ -1,4 +1,3 @@
-//Import required library's
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -8,8 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "TeleOpMain", group = "Drive")
 public class TeleOpMain extends LinearOpMode {
-
-    //Drive Wheels
+    // Drive Wheels
     private DcMotor leftFront;
     private DcMotor rightFront;
     private DcMotor leftBack;
@@ -18,15 +16,11 @@ public class TeleOpMain extends LinearOpMode {
     //Intake motor
     private DcMotor intake;
 
-
     /**
      * This function is executed when this Op Mode is selected from the Driver Station.
      */
     @Override
     public void runOpMode() {
-        double wUP = .3;
-        double Iin = 1;
-        double Fly = 1;
 
         //****************************************//
         // Map all robot hardware				  //
@@ -89,8 +83,13 @@ public class TeleOpMain extends LinearOpMode {
         //NO DRIVE CODE OUT SIDE OF THE OPMODEACTIVE LOOP WILL CAUSE PROBLEMS IN INSPECTION
     }
 
-    //Function allDrive()
-    //Usage: to provide Movement controls to the driver of the robot
+    /**
+     * Updates all the drive controls based on the current gamepad stick positions
+     *
+     * @param controlLeftStickY Left stick Y setting, up/down
+     * @param controlLeftStickX Left stick X setting, left/right
+     * @param controlRightStick Right click setting, controls left right turn
+     */
     void allDrive(float controlLeftStickY, float controlLeftStickX, float controlRightStick) {
         rightFront.setPower(controlLeftStickY + controlLeftStickX + controlRightStick);
         leftFront.setPower(controlLeftStickY - controlLeftStickX - controlRightStick);
@@ -98,19 +97,24 @@ public class TeleOpMain extends LinearOpMode {
         leftBack.setPower(controlLeftStickY + controlLeftStickX - controlRightStick);
     }
 
-    //Function: intake()
-    //Usage: to provide intake controls to the driver of the robot
+    /**
+     * Controls the spin direction of the intake wheel based on controller buttons
+     *
+     * @param intakeForwardInput Button mapped to forward input
+     * @param intakeReverseInput Button mapped to reverse input
+     */
     void intake(boolean intakeForwardInput, boolean intakeReverseInput) {
-        if (intakeForwardInput && intakeReverseInput) {
-            intake.setPower(0);
+        double power = 0;
+
+        // ^ is the XOR operator, will return true if only one variable is true
+        // If intakeForwardInput OR intakeReverseInput is true then this is true, but not
+        // if both are true, which is why this differs from the || logical or operator
+        if (intakeForwardInput ^ intakeReverseInput) {
+            // This uses an inline-if statement which is useful when assigning values to variables
+            // This says set power = 1 if intakeForwardInput is true, else set it to -1
+            power = intakeForwardInput ? 1 : -1;
         }
-        //if(gamepad2.left_bumper)
-        else if (intakeForwardInput) {
-            intake.setPower(1);
-        } else if (intakeReverseInput) {
-            intake.setPower(-1);
-        } else {
-            intake.setPower(0);
-        }
+
+        intake.setPower(power);
     }
 }
