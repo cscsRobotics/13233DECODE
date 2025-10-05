@@ -1,5 +1,5 @@
-//Import required library's
 package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -13,9 +13,6 @@ public class TeleOpMain extends LinearOpMode {
      */
     @Override
     public void runOpMode() {
-        double wUP = .3;
-        double Iin = 1;
-        double Fly = 1;
 
         cyberknights cyberknights = new cyberknights(hardwareMap);
 
@@ -54,11 +51,5 @@ public class TeleOpMain extends LinearOpMode {
         //NO DRIVE CODE OUT SIDE OF THE OPMODEACTIVE LOOP WILL CAUSE PROBLEMS IN INSPECTION
     }
 
-    //Function allDrive()
-    //Usage: to provide Movement controls to the driver of the robot
-
-
-    //Function: intake()
-    //Usage: to provide intake controls to the driver of the robot
 
 }

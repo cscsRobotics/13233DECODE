@@ -1,0 +1,6 @@
+<lint>
+    <!-- Suppress all issues for FtcRobotController directory -->
+    <issue id="all">
+        <ignore path="FtcRobotController/" />
+    </issue>
+</lint>
