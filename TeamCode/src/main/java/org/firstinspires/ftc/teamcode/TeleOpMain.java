@@ -1,5 +1,6 @@
 //Import required library's
 package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -90,7 +91,7 @@ public class TeleOpMain extends LinearOpMode {
 
     //Function allDrive()
     //Usage: to provide Movement controls to the driver of the robot
-    void allDrive(float controlLeftStickY, float controlLeftStickX, float controlRightStick){
+    void allDrive(float controlLeftStickY, float controlLeftStickX, float controlRightStick) {
         rightFront.setPower(controlLeftStickY + controlLeftStickX + controlRightStick);
         leftFront.setPower(controlLeftStickY - controlLeftStickX - controlRightStick);
         rightBack.setPower(controlLeftStickY - controlLeftStickX + controlRightStick);
@@ -99,18 +100,16 @@ public class TeleOpMain extends LinearOpMode {
 
     //Function: intake()
     //Usage: to provide intake controls to the driver of the robot
-    void intake(boolean intakeForwardInput, boolean intakeReverseInput){
-        if(intakeForwardInput && intakeReverseInput){
+    void intake(boolean intakeForwardInput, boolean intakeReverseInput) {
+        if (intakeForwardInput && intakeReverseInput) {
             intake.setPower(0);
         }
         //if(gamepad2.left_bumper)
-        else if(intakeForwardInput){
+        else if (intakeForwardInput) {
             intake.setPower(1);
-        }
-        else if(intakeReverseInput){
+        } else if (intakeReverseInput) {
             intake.setPower(-1);
-        }
-        else{
+        } else {
             intake.setPower(0);
         }
     }
