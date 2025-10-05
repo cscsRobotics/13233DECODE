@@ -42,7 +42,13 @@ public class cyberknights {
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
-
+    /**
+    * Updates all the drive controls based on the current gamepad stick positions
+    *
+    * @param controlLeftStickY Left stick Y setting, up/down
+    * @param controlLeftStickX Left stick X setting, left/right
+    * @param controlRightStick Right click setting, controls left right turn
+    */
     public void allDrive(float controlLeftStickY, float controlLeftStickX, float controlRightStick){
         rightFront.setPower(controlLeftStickY + controlLeftStickX + controlRightStick);
         leftFront.setPower(controlLeftStickY - controlLeftStickX - controlRightStick);
@@ -50,19 +56,24 @@ public class cyberknights {
         leftBack.setPower(controlLeftStickY + controlLeftStickX - controlRightStick);
     }
 
-    public void intake(boolean intakeForwardInput, boolean intakeReverseInput){
-        if(intakeForwardInput && intakeReverseInput){
-            intake.setPower(0);
+    /**
+    * Controls the spin direction of the intake wheel based on controller buttons
+    *
+    * @param intakeForwardInput Button mapped to forward input
+    * @param intakeReverseInput Button mapped to reverse input
+    */
+    void intake(boolean intakeForwardInput, boolean intakeReverseInput) {
+        double power = 0;
+
+        // ^ is the XOR operator, will return true if only one variable is true
+        // If intakeForwardInput OR intakeReverseInput is true then this is true, but not
+        // if both are true, which is why this differs from the || logical or operator
+        if (intakeForwardInput ^ intakeReverseInput) {
+            // This uses an inline-if statement which is useful when assigning values to variables
+            // This says set power = 1 if intakeForwardInput is true, else set it to -1
+            power = intakeForwardInput ? 1 : -1;
         }
-        //if(gamepad2.left_bumper)
-        else if(intakeForwardInput){
-            intake.setPower(1);
-        }
-        else if(intakeReverseInput){
-            intake.setPower(-1);
-        }
-        else{
-            intake.setPower(0);
-        }
+
+        intake.setPower(power);
     }
 }
