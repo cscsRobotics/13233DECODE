@@ -7,30 +7,29 @@ import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
 
-
 public class MeepMeepTesting {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
-                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width -- CHANGE TRACK WIDTH
-                .setConstraints(100, 100, Math.toRadians(360), Math.toRadians(360), 15)
-                .build();
+            // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width -- CHANGE TRACK WIDTH
+            .setConstraints(100, 100, Math.toRadians(360), Math.toRadians(360), 15)
+            .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(24, 61, Math.toRadians(-90)))
-                .strafeTo(new Vector2d(24, 24))
-                //.turn(Math.toRadians(-180))
-                .strafeToLinearHeading(new Vector2d(-11.5,24), Math.toRadians(90))
-                //.turn(Math.toRadians(-90))
-                .strafeTo(new Vector2d(-11.5,46))
-                .strafeToLinearHeading(new Vector2d(-22.7,23), Math.toRadians(135))
-                .build());
+            .strafeTo(new Vector2d(24, 24))
+            //.turn(Math.toRadians(-180))
+            .strafeToLinearHeading(new Vector2d(-11.5, 24), Math.toRadians(90))
+            //.turn(Math.toRadians(-90))
+            .strafeTo(new Vector2d(-11.5, 46))
+            .strafeToLinearHeading(new Vector2d(-22.7, 23), Math.toRadians(135))
+            .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_JUICE_DARK)
-                .setDarkMode(true)
-                .setBackgroundAlpha(0.95f)
-                .addEntity(myBot)
-                .start();
+            .setDarkMode(true)
+            .setBackgroundAlpha(0.95f)
+            .addEntity(myBot)
+            .start();
     }
 }
 
