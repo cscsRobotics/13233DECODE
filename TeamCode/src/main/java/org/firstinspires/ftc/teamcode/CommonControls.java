@@ -51,13 +51,13 @@ public class CommonControls {
     public void setDrivePower(float controlLeftStickY, float controlLeftStickX,
                               float controlRightStick, float speedControl) {
         rightFront.setPower((controlLeftStickY + controlLeftStickX + controlRightStick)
-            - speedControl);
+            * speedControl);
         leftFront.setPower((controlLeftStickY - controlLeftStickX - controlRightStick)
-            - speedControl);
+            * speedControl);
         rightBack.setPower((controlLeftStickY - controlLeftStickX + controlRightStick)
-            - speedControl);
+            * speedControl);
         leftBack.setPower((controlLeftStickY + controlLeftStickX - controlRightStick)
-            - speedControl);
+            * speedControl);
     }
 
     /**
