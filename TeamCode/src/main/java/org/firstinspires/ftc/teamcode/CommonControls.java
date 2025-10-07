@@ -58,11 +58,12 @@ public class CommonControls {
         float strafe = controlLeftStickX;
         //noinspection UnnecessaryLocalVariable
         float rotate = controlRightStick;
+        float speed = 1 - speedControl;
 
-        float frontRightPower = (forward + strafe + rotate) * speedControl;
-        float frontLeftPower = (forward - strafe - rotate) * speedControl;
-        float backRightPower = (forward - strafe + rotate) * speedControl;
-        float backLeftPower = (forward + strafe - rotate) * speedControl;
+        float frontRightPower = (forward + strafe + rotate) * (speed);
+        float frontLeftPower = (forward - strafe - rotate) * (speed);
+        float backRightPower = (forward - strafe + rotate) * (speed);
+        float backLeftPower = (forward + strafe - rotate) * (speed);
 
         rightFront.setPower(frontRightPower);
         leftFront.setPower(frontLeftPower);
