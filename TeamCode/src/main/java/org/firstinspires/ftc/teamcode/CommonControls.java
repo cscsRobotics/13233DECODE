@@ -45,13 +45,19 @@ public class CommonControls {
      *
      * @param controlLeftStickY Left stick Y setting, up/down
      * @param controlLeftStickX Left stick X setting, left/right
-     * @param controlRightStick Right click setting, controls left right turn
+     * @param controlRightStick Right Stick setting, controls left right turn
+     * @param speedControl Trigger setting, controls speed of the robot
      */
-    public void setDrivePower(float controlLeftStickY, float controlLeftStickX, float controlRightStick) {
-        rightFront.setPower(controlLeftStickY + controlLeftStickX + controlRightStick);
-        leftFront.setPower(controlLeftStickY - controlLeftStickX - controlRightStick);
-        rightBack.setPower(controlLeftStickY - controlLeftStickX + controlRightStick);
-        leftBack.setPower(controlLeftStickY + controlLeftStickX - controlRightStick);
+    public void setDrivePower(float controlLeftStickY, float controlLeftStickX,
+                              float controlRightStick, float speedControl) {
+        rightFront.setPower((controlLeftStickY + controlLeftStickX + controlRightStick)
+            - speedControl);
+        leftFront.setPower((controlLeftStickY - controlLeftStickX - controlRightStick)
+            - speedControl);
+        rightBack.setPower((controlLeftStickY - controlLeftStickX + controlRightStick)
+            - speedControl);
+        leftBack.setPower((controlLeftStickY + controlLeftStickX - controlRightStick)
+            - speedControl);
     }
 
     /**

@@ -25,7 +25,7 @@ public class TeleOpMain extends LinearOpMode {
 
             // Sets the power to the drive motors based on current gamepad inputs
             CommonControls.setDrivePower(gamepad1.left_stick_y, gamepad1.left_stick_x,
-                gamepad1.right_stick_x);
+                gamepad1.right_stick_x, gamepad1.left_trigger);
 
             // Ball ("artifact"/game element) intake control
             CommonControls.setIntakeDirection(gamepad2.left_bumper, gamepad2.right_bumper);
