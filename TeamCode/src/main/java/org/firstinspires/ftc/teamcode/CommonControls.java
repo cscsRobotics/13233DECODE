@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -46,18 +47,27 @@ public class CommonControls {
      * @param controlLeftStickY Left stick Y setting, up/down
      * @param controlLeftStickX Left stick X setting, left/right
      * @param controlRightStick Right Stick setting, controls left right turn
-     * @param speedControl Trigger setting, controls speed of the robot
+     * @param speedControl      Trigger setting, controls speed of the robot
      */
     public void setDrivePower(float controlLeftStickY, float controlLeftStickX,
                               float controlRightStick, float speedControl) {
-        rightFront.setPower((controlLeftStickY + controlLeftStickX + controlRightStick)
-            * speedControl);
-        leftFront.setPower((controlLeftStickY - controlLeftStickX - controlRightStick)
-            * speedControl);
-        rightBack.setPower((controlLeftStickY - controlLeftStickX + controlRightStick)
-            * speedControl);
-        leftBack.setPower((controlLeftStickY + controlLeftStickX - controlRightStick)
-            * speedControl);
+        // For readability and flexibility for future control input changes
+        //noinspection UnnecessaryLocalVariable
+        float forward = controlLeftStickY;
+        //noinspection UnnecessaryLocalVariable
+        float strafe = controlLeftStickX;
+        //noinspection UnnecessaryLocalVariable
+        float rotate = controlRightStick;
+
+        float frontRightPower = (forward + strafe + rotate) * speedControl;
+        float frontLeftPower = (forward - strafe - rotate) * speedControl;
+        float backRightPower = (forward - strafe + rotate) * speedControl;
+        float backLeftPower = (forward + strafe - rotate) * speedControl;
+
+        rightFront.setPower(frontRightPower);
+        leftFront.setPower(frontLeftPower);
+        rightBack.setPower(backRightPower);
+        leftBack.setPower(backLeftPower);
     }
 
     /**
