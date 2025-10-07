@@ -6,8 +6,7 @@ import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-
-public class RedAllianceBackField {
+public class BlueAllianceMidField {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
@@ -16,32 +15,32 @@ public class RedAllianceBackField {
             .setConstraints(100, 100, Math.toRadians(360), Math.toRadians(360), 15)
             .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(61, 12, Math.toRadians(180)))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-50, -50, Math.toRadians(-126)))
             // Lineup with goal to shoot preloads
-            .strafeToLinearHeading(new Vector2d(-22.7, 23), Math.toRadians(135))
+            .strafeToLinearHeading(new Vector2d(-22.7, -23), Math.toRadians(225))
             // Wait to simulate time to shoot
             .waitSeconds(1)
-            .strafeToLinearHeading(new Vector2d(-11.5, 23), Math.toRadians(90))
+            .strafeToLinearHeading(new Vector2d(-11.5, -23), Math.toRadians(270))
             // Pickup artifacts
-            .strafeTo(new Vector2d(-11.5, 46))
+            .strafeTo(new Vector2d(-11.5, -46))
             // Move to shooting position
-            .strafeToLinearHeading(new Vector2d(-22.7, 23), Math.toRadians(135))
+            .strafeToLinearHeading(new Vector2d(-22.7, -23), Math.toRadians(225))
             // Wait to simulate time to shoot
             .waitSeconds(1)
             // Move to line up with next artifacts
-            .strafeToLinearHeading(new Vector2d(12.5, 23), Math.toRadians(90))
+            .strafeToLinearHeading(new Vector2d(12.5, -23), Math.toRadians(270))
             // Collect artifacts
-            .strafeTo(new Vector2d(12.5, 46))
+            .strafeTo(new Vector2d(12.5, -46))
             // Move to shooting position
-            .strafeToLinearHeading(new Vector2d(-22.7, 23), Math.toRadians(135))
+            .strafeToLinearHeading(new Vector2d(-22.7, -23), Math.toRadians(225))
             // Wait to simulate time to shoot
             .waitSeconds(1)
             // Move to line up with next artifacts
-            .strafeToLinearHeading(new Vector2d(36, 23), Math.toRadians(90))
+            .strafeToLinearHeading(new Vector2d(36, -23), Math.toRadians(270))
             // Collect artifacts
-            .strafeTo(new Vector2d(36, 46))
+            .strafeTo(new Vector2d(36, -46))
             // Move to shooting position
-            .strafeToLinearHeading(new Vector2d(-22.7, 23), Math.toRadians(135))
+            .strafeToLinearHeading(new Vector2d(-22.7, -23), Math.toRadians(225))
             // Wait to simulate time to shoot
             .waitSeconds(1)
             .build());
@@ -53,12 +52,3 @@ public class RedAllianceBackField {
             .start();
     }
 }
-
-//                .lineToX(38)
-//                .turn(Math.toRadians(90))
-//                .lineToY(30)
-//                .turn(Math.toRadians(90))
-//                .lineToX(0)
-//                .turn(Math.toRadians(90))
-//                .lineToY(0)
-//                .turn(Math.toRadians(90))

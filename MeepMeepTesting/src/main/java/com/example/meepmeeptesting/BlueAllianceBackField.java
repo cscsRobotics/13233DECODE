@@ -44,8 +44,6 @@ public class BlueAllianceBackField {
             .strafeToLinearHeading(new Vector2d(-22.7, -23), Math.toRadians(225))
             // Wait to simulate time to shoot
             .waitSeconds(1)
-
-
             .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_JUICE_DARK)

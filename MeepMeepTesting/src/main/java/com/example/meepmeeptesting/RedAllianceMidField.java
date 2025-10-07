@@ -7,7 +7,7 @@ import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
 
-public class RedAllianceBackField {
+public class RedAllianceMidField {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
@@ -16,7 +16,7 @@ public class RedAllianceBackField {
             .setConstraints(100, 100, Math.toRadians(360), Math.toRadians(360), 15)
             .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(61, 12, Math.toRadians(180)))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-50, 50, Math.toRadians(126)))
             // Lineup with goal to shoot preloads
             .strafeToLinearHeading(new Vector2d(-22.7, 23), Math.toRadians(135))
             // Wait to simulate time to shoot
