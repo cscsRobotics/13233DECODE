@@ -9,11 +9,14 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
 public class RedAllianceBackField {
     public static void main(String[] args) {
+        MeepMeepConstants MeepMeepConstants = new MeepMeepConstants();
         MeepMeep meepMeep = new MeepMeep(800);
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
             // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width -- CHANGE TRACK WIDTH
-            .setConstraints(100, 100, Math.toRadians(360), Math.toRadians(360), 15)
+            .setConstraints(MeepMeepConstants.maxVelocity, MeepMeepConstants.maxAcceleration,
+                MeepMeepConstants.maxAngularVelocity, MeepMeepConstants.maxAngularAcceleration,
+                MeepMeepConstants.trackWidth)
             .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(61, 12, Math.toRadians(180)))
