@@ -66,7 +66,8 @@ import java.util.List;
 
 @Disabled
 @TeleOp(name = "Concept: Color-Locator (Rectangle)", group = "Concept")
-public class ConceptVisionColorLocator_Rectangle extends LinearOpMode
+public class
+ConceptVisionColorLocator_Rectangle extends LinearOpMode
 {
     @Override
     public void runOpMode()
