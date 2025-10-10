@@ -29,7 +29,6 @@ public class TeleOpMain extends LinearOpMode {
 
             // Ball ("artifact"/game element) intake control
             CommonControls.setIntakeDirection(gamepad2.left_bumper, gamepad2.right_bumper);
-
         }
         // Do not place any drive code here outside of the while loop (will fail inspection)
     }
