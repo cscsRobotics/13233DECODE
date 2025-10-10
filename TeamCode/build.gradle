@@ -1,5 +1,6 @@
 apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
+apply plugin: 'de.mannodermaus.android-junit5'
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
@@ -7,6 +8,10 @@ android {
     packagingOptions {
         jniLibs.useLegacyPackaging true
     }
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }
 
 repositories {
@@ -22,4 +27,10 @@ dependencies {
     implementation "com.acmerobotics.roadrunner:core:1.0.1"
     implementation "com.acmerobotics.roadrunner:actions:1.0.1"
     implementation "com.acmerobotics.dashboard:dashboard:0.5.0"
+
+    // ✅ JUnit 5 for unit testing
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.10.0"
+    testImplementation "org.junit.platform:junit-platform-commons:1.10.0"
+    testImplementation "org.mockito:mockito-core:5.10.0"
 }
