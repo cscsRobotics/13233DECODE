@@ -44,11 +44,12 @@ jobs:
       - name: List test result files
         run: find TeamCode/build -type f
 
-      - name: Upload HTML test report
+      - name: Upload Debug Unit Test Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-report-html
-          path: TeamCode/build/reports/tests/test
+          name: test-report-debug
+          path: TeamCode/build/reports/tests/testDebugUnitTest
+
 
 

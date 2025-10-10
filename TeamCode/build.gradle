@@ -1,6 +1,7 @@
 apply from: '../build.common.gradle'
 apply from: '../build.dependencies.gradle'
 apply plugin: 'de.mannodermaus.android-junit5'
+apply plugin: 'jacoco'
 
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
@@ -12,6 +13,10 @@ android {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+}
+
+jacoco {
+    toolVersion = "0.8.10"
 }
 
 repositories {
