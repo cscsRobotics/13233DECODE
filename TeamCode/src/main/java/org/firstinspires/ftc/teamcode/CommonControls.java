@@ -16,13 +16,13 @@ public class CommonControls {
 
     public CommonControls(HardwareMap hardwareMap) {
         // Main Drive Motors
-        leftFront = hardwareMap.dcMotor.get("leftFront");
-        rightFront = hardwareMap.dcMotor.get("rightFront");
-        leftBack = hardwareMap.dcMotor.get("leftBack");
-        rightBack = hardwareMap.dcMotor.get("rightBack");
+        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
+        rightFront = hardwareMap.get(DcMotor.class, "rightFront");
+        leftBack = hardwareMap.get(DcMotor.class, "leftBack");
+        rightBack = hardwareMap.get(DcMotor.class, "rightBack");
 
         // Intake Motor
-        intake = hardwareMap.dcMotor.get("intake");
+        intake = hardwareMap.get(DcMotor.class, "intake");
 
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
