@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class CommonControlsUnitTest {
+public class CommonControlsTest {
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, intake;
     private HardwareMap hardwareMap;
