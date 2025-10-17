@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
 
 
 public class CommonControls {
@@ -14,12 +16,23 @@ public class CommonControls {
     //Intake motor
     private final DcMotor intake;
 
+    private final IMU imu;
+
     public CommonControls(HardwareMap hardwareMap) {
         // Main Drive Motors
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
+
+        //set the IMU orientation
+        imu = hardwareMap.get(IMU.class, "imu");
+
+        RevHubOrientationOnRobot RevOriention = new RevHubOrientationOnRobot(
+            RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
+            RevHubOrientationOnRobot.UsbFacingDirection.UP);
+
+        imu.initialize(new IMU.Parameters(RevOriention));
 
         // Intake Motor
         intake = hardwareMap.get(DcMotor.class, "intake");
