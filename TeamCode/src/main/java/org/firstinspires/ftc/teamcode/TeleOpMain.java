@@ -28,7 +28,8 @@ public class TeleOpMain extends LinearOpMode {
                 gamepad1.right_stick_x, gamepad1.left_trigger);
 
             // Ball ("artifact"/game element) intake control
-            CommonControls.setIntakeDirection(gamepad2.left_bumper, gamepad2.right_bumper);
+            CommonControls.setIntakePower(gamepad2.left_bumper, gamepad2.right_bumper);
+            CommonControls.intake.setPower(CommonControls.intakePower);
         }
         // Do not place any drive code here outside of the while loop (will fail inspection)
     }
