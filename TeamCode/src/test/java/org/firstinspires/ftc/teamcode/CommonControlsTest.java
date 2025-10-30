@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -55,28 +56,28 @@ public class CommonControlsTest {
     @DisplayName("Intake should spin forward when forward button is pressed")
     @Test
     void testIntakeForward() {
-        controls.setIntakeDirection(true, false);
-        verify(intake).setPower(1.0);
+        controls.setIntakePower(true, false);
+        assertEquals(1.0, controls.intakePower);
     }
 
     @DisplayName("Intake should spin backward when reverse button is pressed")
     @Test
     void testIntakeReverse() {
-        controls.setIntakeDirection(false, true);
-        verify(intake).setPower(-1.0);
+        controls.setIntakePower(false, true);
+        assertEquals(-1.0, controls.intakePower);
     }
 
     @DisplayName("Intake should not spin when direction buttons are not depressed")
     @Test
     void testIntakeNeutral() {
-        controls.setIntakeDirection(false, false);
-        verify(intake).setPower(0.0);
+        controls.setIntakePower(false, false);
+        assertEquals(0.0, controls.intakePower);
     }
 
     @DisplayName("Intake should stop when both direction buttons pressed at the same time")
     @Test
     void testIntakeConflict() {
-        controls.setIntakeDirection(true, true);
-        verify(intake).setPower(0.0);
+        controls.setIntakePower(true, true);
+        assertEquals(0.0, controls.intakePower);
     }
 }
