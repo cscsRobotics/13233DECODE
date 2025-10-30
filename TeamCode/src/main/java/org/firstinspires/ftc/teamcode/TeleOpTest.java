@@ -32,7 +32,6 @@ public class TeleOpTest extends LinearOpMode {
     //launcer
     private DcMotor Launcher;
     private DcMotor Launcher2;
-    private DcMotor intake;
 
     private CRServo rampServo1;
     private CRServo rampServo2;
@@ -98,7 +97,6 @@ public class TeleOpTest extends LinearOpMode {
         //Launcher Prototype
         Launcher = hardwareMap.dcMotor.get("Launcher");
         Launcher2 = hardwareMap.dcMotor.get("Launcher2");
-        intake = hardwareMap.dcMotor.get("intake");
         rampServo1 = hardwareMap.crservo.get("rampServo1");
         rampServo2 = hardwareMap.crservo.get("rampServo2");
         launcherWheel = hardwareMap.crservo.get("launcherWheel");
@@ -173,11 +171,16 @@ public class TeleOpTest extends LinearOpMode {
                 launcherWheelM.setPower(0.0);
             }
 
-            CommonControls.setIntakePower(gamepad1.dpad_up, gamepad1.dpad_down);
-            rampServo1.setPower(-CommonControls.intakePower);
-            rampServo2.setPower(CommonControls.intakePower);
-            launcherWheelM.setPower(CommonControls.intakePower * 0.5);
-            intake.setPower(CommonControls.intakePower);
+
+            rampServo1.setPower(-CommonControls.setIntakePower(gamepad1.dpad_up,
+                gamepad1.dpad_down));
+            rampServo2.setPower(CommonControls.setIntakePower(gamepad1.dpad_up,
+                gamepad1.dpad_down));
+            launcherWheelM.setPower(CommonControls.setIntakePower(gamepad1.dpad_up,
+                gamepad1.dpad_down) * 0.5);
+            CommonControls.intake.setPower(CommonControls.setIntakePower(gamepad1.dpad_up,
+                gamepad1.dpad_down));
+            //Wait for motors to speed up before changing value
             sleep(50);
 
 

@@ -13,7 +13,6 @@ public class CommonControls {
     private final DcMotor rightBack;
     //Intake motor
     public final DcMotor intake;
-    public double intakePower = 0;
 
     public CommonControls(HardwareMap hardwareMap) {
         // Main Drive Motors
@@ -77,9 +76,10 @@ public class CommonControls {
      *
      * @param intakeForwardInput Button mapped to forward input
      * @param intakeReverseInput Button mapped to reverse input
+     * @return Return the final value of intakePower (0 or 1)
      */
-    void setIntakePower(boolean intakeForwardInput, boolean intakeReverseInput) {
-        intakePower = 0;
+    double setIntakePower(boolean intakeForwardInput, boolean intakeReverseInput) {
+        double intakePower = 0;
         // ^ is the XOR operator, will return true if only one variable is true
         // If intakeForwardInput OR intakeReverseInput is true then this is true, but not
         // if both are true, which is why this differs from the || logical or operator
@@ -88,5 +88,6 @@ public class CommonControls {
             // This says set power = 1 if intakeForwardInput is true, else set it to -1
             intakePower = intakeForwardInput ? 1 : -1;
         }
+        return intakePower;
     }
 }
