@@ -56,28 +56,24 @@ public class CommonControlsTest {
     @DisplayName("Intake should spin forward when forward button is pressed")
     @Test
     void testIntakeForward() {
-        controls.setIntakePower(true, false);
-        assertEquals(1.0, controls.intakePower);
+        assertEquals(1.0, controls.setIntakePower(true, false));
     }
 
     @DisplayName("Intake should spin backward when reverse button is pressed")
     @Test
     void testIntakeReverse() {
-        controls.setIntakePower(false, true);
-        assertEquals(-1.0, controls.intakePower);
+        assertEquals(-1.0, controls.setIntakePower(false, true));
     }
 
     @DisplayName("Intake should not spin when direction buttons are not depressed")
     @Test
     void testIntakeNeutral() {
-        controls.setIntakePower(false, false);
-        assertEquals(0.0, controls.intakePower);
+        assertEquals(0.0, controls.setIntakePower(false, false));
     }
 
     @DisplayName("Intake should stop when both direction buttons pressed at the same time")
     @Test
     void testIntakeConflict() {
-        controls.setIntakePower(true, true);
-        assertEquals(0.0, controls.intakePower);
+        assertEquals(0.0, controls.setIntakePower(true, true));
     }
 }
