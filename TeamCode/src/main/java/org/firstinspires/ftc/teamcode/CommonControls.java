@@ -1,19 +1,70 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-
+/**
+ * Class the holds common functions and variable for the 13233 DECODE robot
+ */
 public class CommonControls {
-
+    /**
+     * Front left drive motor
+     */
     private final DcMotor leftFront;
+    /**
+     * Front right drive motor
+     */
     private final DcMotor rightFront;
+    /**
+     * Back left drive motor
+     */
     private final DcMotor leftBack;
+    /**
+     * Right back drive motor
+     */
     private final DcMotor rightBack;
-    //Intake motor
-    public final DcMotor intake;
 
+
+
+    /**
+     * The motor for that controls the ball intake
+     */
+    private final DcMotor intake;
+
+    /**
+     * One of the motors used to shoot the balls
+     */
+    private DcMotor Launcher;
+    /**
+     * One of the motors used to shoot the balls
+     */
+    private DcMotor Launcher2;
+
+
+
+    /**
+     * One of the servos used to carry the balls up the ramp
+     */
+    private CRServo rampServo1;
+    /**
+     * One of the servos used to carry the balls up the ramp
+     */
+    private CRServo rampServo2;
+
+
+
+    /**
+     * The big flexible wheel used to assist the ramp servos in carrying the ball up the ramp
+     */
+    public DcMotor LauncherWheelM;
+
+    /**
+     * Constructor for the CommonControls class
+     *
+     * @param hardwareMap The hardware map for the robot
+     */
     public CommonControls(HardwareMap hardwareMap) {
         // Main Drive Motors
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
@@ -23,6 +74,13 @@ public class CommonControls {
 
         // Intake Motor
         intake = hardwareMap.get(DcMotor.class, "intake");
+
+        //Launcher Prototype
+        Launcher = hardwareMap.dcMotor.get("Launcher");
+        Launcher2 = hardwareMap.dcMotor.get("Launcher2");
+        rampServo1 = hardwareMap.crservo.get("rampServo1");
+        rampServo2 = hardwareMap.crservo.get("rampServo2");
+        LauncherWheelM = hardwareMap.dcMotor.get("launcherWheelM");
 
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -39,7 +97,14 @@ public class CommonControls {
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+
+
+        Launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODERS);
     }
+
+
+    // TODO:
+    //        Implement field oriented drive
 
     /**
      * Updates all the drive controls based on the current gamepad stick positions
@@ -60,15 +125,31 @@ public class CommonControls {
         float rotate = controlRightStick;
         float speed = 1 - speedControl;
 
+        // Calculate the power for each motor
         float frontRightPower = (forward + strafe + rotate) * (speed);
         float frontLeftPower = (forward - strafe - rotate) * (speed);
         float backRightPower = (forward - strafe + rotate) * (speed);
         float backLeftPower = (forward + strafe - rotate) * (speed);
 
+        // Set the power for each of the motors
         rightFront.setPower(frontRightPower);
         leftFront.setPower(frontLeftPower);
         rightBack.setPower(backRightPower);
         leftBack.setPower(backLeftPower);
+    }
+
+
+    /**
+     * Sets the power of all of the launch motors depending on the value of launchInput
+     * @param launchInput Button mapped to launch input
+     */
+    void setLaunchPower(boolean launchInput) {
+        double power = launchInput ? 1.0 : 0.0;
+
+        // Set the the power value to the motors
+        Launcher.setPower(-power);
+        Launcher2.setPower(power);
+        LauncherWheelM.setPower(power);
     }
 
     /**
@@ -76,9 +157,8 @@ public class CommonControls {
      *
      * @param intakeForwardInput Button mapped to forward input
      * @param intakeReverseInput Button mapped to reverse input
-     * @return Return the final value of intakePower (0 or 1)
      */
-    double setIntakePower(boolean intakeForwardInput, boolean intakeReverseInput) {
+    void setIntakeDirection(boolean intakeForwardInput, boolean intakeReverseInput){
         double intakePower = 0;
         // ^ is the XOR operator, will return true if only one variable is true
         // If intakeForwardInput OR intakeReverseInput is true then this is true, but not
@@ -88,6 +168,9 @@ public class CommonControls {
             // This says set power = 1 if intakeForwardInput is true, else set it to -1
             intakePower = intakeForwardInput ? 1 : -1;
         }
-        return intakePower;
+        rampServo1.setPower(-intakePower);
+        rampServo2.setPower(intakePower);
+        LauncherWheelM.setPower(intakePower * 0.5);
+        intake.setPower(intakePower);
     }
 }
