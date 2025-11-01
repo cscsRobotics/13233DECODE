@@ -1,9 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
 
 /**
  * Class the holds common functions and variable for the 13233 DECODE robot
@@ -12,44 +15,49 @@ public class CommonControls {
     /**
      * Front left drive motor
      */
-    public final DcMotor leftFront;
+    public DcMotor leftFront;
     /**
      * Front right drive motor
      */
-    public final DcMotor rightFront;
+    public DcMotor rightFront;
     /**
      * Back left drive motor
      */
-    public final DcMotor leftBack;
+    public DcMotor leftBack;
     /**
      * Right back drive motor
      */
-    public final DcMotor rightBack;
+    public DcMotor rightBack;
 
 
     /**
      * The motor for that controls the ball intake
      */
-    private final DcMotor intake;
+    private DcMotor intake;
 
     /**
      * One of the motors used to shoot the balls
      */
-    private final DcMotor Launcher;
+    private DcMotor Launcher;
     /**
      * One of the motors used to shoot the balls
      */
-    private final DcMotor Launcher2;
+    private DcMotor Launcher2;
 
 
     /**
      * One of the servos used to carry the balls up the ramp
      */
-    private final CRServo rampServo1;
+    private CRServo rampServo1;
     /**
      * One of the servos used to carry the balls up the ramp
      */
-    private final CRServo rampServo2;
+    private CRServo rampServo2;
+
+    /**
+     * One of the servos used to carry the balls up the ramp
+     */
+    private CRServo rampServo3;
 
 
     /**
@@ -78,6 +86,8 @@ public class CommonControls {
         rampServo1 = hardwareMap.crservo.get("rampServo1");
         rampServo2 = hardwareMap.crservo.get("rampServo2");
         LauncherWheelM = hardwareMap.dcMotor.get("launcherWheelM");
+        rampServo3 = hardwareMap.crservo.get("rampServo3");
+
 
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -117,7 +127,8 @@ public class CommonControls {
         float strafe = controlLeftStickX;
         //noinspection UnnecessaryLocalVariable
         float rotate = controlRightStick;
-        float speed = 1.0f - speedLimiter;
+        float speed = Math.max(1.0f - speedLimiter, 0.5f);
+
 
         // Calculate the power for each motor
         float frontRightPower = (forward + strafe + rotate) * (speed);
@@ -174,6 +185,7 @@ public class CommonControls {
         }
         rampServo1.setPower(-intakePower);
         rampServo2.setPower(intakePower);
+        rampServo3.setPower(intakePower);
         LauncherWheelM.setPower(intakePower * 0.5);
         intake.setPower(intakePower);
     }

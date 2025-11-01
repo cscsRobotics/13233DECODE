@@ -34,12 +34,13 @@ public class TeleOpMain extends LinearOpMode {
             // Wait for motors to speed up before changing value
             // While it is bad practice to put a sleep in a loop it is the only way to (that I know)
             // to make the intake not jitter I also
-            sleep(50);
+
 
             // Sets the power to the drive motors based on current gamepad inputs
             CommonControls.setDrivePower(gamepad1.left_stick_y, gamepad1.left_stick_x,
                 gamepad1.right_stick_x, gamepad1.left_trigger);
         }
+        sleep(50);
         // Do not place any drive code here outside of the while loop (will fail inspection)
     }
 }

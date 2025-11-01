@@ -15,7 +15,7 @@ public class QuickAuto extends LinearOpMode {
         waitForStart();
         if (opModeIsActive()) {// OpMode loop
             CommonControls.setDrivePower(-1.0f);
-            sleep(2000);
+            sleep(500);
             CommonControls.setDrivePower(0);
         }
     }
