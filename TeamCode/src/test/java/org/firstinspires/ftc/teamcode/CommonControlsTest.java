@@ -39,7 +39,6 @@ public class CommonControlsTest {
         rampServo2 = mock(CRServo.class);
 
 
-
         // Mock HardwareMap and its nested dcMotor map
         hardwareMap = mock(HardwareMap.class);
         HardwareMap.DeviceMapping<CRServo> crServoMap = mock(HardwareMap.DeviceMapping.class);
@@ -88,20 +87,20 @@ public class CommonControlsTest {
     @Test
     void testSetDrivePower_forwardOnly() {
         // Forward input only, no strafe or rotation, full speed
-        controls.setDrivePower(1.0f, 0.0f, 0.0f,
+        controls.setDrivePower(-1.0f, 0.0f, 0.0f,
             0.0f);
 
         // Expected power: all motors get 1.0
-        verify(leftFront).setPower(1.0);
-        verify(rightFront).setPower(1.0);
-        verify(leftBack).setPower(1.0);
-        verify(rightBack).setPower(1.0);
+        verify(leftFront).setPower(-1.0);
+        verify(rightFront).setPower(-1.0);
+        verify(leftBack).setPower(-1.0);
+        verify(rightBack).setPower(-1.0);
     }
 
     @DisplayName("Pushing left stick Y fully should set back right and front left motors to 1.0" +
         "and should set back left and front right motors to -1.0")
     @Test
-    void testSetDrivePower_strafeRightOnly(){
+    void testSetDrivePower_strafeRightOnly() {
         controls.setDrivePower(0.0f, -1.0f, 0.0f,
             0.0f);
 
@@ -117,7 +116,7 @@ public class CommonControlsTest {
     @DisplayName("Pushing right stick X fully should set the left motors to 1.0" +
         " and the right motors to -1.0")
     @Test
-    void testSetDrivePower_turnRight(){
+    void testSetDrivePower_turnRight() {
         controls.setDrivePower(0.0f, 0.0f, -1.0f,
             0.0f);
 
@@ -170,7 +169,7 @@ public class CommonControlsTest {
 
     @DisplayName("Launcher should spin when input given")
     @Test
-    void testLaunchPower(){
+    void testLaunchPower() {
         controls.setLaunchPower(true);
         verify(Launcher).setPower(-1.0);
         verify(Launcher2).setPower(1.0);
@@ -179,7 +178,7 @@ public class CommonControlsTest {
 
     @DisplayName("Launcher should stop when no input it given")
     @Test
-    void testNoLaunchPower(){
+    void testNoLaunchPower() {
         controls.setLaunchPower(false);
         verify(Launcher).setPower(-0.0);
         verify(Launcher2).setPower(0.0);

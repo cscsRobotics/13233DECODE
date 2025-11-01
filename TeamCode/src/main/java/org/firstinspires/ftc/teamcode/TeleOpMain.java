@@ -1,5 +1,6 @@
 // Import libraries
 package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -7,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name = "TeleOpMain", group = "Drive")
 public class TeleOpMain extends LinearOpMode {
 
-     //This function is executed when this Op Mode is selected from the Driver Station
+    //This function is executed when this Op Mode is selected from the Driver Station
     @Override
     public void runOpMode() {
         // Initialize the CommonControls class
@@ -29,7 +30,7 @@ public class TeleOpMain extends LinearOpMode {
 
             // Set all of the intake motors and servos to go forward when dpad up is pressed
             // and reverse when dpad down is pressed
-            CommonControls.setIntakeDirection(gamepad1.dpad_up, gamepad1.dpad_down);
+            CommonControls.setIntakeDirection(gamepad2.dpad_up, gamepad2.dpad_down);
             // Wait for motors to speed up before changing value
             // While it is bad practice to put a sleep in a loop it is the only way to (that I know)
             // to make the intake not jitter I also

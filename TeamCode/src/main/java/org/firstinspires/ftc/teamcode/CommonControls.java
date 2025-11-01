@@ -27,7 +27,6 @@ public class CommonControls {
     public final DcMotor rightBack;
 
 
-
     /**
      * The motor for that controls the ball intake
      */
@@ -43,7 +42,6 @@ public class CommonControls {
     private final DcMotor Launcher2;
 
 
-
     /**
      * One of the servos used to carry the balls up the ramp
      */
@@ -52,7 +50,6 @@ public class CommonControls {
      * One of the servos used to carry the balls up the ramp
      */
     private final CRServo rampServo2;
-
 
 
     /**
@@ -66,16 +63,16 @@ public class CommonControls {
      * @param hardwareMap The hardware map for the robot
      */
     public CommonControls(HardwareMap hardwareMap) {
-        // Main Drive Motors
+        // Map main Drive Motors
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
 
-        // Intake Motor
+        // Map Intake Motor
         intake = hardwareMap.get(DcMotor.class, "intake");
 
-        //Launcher Prototype
+        // Map the launcher Prototype
         Launcher = hardwareMap.dcMotor.get("Launcher");
         Launcher2 = hardwareMap.dcMotor.get("Launcher2");
         rampServo1 = hardwareMap.crservo.get("rampServo1");
@@ -109,10 +106,10 @@ public class CommonControls {
      * @param controlLeftStickY Left stick Y setting, up/down
      * @param controlLeftStickX Left stick X setting, left/right
      * @param controlRightStick Right Stick setting, controls left right turn
-     * @param speedControl      Trigger setting, controls speed of the robot
+     * @param speedLimiter      Trigger setting, controls speed of the robot
      */
     public void setDrivePower(float controlLeftStickY, float controlLeftStickX,
-                              float controlRightStick, float speedControl) {
+                              float controlRightStick, float speedLimiter) {
         // For readability and flexibility for future control input changes
         //noinspection UnnecessaryLocalVariable
         float forward = controlLeftStickY;
@@ -120,7 +117,7 @@ public class CommonControls {
         float strafe = controlLeftStickX;
         //noinspection UnnecessaryLocalVariable
         float rotate = controlRightStick;
-        float speed = 1 - speedControl;
+        float speed = 1.0f - speedLimiter;
 
         // Calculate the power for each motor
         float frontRightPower = (forward + strafe + rotate) * (speed);
@@ -135,9 +132,19 @@ public class CommonControls {
         leftBack.setPower(backLeftPower);
     }
 
+    /**
+     * Updates just the forward and back movement based on controller stick position
+     *
+     * @param controlLeftStickY Left stick Y setting, up/down
+     */
+    public void setDrivePower(float controlLeftStickY) {
+        setDrivePower(controlLeftStickY, 0.0f, 0.0f, 0.0f);
+    }
+
 
     /**
      * Sets the power of all of the launch motors depending on the value of launchInput
+     *
      * @param launchInput Button mapped to launch input
      */
     void setLaunchPower(boolean launchInput) {
@@ -155,7 +162,7 @@ public class CommonControls {
      * @param intakeForwardInput Button mapped to forward input
      * @param intakeReverseInput Button mapped to reverse input
      */
-    void setIntakeDirection(boolean intakeForwardInput, boolean intakeReverseInput){
+    void setIntakeDirection(boolean intakeForwardInput, boolean intakeReverseInput) {
         double intakePower = 0;
         // ^ is the XOR operator, will return true if only one variable is true
         // If intakeForwardInput OR intakeReverseInput is true then this is true, but not
@@ -169,5 +176,19 @@ public class CommonControls {
         rampServo2.setPower(intakePower);
         LauncherWheelM.setPower(intakePower * 0.5);
         intake.setPower(intakePower);
+    }
+
+    void setDriveBrake() {
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
+
+    void setDriveFloat() {
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 }
