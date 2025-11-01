@@ -12,19 +12,19 @@ public class CommonControls {
     /**
      * Front left drive motor
      */
-    private final DcMotor leftFront;
+    public final DcMotor leftFront;
     /**
      * Front right drive motor
      */
-    private final DcMotor rightFront;
+    public final DcMotor rightFront;
     /**
      * Back left drive motor
      */
-    private final DcMotor leftBack;
+    public final DcMotor leftBack;
     /**
      * Right back drive motor
      */
-    private final DcMotor rightBack;
+    public final DcMotor rightBack;
 
 
 
@@ -36,22 +36,22 @@ public class CommonControls {
     /**
      * One of the motors used to shoot the balls
      */
-    private DcMotor Launcher;
+    private final DcMotor Launcher;
     /**
      * One of the motors used to shoot the balls
      */
-    private DcMotor Launcher2;
+    private final DcMotor Launcher2;
 
 
 
     /**
      * One of the servos used to carry the balls up the ramp
      */
-    private CRServo rampServo1;
+    private final CRServo rampServo1;
     /**
      * One of the servos used to carry the balls up the ramp
      */
-    private CRServo rampServo2;
+    private final CRServo rampServo2;
 
 
 
@@ -97,9 +97,6 @@ public class CommonControls {
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-
-
-        Launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODERS);
     }
 
 
