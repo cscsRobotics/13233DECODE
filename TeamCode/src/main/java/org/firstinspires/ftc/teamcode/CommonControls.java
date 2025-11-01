@@ -159,6 +159,7 @@ public class CommonControls {
      * @param launchInput Button mapped to launch input
      */
     void setLaunchPower(boolean launchInput) {
+        gamepad1.rumble(1.0, 1.0, 500);
         double power = launchInput ? 1.0 : 0.0;
 
         // Set the the power value to the motors
