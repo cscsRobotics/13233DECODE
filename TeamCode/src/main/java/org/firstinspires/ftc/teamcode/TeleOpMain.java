@@ -18,7 +18,6 @@ public class TeleOpMain extends LinearOpMode {
         // DON'T WRITE ANY CODE AFTER THE WAIT FOR START UNTIL THE "while (opModIsActive())"
         // THIS WILL CAUSE PROBLEMS WHEN GOING THROUGH INSPECTION
         waitForStart();
-
         // Run code while op mode is active
         while (opModeIsActive()) {
             // Add status data to driver hub display
