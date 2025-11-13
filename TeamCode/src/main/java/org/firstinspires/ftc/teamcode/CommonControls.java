@@ -194,4 +194,12 @@ public class CommonControls {
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
+
+    void setDriveMotorZeroPowerBehavor(boolean input) {
+        if (input) {
+            setDriveBrake();
+        } else {
+            setDriveFloat();
+        }
+    }
 }

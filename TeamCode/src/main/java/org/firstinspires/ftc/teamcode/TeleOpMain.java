@@ -27,6 +27,9 @@ public class TeleOpMain extends LinearOpMode {
             // Set the power to the launch motors based while the x button is being pressed
             CommonControls.setLaunchPower(gamepad1.x);
 
+            //Add option to enable brakes when sharbell holds a
+            CommonControls.setDriveMotorZeroPowerBehavor(gamepad1.a);
+
             // Set all of the intake motors and servos to go forward when dpad up is pressed
             // and reverse when dpad down is pressed
             CommonControls.setIntakeDirection(gamepad2.dpad_up, gamepad2.dpad_down);
