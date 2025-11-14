@@ -89,13 +89,6 @@ public class CommonControls {
 
         // Set the direction of the intake motor
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        // Set the zero power behavior
-        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
 
@@ -195,7 +188,7 @@ public class CommonControls {
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
-    void setDriveMotorZeroPowerBehavor(boolean input) {
+    void setDriveMotorZeroPowerBehavior(boolean input) {
         if (input) {
             setDriveBrake();
         } else {
