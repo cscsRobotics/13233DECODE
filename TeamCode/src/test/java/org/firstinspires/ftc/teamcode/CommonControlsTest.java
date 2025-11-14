@@ -57,7 +57,6 @@ public class CommonControlsTest {
         when(dcMotorMap.get("Launcher")).thenReturn(Launcher);
         when(dcMotorMap.get("Launcher2")).thenReturn(Launcher2);
         when(dcMotorMap.get("launcherWheelM")).thenReturn(LauncherWheelM);
-
         when(crServoMap.get("rampServo1")).thenReturn(rampServo1);
         when(crServoMap.get("rampServo2")).thenReturn(rampServo2);
 
@@ -69,14 +68,6 @@ public class CommonControlsTest {
 
         // Set the direction of the intake motor
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        // Set the zero power behavior
-        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-
 
         hardwareMap.dcMotor = dcMotorMap;
         hardwareMap.crservo = crServoMap;
@@ -183,5 +174,25 @@ public class CommonControlsTest {
         verify(Launcher).setPower(-0.0);
         verify(Launcher2).setPower(0.0);
         verify(LauncherWheelM).setPower(0.0);
+    }
+
+    @DisplayName("Set zero power behavior to brake when true")
+    @Test
+    void testDriveBrakeActive() {
+        controls.setDriveMotorZeroPowerBehavior(true);
+        verify(leftFront).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        verify(rightFront).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        verify(leftBack).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        verify(rightBack).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
+
+    @DisplayName("Set zero power behavior to float when false")
+    @Test
+    void testDriveBrakeInactive() {
+        controls.setDriveMotorZeroPowerBehavior(false);
+        verify(leftFront).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        verify(rightFront).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        verify(leftBack).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        verify(rightBack).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 }
