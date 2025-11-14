@@ -51,13 +51,8 @@ public class CommonControls {
      * One of the servos used to carry the balls up the ramp
      */
     private CRServo rampServo2;
-
-
-    /**
-     * The big flexible wheel used to assist the ramp servos in carrying the ball up the ramp
-     */
-    public DcMotor LauncherWheelM;
-
+    private CRServo rampServo3;
+    private CRServo rampServo4;
 
     /**
      * Constructor for the CommonControls class
@@ -75,12 +70,12 @@ public class CommonControls {
         intake = hardwareMap.get(DcMotor.class, "intake");
 
         // Map the launcher Prototype
-        Launcher = hardwareMap.dcMotor.get("Launcher");
-        Launcher2 = hardwareMap.dcMotor.get("Launcher2");
-        rampServo1 = hardwareMap.crservo.get("rampServo1");
-        rampServo2 = hardwareMap.crservo.get("rampServo2");
-        LauncherWheelM = hardwareMap.dcMotor.get("launcherWheelM");
-
+        Launcher = hardwareMap.get(DcMotor.class, "Launcher");
+        Launcher2 = hardwareMap.get(DcMotor.class, "Launcher2");
+        rampServo1 = hardwareMap.get(CRServo.class, "rampServo1");
+        rampServo2 = hardwareMap.get(CRServo.class, "rampServo2");
+        rampServo3 = hardwareMap.get(CRServo.class, "rampServo3");
+        rampServo4 = hardwareMap.get(CRServo.class, "rampServo3");
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -149,7 +144,6 @@ public class CommonControls {
         // Set the the power value to the motors
         Launcher.setPower(-power);
         Launcher2.setPower(power);
-        LauncherWheelM.setPower(power);
     }
 
     /**
@@ -170,7 +164,8 @@ public class CommonControls {
         }
         rampServo1.setPower(-intakePower);
         rampServo2.setPower(intakePower);
-        LauncherWheelM.setPower(intakePower * 0.5);
+        rampServo3.setPower(intakePower);
+        rampServo4.setPower(-intakePower);
         intake.setPower(intakePower);
     }
 
