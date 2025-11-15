@@ -159,8 +159,8 @@ public class CommonControlsTest {
     @Test
     void testLaunchPower() {
         controls.setLaunchPower(true);
-        verify(Launcher).setPower(0.9);
-        verify(Launcher2).setPower(-0.9);
+        verify(Launcher).setPower(controls.launchPower);
+        verify(Launcher2).setPower(-controls.launchPower);
     }
 
     @DisplayName("Launcher should stop when no input it given")
