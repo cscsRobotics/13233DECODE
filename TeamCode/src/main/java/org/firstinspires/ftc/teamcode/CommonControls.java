@@ -142,8 +142,8 @@ public class CommonControls {
         double power = launchInput ? 1.0 : 0.0;
 
         // Set the the power value to the motors
-        Launcher.setPower(-power);
-        Launcher2.setPower(power);
+        Launcher.setPower(power);
+        Launcher2.setPower(-power);
     }
 
     /**
