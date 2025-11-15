@@ -70,12 +70,12 @@ public class CommonControls {
         intake = hardwareMap.get(DcMotor.class, "intake");
 
         // Map the launcher Prototype
-        Launcher = hardwareMap.get(DcMotor.class, "Launcher");
-        Launcher2 = hardwareMap.get(DcMotor.class, "Launcher2");
-        rampServo1 = hardwareMap.get(CRServo.class, "rampServo1");
-        rampServo2 = hardwareMap.get(CRServo.class, "rampServo2");
-        rampServo3 = hardwareMap.get(CRServo.class, "rampServo3");
-        rampServo4 = hardwareMap.get(CRServo.class, "rampServo3");
+        Launcher = hardwareMap.dcMotor.get("Launcher");
+        Launcher2 = hardwareMap.dcMotor.get("Launcher2");
+        rampServo1 = hardwareMap.crservo.get("rampServo1");
+        rampServo2 = hardwareMap.crservo.get("rampServo2");
+        rampServo3 = hardwareMap.crservo.get("rampServo3");
+        rampServo4 = hardwareMap.crservo.get("rampServo4");
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -161,12 +161,12 @@ public class CommonControls {
             // This uses an inline-if statement which is useful when assigning values to variables
             // This says set power = 1 if intakeForwardInput is true, else set it to -1
             intakePower = intakeForwardInput ? 1 : -1;
+            rampServo1.setPower(-intakePower);
+            rampServo2.setPower(intakePower);
+            rampServo3.setPower(intakePower);
+            rampServo4.setPower(-intakePower);
+            intake.setPower(intakePower);
         }
-        rampServo1.setPower(-intakePower);
-        rampServo2.setPower(intakePower);
-        rampServo3.setPower(intakePower);
-        rampServo4.setPower(-intakePower);
-        intake.setPower(intakePower);
     }
 
     void setDriveBrake() {

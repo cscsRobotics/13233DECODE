@@ -18,7 +18,7 @@ public class CommonControlsTest {
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, intake, Launcher, Launcher2,
         LauncherWheelM;
-    private CRServo rampServo1, rampServo2;
+    private CRServo rampServo1, rampServo2, rampServo3, rampServo4;
     private HardwareMap hardwareMap;
     private CommonControls controls;
 
@@ -37,6 +37,9 @@ public class CommonControlsTest {
 
         rampServo1 = mock(CRServo.class);
         rampServo2 = mock(CRServo.class);
+        rampServo3 = mock(CRServo.class);
+        rampServo4 = mock(CRServo.class);
+
 
 
         // Mock HardwareMap and its nested dcMotor map
@@ -59,6 +62,8 @@ public class CommonControlsTest {
         when(dcMotorMap.get("launcherWheelM")).thenReturn(LauncherWheelM);
         when(crServoMap.get("rampServo1")).thenReturn(rampServo1);
         when(crServoMap.get("rampServo2")).thenReturn(rampServo2);
+        when(crServoMap.get("rampServo3")).thenReturn(rampServo3);
+        when(crServoMap.get("rampServo4")).thenReturn(rampServo4);
 
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
