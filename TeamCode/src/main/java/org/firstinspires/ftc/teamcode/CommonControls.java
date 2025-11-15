@@ -139,7 +139,7 @@ public class CommonControls {
      * @param launchInput Button mapped to launch input
      */
     void setLaunchPower(boolean launchInput) {
-        double power = launchInput ? 1.0 : 0.0;
+        double power = launchInput ? 0.9 : 0.0;
 
         // Set the the power value to the motors
         Launcher.setPower(power);
