@@ -161,12 +161,12 @@ public class CommonControls {
             // This uses an inline-if statement which is useful when assigning values to variables
             // This says set power = 1 if intakeForwardInput is true, else set it to -1
             intakePower = intakeForwardInput ? 1 : -1;
-            rampServo1.setPower(-intakePower);
-            rampServo2.setPower(intakePower);
-            rampServo3.setPower(intakePower);
-            rampServo4.setPower(-intakePower);
-            intake.setPower(intakePower);
         }
+        rampServo1.setPower(-intakePower);
+        rampServo2.setPower(intakePower);
+        rampServo3.setPower(intakePower);
+        rampServo4.setPower(-intakePower);
+        intake.setPower(intakePower);
     }
 
     void setDriveBrake() {

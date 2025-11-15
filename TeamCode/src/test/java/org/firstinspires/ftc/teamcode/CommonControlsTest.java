@@ -16,8 +16,7 @@ import org.junit.jupiter.api.Test;
 
 public class CommonControlsTest {
 
-    private DcMotor leftFront, rightFront, leftBack, rightBack, intake, Launcher, Launcher2,
-        LauncherWheelM;
+    private DcMotor leftFront, rightFront, leftBack, rightBack, intake, Launcher, Launcher2;
     private CRServo rampServo1, rampServo2, rampServo3, rampServo4;
     private HardwareMap hardwareMap;
     private CommonControls controls;
@@ -33,13 +32,11 @@ public class CommonControlsTest {
         intake = mock(DcMotor.class);
         Launcher = mock(DcMotor.class);
         Launcher2 = mock(DcMotor.class);
-        LauncherWheelM = mock(DcMotor.class);
 
         rampServo1 = mock(CRServo.class);
         rampServo2 = mock(CRServo.class);
         rampServo3 = mock(CRServo.class);
         rampServo4 = mock(CRServo.class);
-
 
 
         // Mock HardwareMap and its nested dcMotor map
@@ -59,7 +56,6 @@ public class CommonControlsTest {
         when(dcMotorMap.get("rightBack")).thenReturn(rightBack);
         when(dcMotorMap.get("Launcher")).thenReturn(Launcher);
         when(dcMotorMap.get("Launcher2")).thenReturn(Launcher2);
-        when(dcMotorMap.get("launcherWheelM")).thenReturn(LauncherWheelM);
         when(crServoMap.get("rampServo1")).thenReturn(rampServo1);
         when(crServoMap.get("rampServo2")).thenReturn(rampServo2);
         when(crServoMap.get("rampServo3")).thenReturn(rampServo3);
@@ -130,7 +126,6 @@ public class CommonControlsTest {
         verify(intake).setPower(1.0);
         verify(rampServo1).setPower(-1.0);
         verify(rampServo2).setPower(1.0);
-        verify(LauncherWheelM).setPower(0.5);
     }
 
     @DisplayName("Intake should spin backward when reverse button is pressed")
@@ -140,7 +135,6 @@ public class CommonControlsTest {
         verify(intake).setPower(-1.0);
         verify(rampServo1).setPower(1.0);
         verify(rampServo2).setPower(-1.0);
-        verify(LauncherWheelM).setPower(-0.5);
     }
 
     @DisplayName("Intake should not spin when direction buttons are not depressed")
@@ -150,7 +144,6 @@ public class CommonControlsTest {
         verify(intake).setPower(0.0);
         verify(rampServo1).setPower(-0.0);
         verify(rampServo2).setPower(0.0);
-        verify(LauncherWheelM).setPower(0.0);
     }
 
     @DisplayName("Intake should stop when both direction buttons pressed at the same time")
@@ -160,7 +153,6 @@ public class CommonControlsTest {
         verify(intake).setPower(0.0);
         verify(rampServo1).setPower(-0.0);
         verify(rampServo2).setPower(0.0);
-        verify(LauncherWheelM).setPower(0.0);
     }
 
     @DisplayName("Launcher should spin when input given")
@@ -169,7 +161,6 @@ public class CommonControlsTest {
         controls.setLaunchPower(true);
         verify(Launcher).setPower(-1.0);
         verify(Launcher2).setPower(1.0);
-        verify(LauncherWheelM).setPower(1.0);
     }
 
     @DisplayName("Launcher should stop when no input it given")
@@ -178,7 +169,6 @@ public class CommonControlsTest {
         controls.setLaunchPower(false);
         verify(Launcher).setPower(-0.0);
         verify(Launcher2).setPower(0.0);
-        verify(LauncherWheelM).setPower(0.0);
     }
 
     @DisplayName("Set zero power behavior to brake when true")
