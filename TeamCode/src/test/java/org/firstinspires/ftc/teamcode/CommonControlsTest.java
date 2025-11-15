@@ -159,16 +159,16 @@ public class CommonControlsTest {
     @Test
     void testLaunchPower() {
         controls.setLaunchPower(true);
-        verify(Launcher).setPower(-1.0);
-        verify(Launcher2).setPower(1.0);
+        verify(Launcher).setPower(1.0);
+        verify(Launcher2).setPower(-1.0);
     }
 
     @DisplayName("Launcher should stop when no input it given")
     @Test
     void testNoLaunchPower() {
         controls.setLaunchPower(false);
-        verify(Launcher).setPower(-0.0);
-        verify(Launcher2).setPower(0.0);
+        verify(Launcher).setPower(0.0);
+        verify(Launcher2).setPower(-0.0);
     }
 
     @DisplayName("Set zero power behavior to brake when true")
