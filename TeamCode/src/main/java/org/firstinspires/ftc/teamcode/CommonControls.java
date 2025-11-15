@@ -107,6 +107,8 @@ public class CommonControls {
 
 
         // Calculate the power for each motor
+        // Remember the direction of the stick is the opposite of what you would expect
+        // up is in the negatives and down is in the positives
         float frontRightPower = (forward + strafe + rotate) * (speed);
         float frontLeftPower = (forward - strafe - rotate) * (speed);
         float backRightPower = (forward - strafe + rotate) * (speed);

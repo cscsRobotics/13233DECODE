@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -17,8 +16,8 @@ import org.junit.jupiter.api.Test;
 public class CommonControlsTest {
 
     private DcMotor leftFront, rightFront, leftBack, rightBack, intake, Launcher, Launcher2;
-    private CRServo rampServo1, rampServo2, rampServo3, rampServo4;
-    private HardwareMap hardwareMap;
+    private CRServo rampServo1;
+    private CRServo rampServo2;
     private CommonControls controls;
 
     @BeforeEach
@@ -35,12 +34,12 @@ public class CommonControlsTest {
 
         rampServo1 = mock(CRServo.class);
         rampServo2 = mock(CRServo.class);
-        rampServo3 = mock(CRServo.class);
-        rampServo4 = mock(CRServo.class);
+        CRServo rampServo3 = mock(CRServo.class);
+        CRServo rampServo4 = mock(CRServo.class);
 
 
         // Mock HardwareMap and its nested dcMotor map
-        hardwareMap = mock(HardwareMap.class);
+        HardwareMap hardwareMap = mock(HardwareMap.class);
         HardwareMap.DeviceMapping<CRServo> crServoMap = mock(HardwareMap.DeviceMapping.class);
         HardwareMap.DeviceMapping<DcMotor> dcMotorMap = mock(HardwareMap.DeviceMapping.class);
 
