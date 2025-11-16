@@ -26,13 +26,11 @@ public class CommonControls {
      * Right back drive motor
      */
     public DcMotor rightBack;
-
-
+    public float launchPower = 1.0f;
     /**
      * The motor for that controls the ball intake
      */
     private DcMotor intake;
-
     /**
      * One of the motors used to shoot the balls
      */
@@ -41,8 +39,6 @@ public class CommonControls {
      * One of the motors used to shoot the balls
      */
     private DcMotor Launcher2;
-
-
     /**
      * One of the servos used to carry the balls up the ramp
      */
@@ -111,6 +107,8 @@ public class CommonControls {
 
 
         // Calculate the power for each motor
+        // Remember the direction of the stick is the opposite of what you would expect
+        // up is in the negatives and down is in the positives
         float frontRightPower = (forward + strafe + rotate) * (speed);
         float frontLeftPower = (forward - strafe - rotate) * (speed);
         float backRightPower = (forward - strafe + rotate) * (speed);
@@ -139,11 +137,11 @@ public class CommonControls {
      * @param launchInput Button mapped to launch input
      */
     void setLaunchPower(boolean launchInput) {
-        double power = launchInput ? 1.0 : 0.0;
+        double power = launchInput ? launchPower : 0.0;
 
         // Set the the power value to the motors
-        Launcher.setPower(-power);
-        Launcher2.setPower(power);
+        Launcher.setPower(power);
+        Launcher2.setPower(-power);
     }
 
     /**
