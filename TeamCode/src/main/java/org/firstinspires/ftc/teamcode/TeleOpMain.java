@@ -15,21 +15,18 @@ import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 public class TeleOpMain extends LinearOpMode {
 
     // Constructors for the utils classes
-    private final DriveControls drive;
-    private final LaunchControls launch;
-    private final RampControls ramp;
-
-    public TeleOpMain(HardwareMap hardwareMap) {
-        this.drive = new DriveControls(hardwareMap);
-        this.launch = new LaunchControls(hardwareMap);
-        this.ramp = new RampControls(hardwareMap);
-    }
+    private DriveControls drive;
+    private LaunchControls launch;
+    private RampControls ramp;
 
 
     //This function is executed when this Op Mode is selected from the Driver Station
     @Override
     public void runOpMode() {
-        // Initialize the CommonControls class
+        // Create the utils classes
+        drive = new DriveControls(hardwareMap);
+        launch = new LaunchControls(hardwareMap);
+        ramp = new RampControls(hardwareMap);
 
         // The waitForStart() function will wait for the start button to begin
         // DON'T WRITE ANY CODE AFTER THE WAIT FOR START UNTIL THE "while (opModIsActive())"

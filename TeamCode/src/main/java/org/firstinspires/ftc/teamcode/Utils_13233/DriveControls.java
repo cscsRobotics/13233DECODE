@@ -55,7 +55,12 @@ public class DriveControls {
         setDrivePower(controlLeftStickY, 0.0f, 0.0f, 0.0f);
     }
 
-    // TODO: Create JavaDoc
+
+    // TODO: Write Unit test
+
+    /**
+     * Sets all of the drive motors' zero power behavior to BRAKE
+     */
     void setDriveBrake() {
         motors.leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motors.rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -63,7 +68,9 @@ public class DriveControls {
         motors.rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    // TODO: Create JavaDoc
+    /**
+     * Sets all of the drive motors' zero power behavior to FLOAT
+     */
     void setDriveFloat() {
         motors.leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         motors.rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -71,7 +78,12 @@ public class DriveControls {
         motors.rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
     }
 
-    // TODO: Create JavaDoc
+    /**
+     * Function that allows for the driver to control the zero power behavior of the drive motors
+     * to either BRAKE or FLOAT float is the default if no input is given on the controller
+     *
+     * @param input Controller button input to determine if the motors should be in BRAKE or FLOAT
+     */
     public void setDriveMotorZeroPowerBehavior(boolean input) {
         if (input) {
             setDriveBrake();

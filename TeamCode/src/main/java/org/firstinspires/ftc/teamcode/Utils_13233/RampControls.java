@@ -3,17 +3,18 @@ package org.firstinspires.ftc.teamcode.Utils_13233;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class RampControls {
+    private final MotorConstructor motors;
+
+    public RampControls(HardwareMap hardwareMap) {
+        this.motors = new MotorConstructor(hardwareMap);
+    }
+
     /**
      * Controls the spin direction of the intake wheel based on controller buttons
      *
      * @param intakeForwardInput Button mapped to forward input
      * @param intakeReverseInput Button mapped to reverse input
      */
-    private final MotorConstructor motors;
-
-    public RampControls(HardwareMap hardwareMap) {
-        this.motors = new MotorConstructor(hardwareMap);
-    }
     public void setIntakeDirection(boolean intakeForwardInput, boolean intakeReverseInput) {
         double intakePower = 0;
         // ^ is the XOR operator, will return true if only one variable is true
