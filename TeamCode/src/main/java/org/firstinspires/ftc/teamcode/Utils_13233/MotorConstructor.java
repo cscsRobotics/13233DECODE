@@ -5,6 +5,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+/**
+ * Class holds motors and servos that are used throughout the code
+ */
 public class MotorConstructor {
     /**
      * Front left drive motor
@@ -50,7 +53,7 @@ public class MotorConstructor {
     public CRServo rampServo3;
     public CRServo rampServo4;
 
-    public MotorConstructor(HardwareMap hardwareMap){
+    public MotorConstructor(HardwareMap hardwareMap) {
         // Map main Drive Motors
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
@@ -61,7 +64,7 @@ public class MotorConstructor {
         intake = hardwareMap.get(DcMotor.class, "intake");
 
         // Map the launcher Prototype
-        Launcher  = hardwareMap.get(DcMotor.class, "Launcher");
+        Launcher = hardwareMap.get(DcMotor.class, "Launcher");
         Launcher2 = hardwareMap.get(DcMotor.class, "Launcher2");
 
         rampServo1 = hardwareMap.get(CRServo.class, "rampServo1");
@@ -74,6 +77,11 @@ public class MotorConstructor {
         rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.FORWARD);
         rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        // Set the direction of the launcher motor
+        Launcher.setDirection(DcMotorSimple.Direction.REVERSE);
+        Launcher2.setDirection(DcMotorSimple.Direction.REVERSE);
+
 
         // Set the direction of the intake motor
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
