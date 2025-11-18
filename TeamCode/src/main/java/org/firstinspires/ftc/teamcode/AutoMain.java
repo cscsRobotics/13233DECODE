@@ -26,23 +26,6 @@ import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 @Autonomous(name = "AutoMain", group = "Auto")
 
 public class AutoMain extends LinearOpMode {
-    private final MotorConstructor motors;
-
-    public AutoMain(HardwareMap hardwareMap) {
-        this.motors = new MotorConstructor(hardwareMap);
-    }
-
-    private IMU imu;
-
-    private VoltageSensor VoltSens;
-
-
-    // Variables for imu
-    double globalAngle, correction;
-    YawPitchRollAngles lastAngles;
-
-    double voltage = 0;
-    double batteryConst = 13.5;
 
 
     // Possible Autonomous Modes
@@ -50,24 +33,6 @@ public class AutoMain extends LinearOpMode {
         AUTO_MODE_NOT_SELECTED,
         AUTO_MODE_DEFAULT,
     }
-
-
-    // Variables for driving with Encoders
-    private static final double wheelCircumference = 4.0 * Math.PI;
-    private static final double gearRatio = 18.9;                  // Rev HD Hex 20:1
-    private static final double countsPerRotation = 560.0;         // Rev HD Hex 20:1
-    private static final double scaleFactor = 9.0;                 // need to find scale factor!!!
-    private static final double countsPerInch = countsPerRotation / wheelCircumference
-        / gearRatio * scaleFactor;
-
-
-    // Global Variables
-    private final static double noPower = 0.0;
-    private final static double quarterPower = 0.25;
-    private final static double oneThirdPower = 0.34;
-    private final static double halfPower = 0.5;
-    private final static double threeQuartPower = 0.75;
-    private final static double fullPower = 1.0;
 
 
     // Global Variables to store Game Specific Information
@@ -199,16 +164,11 @@ public class AutoMain extends LinearOpMode {
 
         double tgtPower = 0;
 
-        VoltSens = hardwareMap.voltageSensor.get("Control Hub");
 
 
 
-        /* Setup IMU parameters */
 
 
-        // Retrieve and initialize the IMU. The IMU should be attached to
-        // IC2 port 0 on a Core Device Interface Module
-        imu = hardwareMap.get(IMU.class, "imu");
 
         /* The next two lines define Hub orientation.
          * The Default Orientation (shown) is when a hub is mounted horizontally with the printed
@@ -314,27 +274,7 @@ public class AutoMain extends LinearOpMode {
 
 
     // Functions needed for driving auto
-    private void resetEncoders() {
-        motors.rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motors.rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motors.leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motors.leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }
 
-    private void runUsingEncoders() {
-        motors.rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motors.rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motors.leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motors.leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-    }
-
-    private void setDrivePower(double leftFrontPower, double rightFrontPower,
-                               double leftBackPower, double rightBackPower) {
-        motors.rightFront.setPower(rightFrontPower);
-        motors.rightBack.setPower(rightBackPower);
-        motors.leftFront.setPower(leftFrontPower);
-        motors.leftBack.setPower(leftBackPower);
-    }
 
     /**
      * Function: strafeRight
@@ -346,94 +286,11 @@ public class AutoMain extends LinearOpMode {
         driveInches(inches, power, -power, -power, power);
     }
 
-    /**
-     * Function: strafeLeft
-     * <p>
-     * This function is called to have the robot move sideways
-     * in a left  direction
-     */
-    private void strafeLeft(double inches, double power) {
-        driveInches(inches, -power, power, power, -power);
-    }
-
-
-    /**
-     * Function: driveForward
-     * <p>
-     * This function is called to have the robot move forward.
-     * The robot speed is passed in and that value is used for
-     * all wheels.
-     */
-    private void driveForward(double inches, double power) {
-        driveInches(inches, power, power, power, power);
-    }
-
-
-    /**
-     * Function: driveBackward
-     * <p>
-     * This function is called to have the robot move in reverse.
-     * The robot speed is passed in and that value is used for
-     * all wheels.
-     */
-    private void driveBackward(double inches, double power) {
-        driveInches(inches, -power, -power, -power, -power);
-    }
-
-
-    /**
-     * Function: driveInches
-     * This function is called to have the robot move straight
-     * in a forward or reverse direction.
-     * <p>
-     * Strafe Forward = negative front wheels, positive back
-     * wheels
-     */
-    private void driveInches(double inches, double leftFrontPower, double rightFrontPower, double leftBackPower, double rightBackPower) {
-        double counts = inches * countsPerInch;
-
-        resetEncoders();
-        runUsingEncoders();
-
-        voltage = VoltSens.getVoltage();  // read current battery voltage
-
-        double leftFrontPowerCont = ((batteryConst * leftFrontPower) / voltage);
-        double rightFrontPowerCont = ((batteryConst * rightFrontPower) / voltage);
-        double leftBackPowerCont = ((batteryConst * leftBackPower) / voltage);
-        double rightBackPowerCont = ((batteryConst * rightBackPower) / voltage);
-
-        setDrivePower(leftFrontPowerCont, rightFrontPowerCont, leftBackPowerCont, rightBackPowerCont);
-
-        while (opModeIsActive() &&
-            (Math.abs(motors.leftFront.getCurrentPosition()) +
-                Math.abs(motors.rightFront.getCurrentPosition()) / 2.0) < Math.abs(counts)) {
-            // Use gyro to drive in a straight line.
-            correction = checkDirection();
-
-            // telemetry.addData("1 imu heading", lastAngles.firstAngle);
-            // telemetry.addData("2 global heading", globalAngle);
-            // telemetry.addData("3 correction", correction);
-            // telemetry.update();
-
-            setDrivePower(leftFrontPower - correction,
-                rightFrontPower + correction, leftBackPower - correction,
-                rightBackPower + correction);
-            idle();
-        }
-
-        setDrivePower(noPower, noPower, noPower, noPower);       // Stop all motors
-    }
 
     // Functions for turning and checking robot angle for correction
 
     /* Resets the cumulative angle tracking to zero.   */
 
-    private void resetAngle() {
-        imu.resetYaw();
-        lastAngles = imu.getRobotYawPitchRollAngles();
-
-        globalAngle = 0;
-    }
 
     /**
      * Get current cumulative angle rotation from last reset.
@@ -463,28 +320,6 @@ public class AutoMain extends LinearOpMode {
         return globalAngle;
     }
 
-    /**
-     * See if we are moving in a straight line and if not return a power correction value.
-     *
-     * @return Power adjustment, + is adjust left - is adjust right.
-     */
-    private double checkDirection() {
-        // The gain value determines how sensitive the correction is to direction changes.
-        // You will have to experiment with your robot to get small smooth direction changes
-        // to stay on a straight line.
-        double correction, angle, gain = .05;
-
-        angle = getAngle();
-
-        if (angle == 0)
-            correction = 0;             // no adjustment.
-        else
-            correction = -angle;        // reverse sign of angle for correction.
-
-        correction = correction * gain;
-
-        return correction;
-    }
 
     /**
      * Rotate left or right the number of degrees. Does not support turning more than 180 degrees.
