@@ -3,6 +3,7 @@ apply from: '../build.dependencies.gradle'
 apply plugin: 'de.mannodermaus.android-junit5'
 apply plugin: 'jacoco'
 
+
 android {
     namespace = 'org.firstinspires.ftc.teamcode'
 
@@ -18,6 +19,73 @@ tasks.withType(Test).configureEach {
 jacoco {
     toolVersion = "0.8.10"
 }
+
+tasks.register("testWithCoverage") {
+    dependsOn("testDebugUnitTest", "jacocoTestReport")
+}
+
+tasks.withType(Test).configureEach {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = [
+        'jdk.internal.*'
+    ]
+}
+
+tasks.register("jacocoTestReport", JacocoReport) {
+    // You are running debug unit tests
+    def variant = "debug"
+    def testVariant = "debugUnitTest"
+
+    dependsOn "test${testVariant.capitalize()}"
+
+    reports {
+        xml.required = true
+        html.required = true
+    }
+
+    def allowedClasses = files(
+        "$buildDir/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/firstinspires/ftc/teamcode/TeleOpMain.class",
+        "$buildDir/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/firstinspires/ftc/teamcode/TeleOpMain\$*.class",
+
+        "$buildDir/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/firstinspires/ftc/teamcode/AutoMain.class",
+        "$buildDir/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/firstinspires/ftc/teamcode/AutoMain\$*.class",
+
+        "$buildDir/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/firstinspires/ftc/teamcode/Utils_13233"
+    )
+
+
+    def fileFilter = [
+        '**/R.class', '**/R$*.class', '**/BuildConfig.*',
+        '**/Manifest*.*', 'android/**/*.*',
+        '**/org/firstinspires/ftc/teamcode/tuning/**',
+        '**/org/firstinspires/ftc/teamcode/**',
+    ]
+
+
+    // Main (non-test) code classes
+    def mainClasses = fileTree(
+        dir: "$buildDir/intermediates/javac/${variant}/compile${variant.capitalize()}JavaWithJavac/classes",
+        excludes: fileFilter
+    )
+
+    classDirectories.setFrom(
+        files([
+            mainClasses,   // everything minus excluded dirs
+            allowedClasses // add back specific classes
+        ])
+    )
+
+
+    sourceDirectories.setFrom(files([
+        "src/main/java"
+    ]))
+
+    executionData.setFrom(fileTree(
+        dir: buildDir,
+        includes: ["jacoco/test${testVariant.capitalize()}.exec"]
+    ))
+}
+
 
 repositories {
     maven {
