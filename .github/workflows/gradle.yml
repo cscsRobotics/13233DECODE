@@ -38,6 +38,10 @@ jobs:
       - name: Run unit tests
         run: ./gradlew :TeamCode:testReleaseUnitTest --no-daemon --stacktrace
 
+      - name: Run JaCoCo
+        run:
+          ./gradlew :TeamCode:jacocoTestReport
+
       - name: Build Release APK
         run: ./gradlew assembleRelease --no-daemon --stacktrace
 
@@ -47,6 +51,12 @@ jobs:
         with:
           name: test-report-debug
           path: TeamCode/build/reports/tests/testDebugUnitTest
+
+      - name: Upload JaCoCo Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Upload JaCoCo Report
+          path: build/reports/jacoco/jacocoTestReport/**/*
 
       - name: Upload Release APK
         uses: actions/upload-artifact@v4
