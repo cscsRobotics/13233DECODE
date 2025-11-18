@@ -17,11 +17,10 @@ public class DriveControlsTest {
     MockMotorUtil mockMotor = new MockMotorUtil();
 
     @BeforeEach
-    void motorSetup(){
+    void motorSetup() {
         mockMotor.setUp();
         driveControls = new DriveControls(mockMotor.hardwareMap);
     }
-
 
 
     @DisplayName("Pushing left stick Y fully should set all motors to 1.0")
@@ -56,7 +55,8 @@ public class DriveControlsTest {
 
     @DisplayName("Pushing right stick X fully should set the left motors to 1.0" +
         " and the right motors to -1.0")
-    @Test    void testSetDrivePower_turnRight() {
+    @Test
+    void testSetDrivePower_turnRight() {
         driveControls.setDrivePower(0.0f, 0.0f, -1.0f,
             0.0f);
 
@@ -85,5 +85,17 @@ public class DriveControlsTest {
         verify(mockMotor.rightFront).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         verify(mockMotor.leftBack).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         verify(mockMotor.rightBack).setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+    }
+
+    @DisplayName("Go Forward when only left stick is assigned")
+    @Test
+    void testDriveForwardOnly() {
+        driveControls.setDrivePower(-1.0f);
+
+        // Expected power: all motors get 1.0
+        verify(mockMotor.leftFront).setPower(-1.0);
+        verify(mockMotor.rightFront).setPower(-1.0);
+        verify(mockMotor.leftBack).setPower(-1.0);
+        verify(mockMotor.rightBack).setPower(-1.0);
     }
 }
