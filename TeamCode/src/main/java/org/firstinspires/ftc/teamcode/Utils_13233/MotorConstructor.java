@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 /**
  * Class holds motors and servos that are used throughout the code
@@ -53,6 +55,9 @@ public class MotorConstructor {
     public CRServo rampServo3;
     public CRServo rampServo4;
 
+    VoltageSensor VoltSens;
+    protected IMU imu;
+
     public MotorConstructor(HardwareMap hardwareMap) {
         // Map main Drive Motors
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
@@ -71,6 +76,11 @@ public class MotorConstructor {
         rampServo2 = hardwareMap.get(CRServo.class, "rampServo2");
         rampServo3 = hardwareMap.get(CRServo.class, "rampServo3");
         rampServo4 = hardwareMap.get(CRServo.class, "rampServo4");
+
+        VoltSens = hardwareMap.voltageSensor.get("Control Hub");
+        
+        // IC2 port 0 on a Core Device Interface Module
+        imu = hardwareMap.get(IMU.class, "imu");
 
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
