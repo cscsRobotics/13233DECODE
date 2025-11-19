@@ -26,14 +26,11 @@ import org.firstinspires.ftc.teamcode.Utils_13233.AutoTurn;
 import org.firstinspires.ftc.teamcode.Utils_13233.CommonAutoMethods;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 
-
 @Autonomous(name = "AutoMain", group = "Auto")
-
 public class AutoMain extends LinearOpMode {
     private AutoDrive drive;
     private AutoTurn turn;
     private CommonAutoMethods autoMethods;
-
 
     // Possible Autonomous Modes
     public enum AutoMode {
@@ -41,49 +38,8 @@ public class AutoMain extends LinearOpMode {
         AUTO_MODE_DEFAULT,
     }
 
-
     // Global Variables to store Game Specific Information
     AutoMode autoMode = AutoMode.AUTO_MODE_NOT_SELECTED; // store autonomous mode selected
-
-
-    /**
-     * SelectAutoMode
-     * This function is use to select the autonomous code to be executed for this match
-     * Game pad 1 is used and the following buttons are used for selection:
-     * a - Red alliance Sample
-     * b - Blue alliance Sample
-     * x - Red alliance Specimen
-     * y - Blue alliance Specimen
-     *
-     * @return Selected mode
-     */
-    private AutoMode SelectAutoMode() {
-        // Local variable to store selected autonomous mode
-
-        AutoMode autoMode = AutoMode.AUTO_MODE_NOT_SELECTED;
-        // Display autonomous mode not selected yet
-        telemetry.addData("AutoMode", "Not Selected");
-        telemetry.update();
-
-
-        // Loop until autonomous mode is selected
-        while (!isStopRequested() && autoMode == AutoMode.AUTO_MODE_NOT_SELECTED) {
-            autoMode = AutoMode.AUTO_MODE_DEFAULT;
-            idle();
-        }
-
-        // Display selected autonomous mode
-        telemetry.addData("Autonomous Mode", autoMode.toString());
-        telemetry.update();
-
-        // Wait for the user to release the button
-        while (!isStopRequested() && (gamepad1.a || gamepad1.b || gamepad1.x || gamepad1.y)) {
-            idle();
-        }
-
-        return autoMode;
-
-    } // end SelectAutoMode
 
 
     // OpMode for autonomous code
@@ -111,7 +67,7 @@ public class AutoMain extends LinearOpMode {
 
         /* Select Autonomous Mode, Parking Location and Delay time	  */
 
-        autoMode = SelectAutoMode();
+        autoMode = autoMethods.SelectAutoMode();
         // parkLocation = SelectParkLoc();
         delayTimeMilliseconds = autoMethods.SelectDelayTime();
 

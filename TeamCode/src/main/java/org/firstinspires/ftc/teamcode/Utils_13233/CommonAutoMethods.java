@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
+import org.firstinspires.ftc.teamcode.AutoMain;
 
 public class CommonAutoMethods {
     private final MotorConstructor motors;
@@ -195,5 +196,44 @@ public class CommonAutoMethods {
         return delayTimeMilliseconds;       // returns selected delay time
 
     } // end SelectDelayTime
+
+    /**
+     * SelectAutoMode
+     * This function is use to select the autonomous code to be executed for this match
+     * Game pad 1 is used and the following buttons are used for selection:
+     * a - Red alliance Sample
+     * b - Blue alliance Sample
+     * x - Red alliance Specimen
+     * y - Blue alliance Specimen
+     *
+     * @return Selected mode
+     */
+    public AutoMain.AutoMode SelectAutoMode() {
+        // Local variable to store selected autonomous mode
+
+        AutoMain.AutoMode autoMode = AutoMain.AutoMode.AUTO_MODE_NOT_SELECTED;
+        // Display autonomous mode not selected yet
+        telemetry.addData("AutoMode", "Not Selected");
+        telemetry.update();
+
+
+        // Loop until autonomous mode is selected
+        while (!opMode.isStopRequested() && autoMode == AutoMain.AutoMode.AUTO_MODE_NOT_SELECTED) {
+            autoMode = AutoMain.AutoMode.AUTO_MODE_DEFAULT;
+            opMode.idle();
+        }
+
+        // Display selected autonomous mode
+        telemetry.addData("Autonomous Mode", autoMode.toString());
+        telemetry.update();
+
+        // Wait for the user to release the button
+        while (!opMode.isStopRequested() && (opMode.gamepad1.a || opMode.gamepad1.b || opMode.gamepad1.x || opMode.gamepad1.y)) {
+            opMode.idle();
+        }
+
+        return autoMode;
+
+    } // end SelectAutoMode
 }
 
