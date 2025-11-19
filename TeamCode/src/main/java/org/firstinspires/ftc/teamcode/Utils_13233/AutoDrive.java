@@ -9,14 +9,17 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 
-public abstract class AutoDrive extends LinearOpMode {
+public class AutoDrive {
     private final MotorConstructor motors;
     CommonAutoMethods autoMethods;
+    private final LinearOpMode opMode;
 
-    private AutoDrive(HardwareMap hardwareMap) {
+    public AutoDrive(LinearOpMode opMode, HardwareMap hardwareMap) {
+        this.opMode = opMode;
         this.motors = new MotorConstructor(hardwareMap);
         this.autoMethods = new CommonAutoMethods(hardwareMap);
     }
+
 
 
     /**
@@ -26,7 +29,7 @@ public abstract class AutoDrive extends LinearOpMode {
      * The robot speed is passed in and that value is used for
      * all wheels.
      */
-    private void driveForward(double inches, double power) {
+    public void driveForward(double inches, double power) {
         driveInches(inches, power, power, power, power);
     }
 
@@ -53,6 +56,16 @@ public abstract class AutoDrive extends LinearOpMode {
     }
 
     /**
+     * Function: strafeRight
+     * <p>
+     * This function is called to have the robot move sideways
+     * in a right direction
+     */
+    private void strafeRight(double inches, double power) {
+        driveInches(inches, power, -power, -power, power);
+    }
+
+    /**
      * Function: driveInches
      * This function is called to have the robot move straight
      * in a forward or reverse direction.
@@ -75,7 +88,7 @@ public abstract class AutoDrive extends LinearOpMode {
 
         autoMethods.setDrivePower(leftFrontPowerCont, rightFrontPowerCont, leftBackPowerCont, rightBackPowerCont);
 
-        while (opModeIsActive() &&
+        while (opMode.opModeIsActive() &&
             (Math.abs(motors.leftFront.getCurrentPosition()) +
                 Math.abs(motors.rightFront.getCurrentPosition()) / 2.0) < Math.abs(counts)) {
             // Use gyro to drive in a straight line.
@@ -89,7 +102,7 @@ public abstract class AutoDrive extends LinearOpMode {
             autoMethods.setDrivePower(leftFrontPower - correction,
                 rightFrontPower + correction, leftBackPower - correction,
                 rightBackPower + correction);
-            idle();
+            opMode.idle();
         }
 
         autoMethods.setDrivePower(AutoConstants.noPower, AutoConstants.noPower, AutoConstants.noPower, AutoConstants.noPower);       // Stop all motors

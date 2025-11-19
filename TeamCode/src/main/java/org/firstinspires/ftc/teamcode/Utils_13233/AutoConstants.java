@@ -8,12 +8,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 
 public class AutoConstants {
     // Global Variables
-    protected final static double noPower = 0.0;
-    protected final static double quarterPower = 0.25;
-    protected final static double oneThirdPower = 0.34;
-    protected final static double halfPower = 0.5;
-    protected final static double threeQuartPower = 0.75;
-    protected final static double fullPower = 1.0;
+    public final static double noPower = 0.0;
+    public final static double quarterPower = 0.25;
+    public final static double oneThirdPower = 0.34;
+    public final static double halfPower = 0.5;
+    public final static double threeQuartPower = 0.75;
+    public final static double fullPower = 1.0;
 
 
     // Variables for imu
