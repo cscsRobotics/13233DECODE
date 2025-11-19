@@ -20,12 +20,20 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 // import for IMU (gyroscope)
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
+import org.firstinspires.ftc.teamcode.Utils_13233.AutoConstants;
+import org.firstinspires.ftc.teamcode.Utils_13233.AutoDrive;
+import org.firstinspires.ftc.teamcode.Utils_13233.AutoTurn;
+import org.firstinspires.ftc.teamcode.Utils_13233.CommonAutoMethods;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 
 
 @Autonomous(name = "AutoMain", group = "Auto")
 
-public class AutoMain extends LinearOpMode {
+public class AutoMain extends LinearOpMode{
+    private AutoDrive drive;
+    private AutoTurn turn;
+    private CommonAutoMethods autoMethods;
+
 
 
     // Possible Autonomous Modes
@@ -161,52 +169,17 @@ public class AutoMain extends LinearOpMode {
     // OpMode for autonomous code
     @Override
     public void runOpMode() throws InterruptedException {
+        drive = new AutoDrive(this, hardwareMap);
+        turn  = new AutoTurn(this, hardwareMap);
+        autoMethods = new CommonAutoMethods(this, hardwareMap);
 
         double tgtPower = 0;
 
 
-
-
-
-
-
-        /* The next two lines define Hub orientation.
-         * The Default Orientation (shown) is when a hub is mounted horizontally with the printed
-         *  logo pointing UP and the USB port pointing FORWARD.
-         *
-         * To Do:  EDIT these two lines to match YOUR mounting configuration.
-         */
-        RevHubOrientationOnRobot.LogoFacingDirection logoDirection
-            = RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD;
-        RevHubOrientationOnRobot.UsbFacingDirection usbDirection
-            = RevHubOrientationOnRobot.UsbFacingDirection.DOWN;
-
         telemetry.addData("Mode", "calibrating imu....");
         telemetry.update();
-
-        try {
-            RevHubOrientationOnRobot orientationOnRobot =
-                new RevHubOrientationOnRobot(logoDirection, usbDirection);
-            imu.initialize(new IMU.Parameters(orientationOnRobot));
-
-            telemetry.addData("imu calib status", "calibrated");
-            telemetry.update();
-
-            // initialize imu global variables after calibrating imu
-            resetAngle();
-
-        } catch (IllegalArgumentException e) {
-            telemetry.addData("imu calib status", "failed - try again");
-            telemetry.update();
-        }
-
-
-        // set direction of motors
-        motors.leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
-        motors.rightFront.setDirection(DcMotorSimple.Direction.FORWARD);
-        motors.leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
-        motors.rightBack.setDirection(DcMotorSimple.Direction.FORWARD);
-
+        autoMethods.setUpIMU(RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD,
+            RevHubOrientationOnRobot.UsbFacingDirection.DOWN);
 
         // Create local variable to store selected autonomous mode
         // and amount of delay time
@@ -238,7 +211,7 @@ public class AutoMain extends LinearOpMode {
         telemetry.addData("Mode", "running");
         telemetry.update();
 
-        resetEncoders();
+        autoMethods.resetEncoders();
 
         // Delay start if needed
         if (delayTimeMilliseconds > 0) {
@@ -269,90 +242,6 @@ public class AutoMain extends LinearOpMode {
     }
 
     private void defaultAuto() {
-        driveForward(10.0, quarterPower);
+        drive.driveForward(10.0, AutoConstants.quarterPower);
     }
-
-
-    // Functions needed for driving auto
-
-
-    /**
-     * Function: strafeRight
-     * <p>
-     * This function is called to have the robot move sideways
-     * in a right direction
-     */
-    private void strafeRight(double inches, double power) {
-        driveInches(inches, power, -power, -power, power);
-    }
-
-
-    // Functions for turning and checking robot angle for correction
-
-    /* Resets the cumulative angle tracking to zero.   */
-
-
-    /**
-     * Get current cumulative angle rotation from last reset.
-     *
-     * @return Angle in degrees. + = left, - = right.
-     */
-    private double getAngle() {
-        // We experimentally determined the Z axis is the axis we want to use for heading angle.
-        // We have to process the angle because the imu works in euler angles so the Z axis is
-        // returned as 0 to +180 or 0 to -180 rolling back to -179 or +179 when rotation passes
-        // 180 degrees. We detect this transition and track the total cumulative angle of rotation.
-
-        // Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
-
-        double deltaAngle = orientation.getYaw(AngleUnit.DEGREES) - lastAngles.getYaw(AngleUnit.DEGREES);
-
-        if (deltaAngle < -180)
-            deltaAngle += 360;
-        else if (deltaAngle > 180)
-            deltaAngle -= 360;
-
-        globalAngle += deltaAngle;
-
-        lastAngles = orientation;
-
-        return globalAngle;
-    }
-
-
-    /**
-     * Rotate left or right the number of degrees. Does not support turning more than 180 degrees.
-     *
-     * @param degrees Degrees to turn, + is left - is right
-     */
-    private void rotate(int degrees, double power) {
-        double leftPower, rightPower;
-
-        // restart imu movement tracking.
-        resetAngle();
-
-        // getAngle() returns + when rotating counter clockwise (left) and - when rotating
-        // clockwise (right).
-        if (degrees < 0) {    // turn right.
-            leftPower = power;
-            rightPower = -power;
-        } else if (degrees > 0) {    // turn left.
-            leftPower = -power;
-            rightPower = power;
-        } else return;
-
-        // set power to rotate.
-        setDrivePower(leftPower, rightPower, leftPower, rightPower);
-
-        // turn the motors off.
-        setDrivePower(0.0, 0.0, 0.0, 0.0);
-
-        // wait for rotation to stop.
-        sleep(500);
-
-        // reset angle tracking on new heading.
-        resetAngle();
-    }
-
 }
