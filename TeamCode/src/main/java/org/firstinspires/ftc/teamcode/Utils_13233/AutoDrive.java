@@ -17,9 +17,8 @@ public class AutoDrive {
     public AutoDrive(LinearOpMode opMode, HardwareMap hardwareMap) {
         this.opMode = opMode;
         this.motors = new MotorConstructor(hardwareMap);
-        this.autoMethods = new CommonAutoMethods(hardwareMap);
+        this.autoMethods = new CommonAutoMethods(opMode, hardwareMap);
     }
-
 
 
     /**

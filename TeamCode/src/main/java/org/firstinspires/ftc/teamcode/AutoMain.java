@@ -29,11 +29,10 @@ import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 
 @Autonomous(name = "AutoMain", group = "Auto")
 
-public class AutoMain extends LinearOpMode{
+public class AutoMain extends LinearOpMode {
     private AutoDrive drive;
     private AutoTurn turn;
     private CommonAutoMethods autoMethods;
-
 
 
     // Possible Autonomous Modes
@@ -86,91 +85,12 @@ public class AutoMain extends LinearOpMode{
 
     } // end SelectAutoMode
 
-    /**
-     * Function: SelectDelayTime
-     * <p>
-     * This function is use to select how long to delay the start of the autonomous code.
-     * Game pad 1 is used and the following controls are used for selection:
-     * left bumper - decrease delay time by 1000 milliseconds (1 second)
-     * right bumper - increase delay time by 1000 milliseconds (1 second)
-     * a button -	set selected time
-     * note: if no delay time is needed, just select the a button. The default for the delay time
-     * is 0.
-     *
-     * @return Delay Time in milliseconds
-     */
-    private Integer SelectDelayTime() {
-        int delayTimeMilliseconds = 0;    // Initialize delay to be 0 seconds
-
-        // display delay time not set
-        telemetry.addData("Delay", "%d (Not Set)", delayTimeMilliseconds);
-        telemetry.addData("Left Bumper -", " decrease delay time by (1 second)");
-        telemetry.addData("Right bumper -", " increase delay time by (1 second)");
-        telemetry.addData("A", "No delay time is needed");
-        telemetry.update();
-
-
-        /* Select Delay time.
-           - Select 'a' button without hitting bumpers if no delay needed
-           - Use Left Bumper to decrease delay time
-           - Use Right bumper to increase delay time
-
-           Note: After entering delay time, use "a" button to set selected time
-        */
-
-        while (!isStopRequested() && !gamepad1.a) {
-            if (gamepad1.left_bumper) {
-                delayTimeMilliseconds -= 1000;
-
-                // ensure delay time does not go negative
-                if (delayTimeMilliseconds < 0) {
-                    delayTimeMilliseconds = 0;
-                }
-
-                // Wait for the bumper to be released
-                while (gamepad1.left_bumper) {
-                    idle();
-                }
-
-                telemetry.addData("Delay", "%d (decrease)", delayTimeMilliseconds);
-                telemetry.update();
-            }
-
-            if (gamepad1.right_bumper) {
-                delayTimeMilliseconds += 1000;
-
-                // ensure delay time is not greater than 10 seconds
-                if (delayTimeMilliseconds > 10000) {
-                    delayTimeMilliseconds = 10000;
-                }
-
-                while (gamepad1.right_bumper) {
-                    idle();
-                }
-                telemetry.addData("Delay", "%d (increase)", delayTimeMilliseconds);
-                telemetry.update();
-            }
-        }
-
-        // Wait for user to release the a button
-        while (!isStopRequested() && gamepad1.a) {
-            idle();
-        }
-
-
-        // Display selected delay time
-        telemetry.addData("Delay Time SET", delayTimeMilliseconds);
-        telemetry.update();
-        return delayTimeMilliseconds;       // returns selected delay time
-
-    } // end SelectDelayTime
-
 
     // OpMode for autonomous code
     @Override
     public void runOpMode() throws InterruptedException {
         drive = new AutoDrive(this, hardwareMap);
-        turn  = new AutoTurn(this, hardwareMap);
+        turn = new AutoTurn(this, hardwareMap);
         autoMethods = new CommonAutoMethods(this, hardwareMap);
 
         double tgtPower = 0;
@@ -193,7 +113,7 @@ public class AutoMain extends LinearOpMode{
 
         autoMode = SelectAutoMode();
         // parkLocation = SelectParkLoc();
-        delayTimeMilliseconds = SelectDelayTime();
+        delayTimeMilliseconds = autoMethods.SelectDelayTime();
 
 
         /* All required data entered.  Autonomous is initialized.	 */
@@ -225,7 +145,6 @@ public class AutoMain extends LinearOpMode{
             // display delay over and autonomous code is running
             telemetry.addData("Status", "Running");
             telemetry.update();
-
         }
 
         telemetry.clearAll();               // clear display messages

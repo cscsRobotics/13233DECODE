@@ -21,4 +21,5 @@ public class LaunchControls {
         motors.Launcher.setPower(-power);
         motors.Launcher2.setPower(power);
     }
+
 }
