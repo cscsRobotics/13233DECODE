@@ -14,7 +14,7 @@ public class AutoTurn {
 
     public AutoTurn(LinearOpMode opMode, HardwareMap hardwareMap) {
         this.motors = new MotorConstructor(hardwareMap);
-        this.autoMethods = new CommonAutoMethods(hardwareMap);
+        this.autoMethods = new CommonAutoMethods(opMode, hardwareMap);
         this.autoConst = new AutoConstants();
         this.opMode = opMode;
     }
@@ -52,7 +52,6 @@ public class AutoTurn {
         // reset angle tracking on new heading.
         resetAngle();
     }
-
 
 
     public void resetAngle() {

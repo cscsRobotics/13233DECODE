@@ -15,11 +15,13 @@ public class CommonAutoMethods {
     private final MotorConstructor motors;
     AutoConstants autoConst;
     AutoTurn autoTurn;
+    LinearOpMode opMode;
 
     public CommonAutoMethods(LinearOpMode opMode, HardwareMap hardwareMap) {
         this.motors = new MotorConstructor(hardwareMap);
         this.autoConst = new AutoConstants();
         this.autoTurn = new AutoTurn(opMode, hardwareMap);
+        this.opMode = opMode;
     }
 
     protected void setDrivePower(double leftFrontPower, double rightFrontPower,
@@ -114,5 +116,84 @@ public class CommonAutoMethods {
             telemetry.update();
         }
     }
+
+    /**
+     * Function: SelectDelayTime
+     * <p>
+     * This function is use to select how long to delay the start of the autonomous code.
+     * Game pad 1 is used and the following controls are used for selection:
+     * left bumper - decrease delay time by 1000 milliseconds (1 second)
+     * right bumper - increase delay time by 1000 milliseconds (1 second)
+     * a button -	set selected time
+     * note: if no delay time is needed, just select the a button. The default for the delay time
+     * is 0.
+     *
+     * @return Delay Time in milliseconds
+     */
+    public Integer SelectDelayTime() {
+        int delayTimeMilliseconds = 0;    // Initialize delay to be 0 seconds
+
+        // display delay time not set
+        telemetry.addData("Delay", "%d (Not Set)", delayTimeMilliseconds);
+        telemetry.addData("Left Bumper -", " decrease delay time by (1 second)");
+        telemetry.addData("Right bumper -", " increase delay time by (1 second)");
+        telemetry.addData("A", "No delay time is needed");
+        telemetry.update();
+
+
+        /* Select Delay time.
+           - Select 'a' button without hitting bumpers if no delay needed
+           - Use Left Bumper to decrease delay time
+           - Use Right bumper to increase delay time
+
+           Note: After entering delay time, use "a" button to set selected time
+        */
+
+        while (!opMode.isStopRequested() && !opMode.gamepad1.a) {
+            if (opMode.gamepad1.left_bumper) {
+                delayTimeMilliseconds -= 1000;
+
+                // ensure delay time does not go negative
+                if (delayTimeMilliseconds < 0) {
+                    delayTimeMilliseconds = 0;
+                }
+
+                // Wait for the bumper to be released
+                while (opMode.gamepad1.left_bumper) {
+                    opMode.idle();
+                }
+
+                telemetry.addData("Delay", "%d (decrease)", delayTimeMilliseconds);
+                telemetry.update();
+            }
+
+            if (opMode.gamepad1.right_bumper) {
+                delayTimeMilliseconds += 1000;
+
+                // ensure delay time is not greater than 10 seconds
+                if (delayTimeMilliseconds > 10000) {
+                    delayTimeMilliseconds = 10000;
+                }
+
+                while (opMode.gamepad1.right_bumper) {
+                    opMode.idle();
+                }
+                telemetry.addData("Delay", "%d (increase)", delayTimeMilliseconds);
+                telemetry.update();
+            }
+        }
+
+        // Wait for user to release the a button
+        while (!opMode.isStopRequested() && opMode.gamepad1.a) {
+            opMode.idle();
+        }
+
+
+        // Display selected delay time
+        telemetry.addData("Delay Time SET", delayTimeMilliseconds);
+        telemetry.update();
+        return delayTimeMilliseconds;       // returns selected delay time
+
+    } // end SelectDelayTime
 }
 
