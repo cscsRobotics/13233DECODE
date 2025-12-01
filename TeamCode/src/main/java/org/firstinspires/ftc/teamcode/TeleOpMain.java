@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
-import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 
@@ -39,6 +37,7 @@ public class TeleOpMain extends LinearOpMode {
             telemetry.update();
 
             // Set the power to the launch motors based while the x button is being pressed
+
             launch.setLaunchPower(gamepad1.x);
 
             //Add option to enable brakes when sharbell holds a
