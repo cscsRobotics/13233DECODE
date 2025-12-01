@@ -25,8 +25,8 @@ public class CommonAutoMethods {
         this.opMode = opMode;
     }
 
-    protected void setDrivePower(double leftFrontPower, double rightFrontPower,
-                                 double leftBackPower, double rightBackPower) {
+    public void setDrivePower(double leftFrontPower, double rightFrontPower,
+                              double leftBackPower, double rightBackPower) {
         motors.rightFront.setPower(rightFrontPower);
         motors.rightBack.setPower(rightBackPower);
         motors.leftFront.setPower(leftFrontPower);

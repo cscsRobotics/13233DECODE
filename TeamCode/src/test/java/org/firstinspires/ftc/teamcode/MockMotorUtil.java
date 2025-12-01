@@ -54,8 +54,6 @@ public class MockMotorUtil {
 
 
         // Mock the motors
-
-
         when(hardwareMap.get(DcMotor.class, "intake")).thenReturn(intake);
 
         when(hardwareMap.get(DcMotor.class, "leftFront")).thenReturn(leftFront);
@@ -72,7 +70,7 @@ public class MockMotorUtil {
         when(hardwareMap.get(CRServo.class, "rampServo4")).thenReturn(rampServo4);
         when(hardwareMap.get(VoltageSensor.class, "Control Hub")).thenReturn(VoltSens);
 
-        when(hardwareMap.voltageSensor).thenReturn(voltageSensorMap);
+        hardwareMap.voltageSensor = voltageSensorMap;
         when(voltageSensorMap.get("Control Hub")).thenReturn(VoltSens);
 
         // Mock the IMU (gyroscope)

@@ -1,17 +1,12 @@
 // Import libraries
 package org.firstinspires.ftc.teamcode;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.opMode;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
-import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
-import org.firstinspires.ftc.teamcode.Utils_13233.TeleOpCommonMethods;
 
 
 @TeleOp(name = "TeleOpMain", group = "Drive")
@@ -21,7 +16,6 @@ public class TeleOpMain extends LinearOpMode {
     private DriveControls drive;
     private LaunchControls launch;
     private RampControls ramp;
-    private TeleOpCommonMethods commonMethods;
 
 
     //This function is executed when this Op Mode is selected from the Driver Station
@@ -31,8 +25,6 @@ public class TeleOpMain extends LinearOpMode {
         drive = new DriveControls(hardwareMap);
         launch = new LaunchControls(hardwareMap);
         ramp = new RampControls(hardwareMap);
-        commonMethods = new TeleOpCommonMethods(this);
-
 
         // The waitForStart() function will wait for the start button to begin
         // DON'T WRITE ANY CODE AFTER THE WAIT FOR START UNTIL THE "while (opModIsActive())"
@@ -46,8 +38,7 @@ public class TeleOpMain extends LinearOpMode {
 
             // Set the power to the launch motors based while the x button is being pressed
 
-            launch.setLaunchPower(commonMethods.toggleButton("launch", gamepad1.x,
-                false));
+            launch.setLaunchPower(gamepad1.x);
 
             //Add option to enable brakes when sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);

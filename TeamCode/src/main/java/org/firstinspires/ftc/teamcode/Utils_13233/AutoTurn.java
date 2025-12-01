@@ -24,7 +24,7 @@ public class AutoTurn {
      *
      * @param degrees Degrees to turn, + is left - is right
      */
-    private void rotate(int degrees, double power) {
+    public void rotate(int degrees, double power) {
         double leftPower, rightPower;
 
         // restart imu movement tracking.
