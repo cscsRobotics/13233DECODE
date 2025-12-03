@@ -32,4 +32,7 @@ public class RampControls {
         motors.intake.setPower(intakePower);
     }
 
+    public void setIntakeDirection(int i) {
+
+    }
 }
