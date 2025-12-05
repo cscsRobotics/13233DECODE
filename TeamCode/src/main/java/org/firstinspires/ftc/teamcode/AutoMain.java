@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
@@ -26,21 +27,14 @@ import org.firstinspires.ftc.teamcode.Utils_13233.AutoTurn;
 import org.firstinspires.ftc.teamcode.Utils_13233.CommonAutoMethods;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 
+@Disabled
 @Autonomous(name = "AutoMain", group = "Auto")
 public class AutoMain extends LinearOpMode {
+    // Global Variables to store Game Specific Information
+    AutoMode autoMode = AutoMode.AUTO_MODE_NOT_SELECTED; // store autonomous mode selected
     private AutoDrive drive;
     private AutoTurn turn;
     private CommonAutoMethods autoMethods;
-
-    // Possible Autonomous Modes
-    public enum AutoMode {
-        AUTO_MODE_NOT_SELECTED,
-        AUTO_MODE_DEFAULT,
-    }
-
-    // Global Variables to store Game Specific Information
-    AutoMode autoMode = AutoMode.AUTO_MODE_NOT_SELECTED; // store autonomous mode selected
-
 
     // OpMode for autonomous code
     @Override
@@ -118,5 +112,11 @@ public class AutoMain extends LinearOpMode {
 
     private void defaultAuto() {
         drive.driveForward(10.0, AutoConstants.quarterPower);
+    }
+
+    // Possible Autonomous Modes
+    public enum AutoMode {
+        AUTO_MODE_NOT_SELECTED,
+        AUTO_MODE_DEFAULT,
     }
 }

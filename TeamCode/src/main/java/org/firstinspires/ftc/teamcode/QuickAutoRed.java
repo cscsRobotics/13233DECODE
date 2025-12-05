@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 
-@Autonomous(name = "QuickAutoRed")
+@Autonomous(name = "QuickAutoRed", group = "Autonomous")
 public class QuickAutoRed extends LinearOpMode {
 
     private DriveControls drive;
