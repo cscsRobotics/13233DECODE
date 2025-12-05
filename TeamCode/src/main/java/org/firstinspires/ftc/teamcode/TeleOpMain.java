@@ -1,9 +1,12 @@
-// Import libraries
+// Import teamcode package
 package org.firstinspires.ftc.teamcode;
+
+// Import linearOpMode and TeleOp library's
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+// Import import the methods for drive ramp and launch
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
@@ -36,18 +39,21 @@ public class TeleOpMain extends LinearOpMode {
             telemetry.addData("Status", "opModeIsActive");
             telemetry.update();
 
-            // Set the power to the launch motors based while the x button is being pressed
+            // Intake and ramp code
+            // Set the power to the launch motors to 0.75 while the x button is being pressed
+            launch.setLaunchPower(gamepad1.x, 0.78f);
+            // Set the power to the launch motors to 1.0 while the x button is being pressed
+            launch.setLaunchPower(gamepad1.y, 1.0f);
 
-            launch.setLaunchPower(gamepad1.x);
-
-            //Add option to enable brakes when sharbell holds a
+            //Add option to enable brakes when Sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);
             //Add option to enable brakes when driver 1 holds the "a" button
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);
 
             // Set all of the intake motors and servos to go forward when dpad up is pressed
             // and reverse when dpad down is pressed
-            ramp.setIntakeDirection(gamepad2.dpad_up, gamepad2.dpad_down);
+            ramp.setIntakeDirection(gamepad2.dpad_up || gamepad1.dpad_up,
+                gamepad2.dpad_down || gamepad1.dpad_down);
             // Wait for motors to speed up before changing value
             // While it is bad practice to put a sleep in a loop it is the only way to (that I know)
             // to make the intake not jitter I also

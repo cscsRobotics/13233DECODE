@@ -32,7 +32,17 @@ public class RampControls {
         motors.intake.setPower(intakePower);
     }
 
-    public void setIntakeDirection(int i) {
+    public void setIntakeDirection(boolean isIntakeActive) {
+        // This uses an inline-if statement which is useful when assigning values to variables
+        // This says set power = 1 if intakeForwardInput is true, else set it to -1
+        float intakePower = isIntakeActive ? 1 : 0;
 
+        motors.rampServo1.setPower(-intakePower);
+        motors.rampServo2.setPower(intakePower);
+        motors.rampServo3.setPower(intakePower);
+        motors.rampServo4.setPower(-intakePower);
+        motors.intake.setPower(intakePower);
     }
+
 }
+
