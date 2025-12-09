@@ -43,18 +43,7 @@ public class MotorConstructor {
      */
     public DcMotor Launcher2;
 
-
-    /**
-     * One of the servos used to carry the balls up the ramp
-     */
-    public CRServo rampServo1;
-    /**
-     * One of the servos used to carry the balls up the ramp
-     */
-    public CRServo rampServo2;
-    public CRServo rampServo3;
-    public CRServo rampServo4;
-
+    public DcMotor Sorter;
     public VoltageSensor VoltSens;
     public IMU imu;
 
@@ -72,11 +61,7 @@ public class MotorConstructor {
         Launcher = hardwareMap.get(DcMotor.class, "Launcher");
         Launcher2 = hardwareMap.get(DcMotor.class, "Launcher2");
 
-        // Map the ramp servos
-        rampServo1 = hardwareMap.get(CRServo.class, "rampServo1");
-        rampServo2 = hardwareMap.get(CRServo.class, "rampServo2");
-        rampServo3 = hardwareMap.get(CRServo.class, "rampServo3");
-        rampServo4 = hardwareMap.get(CRServo.class, "rampServo4");
+        Sorter = hardwareMap.get(DcMotor.class, "Sorter");
 
         // Control hub voltage sensor
         // Used to move at a constant speed in auto regardless of battery voltage
