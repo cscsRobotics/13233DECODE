@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -10,8 +9,8 @@ import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 
-@Autonomous(name = "QuickAutoRed", group = "Autonomous")
-public class QuickAutoRed extends LinearOpMode {
+@Autonomous(name = "QuickAutoMoveForward", group = "Autonomous")
+public class QuickAutoMoveForward extends LinearOpMode {
 
     private DriveControls drive;
     private LaunchControls launch;
@@ -46,32 +45,11 @@ public class QuickAutoRed extends LinearOpMode {
             //Jacob's not so useful code
 
             drive.setDrivePower(-1.0f);
-            sleep(1200);
+            sleep(1200);//moves and brakes
             drive.setDriveMotorZeroPowerBehavior(true);
             drive.setDrivePower(0);
-
-            launch.setLaunchPower(true);
-
-            sleep(2500);//wait state to wait for launcher spin up
-            setIntakeDirection.setIntakeDirection(true);
-            sleep(750);//runs ramp servos up, shooting 1 ball
-            setIntakeDirection.setIntakeDirection(false);
-            sleep(500);//turns off ramp
-            setIntakeDirection.setIntakeDirection(true);
-            sleep(750);//shoots 1 ball
-            setIntakeDirection.setIntakeDirection(false);
-            sleep(500);//ramp off
-            setIntakeDirection.setIntakeDirection(true);
-            sleep(5000);//runs the servo one last time for 5 seconds
-            setIntakeDirection.setIntakeDirection(false);
-            launch.setLaunchPower(false);//turns everything off
-
-            drive.setDrivePower(0, -1.0f, 0, 0);
-            sleep(1000);
-            drive.setDrivePower(1.0f);//strafes to off line
-            sleep(1000);
-
         }
+
+
     }
 }
-

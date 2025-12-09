@@ -37,13 +37,21 @@ public class TeleOpMain extends LinearOpMode {
         while (opModeIsActive()) {
             // Add status data to driver hub display
             telemetry.addData("Status", "opModeIsActive");
+            // telemetry.addData("Launch 1 RPM", launch.launch1Speed());
             telemetry.update();
 
             // Intake and ramp code
             // Set the power to the launch motors to 0.75 while the x button is being pressed
-            launch.setLaunchPower(gamepad1.x, 0.78f);
+            if (gamepad1.x) {
+                launch.setLaunchPower(gamepad1.x, 0.73f);
+            } else if (gamepad1.y) {
+                launch.setLaunchPower(gamepad1.y, 1.0f);
+            } else {
+                launch.setLaunchPower(false);
+            }
+
+            //sleep to make this work
             // Set the power to the launch motors to 1.0 while the x button is being pressed
-            launch.setLaunchPower(gamepad1.y, 1.0f);
 
             //Add option to enable brakes when Sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);

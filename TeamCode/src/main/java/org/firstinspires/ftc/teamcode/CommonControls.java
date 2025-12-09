@@ -121,52 +121,6 @@ public class CommonControls {
         leftBack.setPower(backLeftPower);
     }
 
-    /**
-     * Updates just the forward and back movement based on controller stick position
-     *
-     * @param controlLeftStickY Left stick Y setting, up/down
-     */
-    public void setDrivePower(float controlLeftStickY) {
-        setDrivePower(controlLeftStickY, 0.0f, 0.0f, 0.0f);
-    }
-
-
-    /**
-     * Sets the power of all of the launch motors depending on the value of launchInput
-     *
-     * @param launchInput Button mapped to launch input
-     */
-    void setLaunchPower(boolean launchInput) {
-        double power = launchInput ? launchPower : 0.0;
-
-        // Set the the power value to the motors
-        Launcher.setPower(power);
-        Launcher2.setPower(-power);
-    }
-
-    /**
-     * Controls the spin direction of the intake wheel based on controller buttons
-     *
-     * @param intakeForwardInput Button mapped to forward input
-     * @param intakeReverseInput Button mapped to reverse input
-     */
-    void setIntakeDirection(boolean intakeForwardInput, boolean intakeReverseInput) {
-        double intakePower = 0;
-        // ^ is the XOR operator, will return true if only one variable is true
-        // If intakeForwardInput OR intakeReverseInput is true then this is true, but not
-        // if both are true, which is why this differs from the || logical or operator
-        if (intakeForwardInput ^ intakeReverseInput) {
-            // This uses an inline-if statement which is useful when assigning values to variables
-            // This says set power = 1 if intakeForwardInput is true, else set it to -1
-            intakePower = intakeForwardInput ? 1 : -1;
-        }
-        rampServo1.setPower(-intakePower);
-        rampServo2.setPower(intakePower);
-        rampServo3.setPower(intakePower);
-        rampServo4.setPower(-intakePower);
-        intake.setPower(intakePower);
-    }
-
     void setDriveBrake() {
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
