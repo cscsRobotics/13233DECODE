@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.Utils_13233;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -16,7 +14,7 @@ public class SorterControls {
     public int LaunchPos1 = 1;
     public int LaunchPos2 = 2;
     public int LaunchPos3 = 3;
-    private MotorConstructor motors;
+    private final MotorConstructor motors;
 
 
     public SorterControls(HardwareMap hardwareMap) {
@@ -76,7 +74,7 @@ public class SorterControls {
 
 
     /**
-     * Moves the sorter to a postion defined in mode and pos allows for both intake and launching
+     * Moves the sorter to a position defined in mode and pos allows for both intake and launching
      *
      * @param mode Enum to determine weather to launch or intake
      * @param pos  Enum to determine what sorter position to move to can be 1, 2 or 3

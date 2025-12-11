@@ -25,10 +25,6 @@ public class RampControls {
             // This says set power = 1 if intakeForwardInput is true, else set it to -1
             intakePower = intakeForwardInput ? 1 : -1;
         }
-        motors.rampServo1.setPower(-intakePower);
-        motors.rampServo2.setPower(intakePower);
-        motors.rampServo3.setPower(intakePower);
-        motors.rampServo4.setPower(-intakePower);
         motors.intake.setPower(intakePower);
     }
 

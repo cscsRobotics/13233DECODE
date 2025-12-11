@@ -1,12 +1,16 @@
 // Import libraries
 package org.firstinspires.ftc.teamcode;
 
+import static com.qualcomm.robotcore.hardware.Gamepad.RUMBLE_DURATION_CONTINUOUS;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
+import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
 
 @TeleOp(name = "TeleOpMain", group = "Drive")
@@ -16,6 +20,7 @@ public class TeleOpMain extends LinearOpMode {
     private DriveControls drive;
     private LaunchControls launch;
     private RampControls ramp;
+    private SorterControls sorter;
 
 
     //This function is executed when this Op Mode is selected from the Driver Station
@@ -25,6 +30,9 @@ public class TeleOpMain extends LinearOpMode {
         drive = new DriveControls(hardwareMap);
         launch = new LaunchControls(hardwareMap);
         ramp = new RampControls(hardwareMap);
+        sorter = new SorterControls(hardwareMap);
+
+        // Wait for the game to start (driver presses PLAY)
 
         // The waitForStart() function will wait for the start button to begin
         // DON'T WRITE ANY CODE AFTER THE WAIT FOR START UNTIL THE "while (opModIsActive())"
@@ -37,8 +45,34 @@ public class TeleOpMain extends LinearOpMode {
             telemetry.update();
 
             // Set the power to the launch motors based while the x button is being pressed
+            // and rumble to let the driver know that the launch motors are being controlled
 
-            launch.setLaunchPower(gamepad1.x);
+            launch.setLaunchPower(gamepad1.x); // spin up launch motors
+            if (gamepad1.x) {
+                gamepad1.rumble(1.0, 1.0, RUMBLE_DURATION_CONTINUOUS);
+            } else {
+                gamepad1.rumble(0.0, 0.0, RUMBLE_DURATION_CONTINUOUS);
+            }
+
+            // Sorter Controls
+            // Intake positions
+            if (gamepad2.x) {
+                sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 1);
+            } else if (gamepad2.y) {
+                sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 2);
+            } else if (gamepad2.b) {
+                sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 3);
+            }
+
+            // Launch positons
+            if (gamepad2.dpad_left) {
+                sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
+            } else if (gamepad2.dpad_up) {
+                sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
+            } else if (gamepad2.dpad_right) {
+                sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
+            }
+
 
             //Add option to enable brakes when sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);
