@@ -74,6 +74,14 @@ public class SorterControls {
         }
     }
 
+
+    /**
+     * Moves the sorter to a postion defined in mode and pos allows for both intake and launching
+     *
+     * @param mode Enum to determine weather to launch or intake
+     * @param pos  Enum to determine what sorter position to move to can be 1, 2 or 3
+     * @throws RuntimeException Throws a runtime error if pos is not 1, 2 or 3
+     */
     public void moveSorterToPos(sorterModes mode, int pos) {
         if (mode == sorterModes.INTAKE) {
             switch (pos) {
@@ -86,6 +94,10 @@ public class SorterControls {
                 case 3:
                     moveToIntakePos(intakePos.INTAKE_POS_3);
                     break;
+                default:
+                    // throw error when pos is not 1, 2 or 3
+                    throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
+                        "say run it?");
             }
         } else if (mode == sorterModes.LAUNCH) {
             switch (pos) {
@@ -98,6 +110,10 @@ public class SorterControls {
                 case 3:
                     moveToLaunchPos(launchPos.LAUNCH_POS_3);
                     break;
+                default:
+                    // throw error when pos is not 1, 2 or 3
+                    throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
+                        "say run it?");
             }
         }
     }
