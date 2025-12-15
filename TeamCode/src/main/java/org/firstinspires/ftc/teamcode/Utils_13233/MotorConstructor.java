@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 /**
@@ -44,6 +45,7 @@ public class MotorConstructor {
     public DcMotor Launcher2;
 
     public DcMotor Sorter;
+    public Servo Flipper;
     public VoltageSensor VoltSens;
     public IMU imu;
 
@@ -61,7 +63,8 @@ public class MotorConstructor {
         Launcher = hardwareMap.get(DcMotor.class, "Launcher");
         Launcher2 = hardwareMap.get(DcMotor.class, "Launcher2");
 
-        Sorter = hardwareMap.get(DcMotor.class, "Sorter");
+        Sorter = hardwareMap.get(DcMotor.class, "sorter");
+        Flipper = hardwareMap.get(Servo.class, "flipper");
 
         // Control hub voltage sensor
         // Used to move at a constant speed in auto regardless of battery voltage
@@ -83,6 +86,8 @@ public class MotorConstructor {
         // Set the launch motors to run using encoders
         Launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Launcher2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        //Flipper.setDirection(Servo.Direction.REVERSE);
 
 
         // Set the direction of the intake motor

@@ -6,8 +6,10 @@ import static com.qualcomm.robotcore.hardware.Gamepad.RUMBLE_DURATION_CONTINUOUS
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
+import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
@@ -21,6 +23,7 @@ public class TeleOpMain extends LinearOpMode {
     private LaunchControls launch;
     private RampControls ramp;
     private SorterControls sorter;
+    private MotorConstructor motors;
 
 
     //This function is executed when this Op Mode is selected from the Driver Station
@@ -31,6 +34,8 @@ public class TeleOpMain extends LinearOpMode {
         launch = new LaunchControls(hardwareMap);
         ramp = new RampControls(hardwareMap);
         sorter = new SorterControls(hardwareMap);
+        motors = new MotorConstructor(hardwareMap);
+
 
         // Wait for the game to start (driver presses PLAY)
 
@@ -71,6 +76,13 @@ public class TeleOpMain extends LinearOpMode {
                 sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
             } else if (gamepad2.dpad_right) {
                 sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
+            }
+            if (gamepad1.a) {
+                motors.Flipper.setDirection(Servo.Direction.REVERSE);
+                motors.Flipper.setPosition(7.0);
+            } else {
+                motors.Flipper.setDirection(Servo.Direction.FORWARD);
+                motors.Flipper.setPosition(0.0);
             }
 
 
