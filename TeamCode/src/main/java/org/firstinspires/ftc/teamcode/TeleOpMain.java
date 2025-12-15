@@ -53,11 +53,7 @@ public class TeleOpMain extends LinearOpMode {
             // and rumble to let the driver know that the launch motors are being controlled
 
             launch.setLaunchPower(gamepad1.x); // spin up launch motors
-            if (gamepad1.x) {
-                gamepad1.rumble(1.0, 1.0, RUMBLE_DURATION_CONTINUOUS);
-            } else {
-                gamepad1.rumble(0.0, 0.0, RUMBLE_DURATION_CONTINUOUS);
-            }
+            launch.setLaunchPower(gamepad1.x, true, gamepad1);
 
             // Sorter Controls
             // Intake positions
@@ -102,6 +98,9 @@ public class TeleOpMain extends LinearOpMode {
             // Sets the power to the drive motors based on current gamepad inputs
             drive.setDrivePower(gamepad1.left_stick_y, gamepad1.left_stick_x,
                 gamepad1.right_stick_x, gamepad1.left_trigger);
+
+            // Slow down the loop because for some reason it goes to fast and causes the motors to
+            // not work properly
             sleep(50);
         }
         // Do not place any drive code here outside of the while loop (will fail inspection)
