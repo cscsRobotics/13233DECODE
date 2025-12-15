@@ -51,8 +51,6 @@ public class TeleOpMain extends LinearOpMode {
 
             // Set the power to the launch motors based while the x button is being pressed
             // and rumble to let the driver know that the launch motors are being controlled
-
-            launch.setLaunchPower(gamepad1.x); // spin up launch motors
             launch.setLaunchPower(gamepad1.x, true, gamepad1);
 
             // Sorter Controls
