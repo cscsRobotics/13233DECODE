@@ -33,8 +33,8 @@ public class TeleOpMain extends LinearOpMode {
         drive = new DriveControls(hardwareMap);
         launch = new LaunchControls(hardwareMap);
         ramp = new RampControls(hardwareMap);
-        sorter = new SorterControls(hardwareMap);
         motors = new MotorConstructor(hardwareMap);
+        sorter = new SorterControls(motors);
 
 
         // Wait for the game to start (driver presses PLAY)
@@ -47,6 +47,12 @@ public class TeleOpMain extends LinearOpMode {
         while (opModeIsActive()) {
             // Add status data to driver hub display
             telemetry.addData("Status", "opModeIsActive");
+            telemetry.addData("Mode", motors.Sorter.getMode());
+            telemetry.addData("Dir", motors.Sorter.getDirection());
+            telemetry.addData("Target", motors.Sorter.getTargetPosition());
+            telemetry.addData("Current", motors.Sorter.getCurrentPosition());
+            telemetry.addData("Busy", motors.Sorter.isBusy());
+            
             telemetry.update();
 
             // Set the power to the launch motors based while the x button is being pressed

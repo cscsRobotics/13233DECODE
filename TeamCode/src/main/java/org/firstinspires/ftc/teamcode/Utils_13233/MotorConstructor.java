@@ -87,6 +87,12 @@ public class MotorConstructor {
         Launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Launcher2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        Sorter.setDirection(DcMotorSimple.Direction.REVERSE);
+        Sorter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Sorter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Sorter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
         //Flipper.setDirection(Servo.Direction.REVERSE);
 
 
