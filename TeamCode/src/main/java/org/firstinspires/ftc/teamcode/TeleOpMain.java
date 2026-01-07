@@ -52,7 +52,7 @@ public class TeleOpMain extends LinearOpMode {
             telemetry.addData("Target", motors.Sorter.getTargetPosition());
             telemetry.addData("Current", motors.Sorter.getCurrentPosition());
             telemetry.addData("Busy", motors.Sorter.isBusy());
-            
+
             telemetry.update();
 
             // Set the power to the launch motors based while the x button is being pressed
@@ -77,12 +77,12 @@ public class TeleOpMain extends LinearOpMode {
             } else if (gamepad2.dpad_right) {
                 sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
             }
-            if (gamepad1.a) {
-                motors.Flipper.setDirection(Servo.Direction.REVERSE);
-                motors.Flipper.setPosition(7.0);
-            } else {
+            if (gamepad1.y) {
                 motors.Flipper.setDirection(Servo.Direction.FORWARD);
                 motors.Flipper.setPosition(0.0);
+            } else {
+                motors.Flipper.setDirection(Servo.Direction.REVERSE);
+                motors.Flipper.setPosition(0.3);
             }
 
 
