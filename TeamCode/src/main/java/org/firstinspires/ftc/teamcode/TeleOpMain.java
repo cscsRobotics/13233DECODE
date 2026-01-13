@@ -99,11 +99,11 @@ public class TeleOpMain extends LinearOpMode {
 
 
             //Add option to enable brakes when sharbell holds a
-            drive.setDriveMotorZeroPowerBehavior(gamepad1.a);            //Add option to enable brakes when driver 1 holds the "a" button
+            drive.setDriveMotorZeroPowerBehavior(gamepad1.a);          //Add option to enable brakes when driver 1 holds the "a" button
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);
 
-            // Set all of the intake motors and servos to go forward when dpad up is pressed
-            // and reverse when dpad down is pressed
+
+
             ramp.setIntakeDirection(gamepad2.dpad_up, gamepad2.dpad_down);
             // Wait for motors to speed up before changing value
             // While it is bad practice to put a sleep in a loop it is the only way to (that I know)

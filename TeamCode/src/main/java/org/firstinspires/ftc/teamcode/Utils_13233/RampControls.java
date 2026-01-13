@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Utils_13233;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
+//THIS IS ALL USELESS NOW BY THE WAY
 public class RampControls {
     private final MotorConstructor motors;
 
