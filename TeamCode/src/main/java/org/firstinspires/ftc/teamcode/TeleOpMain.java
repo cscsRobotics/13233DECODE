@@ -60,13 +60,13 @@ public class TeleOpMain extends LinearOpMode {
             // launch.setLaunchPower(gamepad1.x, true, gamepad1);
             if (gamepad1.x) {
                 launch.setLaunchPower(gamepad1.x, 0.3f);
-                sleep(50);
             } else if (gamepad1.y) {
                 launch.setLaunchPower(gamepad1.y, 1.0f);
-                sleep(50);
             } else {
                 launch.setLaunchPower(false);
             }
+
+            sleep(100);
 
             // Sorter Controls
             // Intake positions
@@ -86,7 +86,10 @@ public class TeleOpMain extends LinearOpMode {
             } else if (gamepad2.dpad_right) {
                 sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
             }
-            if (gamepad1.a) {
+
+            // Control the flipper and make sure that when the sorter is moving the flipper is set
+            // to the not active positon
+            if (gamepad1.a && !motors.Sorter.isBusy()) {
                 motors.Flipper.setDirection(Servo.Direction.FORWARD);
                 motors.Flipper.setPosition(0.0);
             } else {

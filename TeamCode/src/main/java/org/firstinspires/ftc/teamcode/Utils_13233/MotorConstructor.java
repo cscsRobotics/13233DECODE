@@ -86,6 +86,8 @@ public class MotorConstructor {
         // Set the launch motors to run using encoders
         Launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         Launcher2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        Launcher.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Launcher2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Sorter.setDirection(DcMotorSimple.Direction.REVERSE);
         Sorter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
