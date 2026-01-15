@@ -12,8 +12,8 @@ import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
-@Autonomous(name = "QuickAutoBlue", group = "Autonomous")
-public class QuickAutoBlue extends LinearOpMode {
+@Autonomous(name = "QuickAutoRed", group = "Autonomous")
+public class QuickAutoRed extends LinearOpMode {
 
     private DriveControls drive;
     private LaunchControls launch;
@@ -87,7 +87,7 @@ public class QuickAutoBlue extends LinearOpMode {
             launch.setLaunchPower(false);//turns off launcher and ramp
 
             //strafing section
-            drive.setDrivePower(0, 1.0f, 0, 0);
+            drive.setDrivePower(1.0f, 0, 0, 0);
             sleep(1000);
             drive.setDrivePower(1.0f);//strafes over to balls, ensuring ally has space to shoot, and moves off line
             sleep(1000);
@@ -96,3 +96,10 @@ public class QuickAutoBlue extends LinearOpMode {
         }
     }
 }
+// 傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡,傑弗裡，你是說要運行它嗎？
+//傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，
+//傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，
+//傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，
+//傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡
+//傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡
+//傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡，你是說要運行它嗎？傑弗裡
