@@ -1,42 +1,41 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes.FiducialResult;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import java.util.List;
 
-@Autonomous(name = "Limelight AprilTag Test")
-public class limeLightTest extends LinearOpMode {
 
-    private Limelight3A limelight;
+@Autonomous(name = "AprilTag Auto", group = "Auto")
+
+public class LimelightAuto extends LinearOpMode {
+
+    Limelight3A limelight;
 
     @Override
     public void runOpMode() {
 
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
-
-        // Set AprilTag pipeline (must match Limelight web config)
         limelight.pipelineSwitch(0);
         limelight.start();
-
-        telemetry.addLine("Waiting for start...");
-        telemetry.update();
 
         waitForStart();
 
         while (opModeIsActive()) {
+
             LLResult result = limelight.getLatestResult();
 
             if (result != null && result.isValid()) {
+
                 for (FiducialResult tag : result.getFiducialResults()) {
-                    telemetry.addData("AprilTag ID", tag.getFiducialId());
-                    telemetry.addData("X", tag.getX());
-                    telemetry.addData("Y", tag.getY());
-                    telemetry.addData("Z", tag.getZ());
+                    telemetry.addData("ID", tag.fiducialId);
+                    telemetry.addData("X", tag.poseX);
+                    telemetry.addData("Y", tag.poseY);
                 }
-            } else {
-                telemetry.addLine("No tags detected");
             }
 
             telemetry.update();
