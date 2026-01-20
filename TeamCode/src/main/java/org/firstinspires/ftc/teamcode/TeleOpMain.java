@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
-import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
@@ -21,7 +20,6 @@ public class TeleOpMain extends LinearOpMode {
     // Constructors for the utils classes
     private DriveControls drive;
     private LaunchControls launch;
-    private RampControls ramp;
     private SorterControls sorter;
     private MotorConstructor motors;
 
@@ -32,7 +30,6 @@ public class TeleOpMain extends LinearOpMode {
         // Create the utils classes
         drive = new DriveControls(hardwareMap);
         launch = new LaunchControls(hardwareMap);
-        ramp = new RampControls(hardwareMap);
         motors = new MotorConstructor(hardwareMap);
         sorter = new SorterControls(motors);
 
@@ -102,8 +99,6 @@ public class TeleOpMain extends LinearOpMode {
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);          //Add option to enable brakes when driver 1 holds the "a" button
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);
 
-
-            ramp.setIntakeDirection(gamepad2.dpad_up, gamepad2.dpad_down);
             // Wait for motors to speed up before changing value
             // While it is bad practice to put a sleep in a loop it is the only way to (that I know)
             // to make the intake not jitter I also

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Utils_13233;
 
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -48,6 +49,7 @@ public class MotorConstructor {
     public Servo Flipper;
     public VoltageSensor VoltSens;
     public IMU imu;
+    public Limelight3A limelight;
 
     public MotorConstructor(HardwareMap hardwareMap) {
         // Map main Drive Motors
@@ -93,6 +95,10 @@ public class MotorConstructor {
         Sorter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Sorter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Sorter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        limelight.pipelineSwitch(0);
+        limelight.start();
 
 
         //Flipper.setDirection(Servo.Direction.REVERSE);

@@ -9,7 +9,6 @@ import org.firstinspires.ftc.teamcode.Utils_13233.AutoTurn;
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
-import org.firstinspires.ftc.teamcode.Utils_13233.RampControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
 @Autonomous(name = "QuickAutoRed", group = "Autonomous")
@@ -18,7 +17,6 @@ public class QuickAutoRed extends LinearOpMode {
     // Constructors for the utils classes
     private DriveControls drive;
     private LaunchControls launch;
-    private RampControls ramp;
     private SorterControls sorter;
     private MotorConstructor motors;
 
@@ -35,7 +33,6 @@ public class QuickAutoRed extends LinearOpMode {
             // Create the utils classes
             drive = new DriveControls(hardwareMap);
             launch = new LaunchControls(hardwareMap);
-            ramp = new RampControls(hardwareMap);
             motors = new MotorConstructor(hardwareMap);
             sorter = new SorterControls(motors);
 
