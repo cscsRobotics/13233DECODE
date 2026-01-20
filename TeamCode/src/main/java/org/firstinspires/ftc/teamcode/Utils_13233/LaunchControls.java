@@ -20,8 +20,10 @@ public class LaunchControls {
      *
      * @param launchInput Button mapped to launch input
      */
+
+
     public void setLaunchPower(boolean launchInput) {
-        double power = launchInput ? 0.75f : 0.0f;
+        double power = launchInput ? 1.0f : 0.0f;
 
         // Set the the power value to the motors
         motors.Launcher.setPower(-power);

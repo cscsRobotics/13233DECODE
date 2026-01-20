@@ -15,24 +15,15 @@ import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 @Autonomous(name = "QuickAutoRed", group = "Autonomous")
 public class QuickAutoRed extends LinearOpMode {
 
+    // Constructors for the utils classes
     private DriveControls drive;
     private LaunchControls launch;
+    private RampControls ramp;
     private SorterControls sorter;
     private MotorConstructor motors;
-    private AutoDrive autoDrive;
-
-    private AutoTurn autoTurn;
-
-    private LinearOpMode opMode;
 
     @Override
     public void runOpMode() {
-
-        drive = new DriveControls(hardwareMap);
-//        autoDrive = new AutoDrive(opMode, hardwareMap);
-//        autoTurn = new AutoTurn(opMode, hardwareMap);
-        launch = new LaunchControls(hardwareMap);
-        sorter = new SorterControls(motors);
 
 
         telemetry.addData("Status", "Initialized");
@@ -41,12 +32,16 @@ public class QuickAutoRed extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
+            // Create the utils classes
+            drive = new DriveControls(hardwareMap);
+            launch = new LaunchControls(hardwareMap);
+            ramp = new RampControls(hardwareMap);
+            motors = new MotorConstructor(hardwareMap);
+            sorter = new SorterControls(motors);
+
 
             //autoDrive.driveForward(10.0, AutoConstants.quarterPower);
             //autoTurn.rotate(90, AutoConstants.quarterPower);
-
-
-            //Jacob's so useful code
 
             drive.setDrivePower(-1.0f);
             sleep(1200);

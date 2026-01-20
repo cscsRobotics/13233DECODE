@@ -4,12 +4,14 @@ import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes.FiducialResult;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 @Autonomous(name = "Limelight AprilTag Test")
 public class limeLightTest extends LinearOpMode {
 
     private Limelight3A limelight;
+
 
     @Override
     public void runOpMode() {

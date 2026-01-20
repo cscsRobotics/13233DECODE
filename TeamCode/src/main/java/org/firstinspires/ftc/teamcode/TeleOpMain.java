@@ -59,14 +59,14 @@ public class TeleOpMain extends LinearOpMode {
             // and rumble to let the driver know that the launch motors are being controlled
             // launch.setLaunchPower(gamepad1.x, true, gamepad1);
             if (gamepad1.x) {
-                launch.setLaunchPower(gamepad1.x, 0.3f);
-            } else if (gamepad1.y) {
-                launch.setLaunchPower(gamepad1.y, 1.0f);
+                launch.setLaunchPower(gamepad1.x, 0.7f);
+            } else if (gamepad1.left_bumper) {
+                launch.setLaunchPower(gamepad1.left_bumper, 1.0f);
             } else {
                 launch.setLaunchPower(false);
             }
 
-            sleep(100);
+//            sleep(100);
 
             // Sorter Controls
             // Intake positions
@@ -101,7 +101,6 @@ public class TeleOpMain extends LinearOpMode {
             //Add option to enable brakes when sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);          //Add option to enable brakes when driver 1 holds the "a" button
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);
-
 
 
             ramp.setIntakeDirection(gamepad2.dpad_up, gamepad2.dpad_down);

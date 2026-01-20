@@ -12,7 +12,7 @@ public class SorterControls {
     public int intakePos3 = 84;
     //TODO: Update values to the real positions of the motor
     public int LaunchPos1 = 0;
-    public int LaunchPos2 = 176;
+    public int LaunchPos2 = 180;
     public int LaunchPos3 = 356;
 
     public SorterControls(MotorConstructor motors) {

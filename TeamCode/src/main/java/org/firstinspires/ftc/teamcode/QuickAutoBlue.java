@@ -14,47 +14,42 @@ import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
 @Autonomous(name = "QuickAutoBlue", group = "Autonomous")
 public class QuickAutoBlue extends LinearOpMode {
-
+    // Constructors for the utils classes
     private DriveControls drive;
     private LaunchControls launch;
+    private RampControls ramp;
     private SorterControls sorter;
     private MotorConstructor motors;
-    private AutoDrive autoDrive;
-
-    private AutoTurn autoTurn;
-
-    private LinearOpMode opMode;
 
     @Override
     public void runOpMode() {
-
-        drive = new DriveControls(hardwareMap);
-//        autoDrive = new AutoDrive(opMode, hardwareMap);
-//        autoTurn = new AutoTurn(opMode, hardwareMap);
-        launch = new LaunchControls(hardwareMap);
-        sorter = new SorterControls(motors);
-
-
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
         waitForStart();
 
         if (opModeIsActive()) {
+            // Create the utils classes
+            drive = new DriveControls(hardwareMap);
+            launch = new LaunchControls(hardwareMap);
+            ramp = new RampControls(hardwareMap);
+            motors = new MotorConstructor(hardwareMap);
+            sorter = new SorterControls(motors);
+
 
             //autoDrive.driveForward(10.0, AutoConstants.quarterPower);
             //autoTurn.rotate(90, AutoConstants.quarterPower);
 
 
-            //Jacob's so useful code
+            //Jacob's not so useful code
 
             drive.setDrivePower(-1.0f);
-            sleep(1200);
+            sleep(1600);
             drive.setDriveMotorZeroPowerBehavior(true);
             drive.setDrivePower(0);//brakes the reverse to ensure no major fouls are incurred
             sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
             //sets position to ensure the ball is correctly lined up
-            launch.setLaunchPower(true);
+            launch.setLaunchPower(true, 0.9f);
 
             sleep(2500);//wait state to wait for launcher to spin up
             motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
@@ -62,6 +57,7 @@ public class QuickAutoBlue extends LinearOpMode {
             sleep(1000);//runs flipper servo into motor
             motors.Flipper.setDirection(Servo.Direction.REVERSE);
             motors.Flipper.setPosition(0.15);
+            sleep(2000);
 
             //2nd ball code
             sleep(750);//waits to spin turntable
@@ -72,6 +68,7 @@ public class QuickAutoBlue extends LinearOpMode {
             sleep(1000);
             motors.Flipper.setDirection(Servo.Direction.REVERSE);
             motors.Flipper.setPosition(0.15);//brings servo back up to avoid turn table collision
+            sleep(2000);
 
             //3rd ball code
             sleep(1000);
