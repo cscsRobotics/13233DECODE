@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Utils_13233;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
 public class SorterControls {
@@ -135,6 +134,11 @@ public class SorterControls {
     public enum sorterModes {
         INTAKE,
         LAUNCH
+    }
+
+    public enum ballColors {
+        PURPLE,
+        GREEN
     }
 
 
