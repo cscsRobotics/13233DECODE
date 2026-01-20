@@ -8,10 +8,20 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class LimelightControls {
     private final MotorConstructor motors;
 
+    /**
+     * Constructor for the LimelightControls class
+     *
+     * @param hardwareMap Hardware map for the robot
+     */
     public LimelightControls(HardwareMap hardwareMap) {
         this.motors = new MotorConstructor(hardwareMap);
     }
 
+    /**
+     * Get the ID of the tag that is being seen by the limelight
+     *
+     * @return Returns the ID of the tag that is being seen by the limelight
+     */
     public int getTagID() {
         motors.limelight.pipelineSwitch(0);
         motors.limelight.start();

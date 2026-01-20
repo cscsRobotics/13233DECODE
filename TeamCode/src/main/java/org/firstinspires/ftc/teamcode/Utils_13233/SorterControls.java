@@ -6,14 +6,20 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class SorterControls {
     private final MotorConstructor motors;
-    //TODO: Update values to the real positions of the motor
+
+    // Sorter intake positions
     public int intakePos1 = 263;
     public int intakePos2 = -87;
     public int intakePos3 = 84;
-    //TODO: Update values to the real positions of the motor
+
+    // Sorter launch positions
     public int LaunchPos1 = 0;
     public int LaunchPos2 = 180;
     public int LaunchPos3 = 356;
+
+
+    // Motor Speed
+    float motorSpeed = 1.0f;
 
     public SorterControls(MotorConstructor motors) {
         this.motors = motors;
@@ -29,17 +35,17 @@ public class SorterControls {
             case INTAKE_POS_1:
                 motors.Sorter.setTargetPosition(intakePos1);
                 motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(0.6);
+                motors.Sorter.setPower(motorSpeed);
                 break;
             case INTAKE_POS_2:
                 motors.Sorter.setTargetPosition(intakePos2);
                 motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(0.6);
+                motors.Sorter.setPower(motorSpeed);
                 break;
             case INTAKE_POS_3:
                 motors.Sorter.setTargetPosition(intakePos3);
                 motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(0.6);
+                motors.Sorter.setPower(motorSpeed);
                 break;
         }
     }
@@ -55,17 +61,17 @@ public class SorterControls {
             case LAUNCH_POS_1:
                 motors.Sorter.setTargetPosition(LaunchPos1);
                 motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(0.6);
+                motors.Sorter.setPower(motorSpeed);
                 break;
             case LAUNCH_POS_2:
                 motors.Sorter.setTargetPosition(LaunchPos2);
                 motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(0.6);
+                motors.Sorter.setPower(motorSpeed);
                 break;
             case LAUNCH_POS_3:
                 motors.Sorter.setTargetPosition(LaunchPos3);
                 motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(0.6);
+                motors.Sorter.setPower(motorSpeed);
                 break;
         }
     }
@@ -93,7 +99,7 @@ public class SorterControls {
                 default:
                     // throw error when pos is not 1, 2 or 3
                     throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
-                            "say run it?");
+                        "say run it?");
             }
         } else if (mode == sorterModes.LAUNCH) {
             switch (pos) {
@@ -109,7 +115,7 @@ public class SorterControls {
                 default:
                     // throw error when pos is not 1, 2 or 3
                     throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
-                            "say run it?");
+                        "say run it?");
             }
         }
     }

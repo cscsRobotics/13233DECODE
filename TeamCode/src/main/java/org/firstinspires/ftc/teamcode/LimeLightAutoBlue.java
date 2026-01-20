@@ -44,7 +44,6 @@ public class LimeLightAutoBlue extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("ID", limelightCont.getTagID());
             telemetry.update();
-
         }
     }
 }
