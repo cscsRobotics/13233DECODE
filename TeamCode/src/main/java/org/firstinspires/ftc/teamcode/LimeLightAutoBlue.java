@@ -45,7 +45,9 @@ public class LimeLightAutoBlue extends LinearOpMode {
         while (opModeIsActive()) {
             drive.setDrivePower(-1.0f);
             sleep(1600);
-            drive.setDrivePower(0.0f, 0.0f, -1.0f, 0.0f);//drives  back
+            // turns to view april tag tower
+            drive.setDrivePower(0.0f, 0.0f, 1.0f,
+                0.0f);
             sleep(750);//turns
             drive.setDrivePower(0.0f);
 
@@ -53,7 +55,9 @@ public class LimeLightAutoBlue extends LinearOpMode {
             telemetry.update();
 
             sleep(1000);
-            drive.setDrivePower(0.0f, 0.0f, 1.0f, 0.0f);//drives  back
+            // turns back viewing goal
+            drive.setDrivePower(0.0f, 0.0f, -1.0f,
+                0.0f);
             sleep(750);
             drive.setDrivePower(0.0f);
 
