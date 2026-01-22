@@ -33,9 +33,10 @@ public class TeleOpMain extends LinearOpMode {
         motors = new MotorConstructor(hardwareMap);
         sorter = new SorterControls(motors);
 
+        sorter.currentSorterPosition = SorterControls.sorterPositions.LAUNCH_POS_1;
+
 
         // Wait for the game to start (driver presses PLAY)
-
         // The waitForStart() function will wait for the start button to begin
         // DON'T WRITE ANY CODE AFTER THE WAIT FOR START UNTIL THE "while (opModIsActive())"
         // THIS WILL CAUSE PROBLEMS WHEN GOING THROUGH INSPECTION
@@ -44,12 +45,11 @@ public class TeleOpMain extends LinearOpMode {
         while (opModeIsActive()) {
             // Add status data to driver hub display
             telemetry.addData("Status", "opModeIsActive");
-            telemetry.addData("Mode", motors.Sorter.getMode());
-            telemetry.addData("Dir", motors.Sorter.getDirection());
+            telemetry.addData("Sorter ", "Stats");
             telemetry.addData("Target", motors.Sorter.getTargetPosition());
             telemetry.addData("Current", motors.Sorter.getCurrentPosition());
             telemetry.addData("Busy", motors.Sorter.isBusy());
-
+            telemetry.addData("Current Position", sorter.currentSorterPosition.toString());
             telemetry.update();
 
             // Set the power to the launch motors based while the x button is being pressed
