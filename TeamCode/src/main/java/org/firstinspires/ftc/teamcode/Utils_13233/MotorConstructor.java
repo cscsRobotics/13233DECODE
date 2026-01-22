@@ -108,4 +108,6 @@ public class MotorConstructor {
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
+    public void leftFront(float v) {
+    }
 }
