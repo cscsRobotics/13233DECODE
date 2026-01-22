@@ -13,42 +13,34 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
  * Class holds motors and servos that are used throughout the code
  */
 public class MotorConstructor {
-    /**
-     * Front left drive motor
-     */
+
+    // Drive Motor
     public DcMotor leftFront;
-    /**
-     * Front right drive motor
-     */
     public DcMotor rightFront;
-    /**
-     * Back left drive motor
-     */
     public DcMotor leftBack;
-    /**
-     * Right back drive motor
-     */
     public DcMotor rightBack;
 
 
-    /**
-     * The motor for that controls the ball intake
-     */
+    // Intake
     public DcMotor intake;
 
-    /**
-     * One of the motors used to shoot the balls
-     */
+    // Launch motors to shoot the balls out of the robot
     public DcMotor Launcher;
-    /**
-     * One of the motors used to shoot the balls
-     */
     public DcMotor Launcher2;
 
+    // The motor that controls the sorter position
     public DcMotor Sorter;
+
+    // The servo the pushes the balls into the launcher flywheels
     public Servo Flipper;
+
+    // The battery voltage sensor
     public VoltageSensor VoltSens;
+
+    //Rotation Sensor on the Control hub
     public IMU imu;
+
+    // The limelight 3a used for scanning April Tags
     public Limelight3A limelight;
 
     public MotorConstructor(HardwareMap hardwareMap) {
