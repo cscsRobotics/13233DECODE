@@ -16,6 +16,8 @@ public class SorterControls {
     public int LaunchPos2 = 180;
     public int LaunchPos3 = 356;
 
+    public sorterPositions currentSorterPosition;
+
 
     ballColors[] currentSorterStates = {ballColors.NULL, ballColors.NULL, ballColors.GREEN};
 
@@ -90,33 +92,39 @@ public class SorterControls {
             switch (pos) {
                 case 1:
                     moveToIntakePos(intakePos.INTAKE_POS_1);
+                    currentSorterPosition = sorterPositions.INTAKE_POS_1;
                     break;
                 case 2:
                     moveToIntakePos(intakePos.INTAKE_POS_2);
+                    currentSorterPosition = sorterPositions.INTAKE_POS_2;
                     break;
                 case 3:
                     moveToIntakePos(intakePos.INTAKE_POS_3);
+                    currentSorterPosition = sorterPositions.INTAKE_POS_3;
                     break;
                 default:
                     // throw error when pos is not 1, 2 or 3
                     throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
-                        "say run it?");
+                            "say run it?");
             }
         } else if (mode == sorterModes.LAUNCH) {
             switch (pos) {
                 case 1:
                     moveToLaunchPos(launchPos.LAUNCH_POS_1);
+                    currentSorterPosition = sorterPositions.LAUNCH_POS_1;
                     break;
                 case 2:
                     moveToLaunchPos(launchPos.LAUNCH_POS_2);
+                    currentSorterPosition = sorterPositions.LAUNCH_POS_2;
                     break;
                 case 3:
                     moveToLaunchPos(launchPos.LAUNCH_POS_3);
+                    currentSorterPosition = sorterPositions.LAUNCH_POS_3;
                     break;
                 default:
                     // throw error when pos is not 1, 2 or 3
                     throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
-                        "say run it?");
+                            "say run it?");
             }
         }
     }
@@ -181,6 +189,15 @@ public class SorterControls {
         PURPLE,
         GREEN,
         NULL
+    }
+
+    public enum sorterPositions {
+        INTAKE_POS_1,
+        INTAKE_POS_2,
+        INTAKE_POS_3,
+        LAUNCH_POS_1,
+        LAUNCH_POS_2,
+        LAUNCH_POS_3
     }
 
 
