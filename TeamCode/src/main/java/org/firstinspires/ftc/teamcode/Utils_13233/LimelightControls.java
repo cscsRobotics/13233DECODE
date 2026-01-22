@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class LimelightControls {
     private final MotorConstructor motors;
     private final int aprilTagPipeline = 0;
+    private int lastTagScanned;
 
     /**
      * Constructor for the LimelightControls class
@@ -31,9 +32,11 @@ public class LimelightControls {
 
         if (result != null && result.isValid()) {
             for (LLResultTypes.FiducialResult tag : result.getFiducialResults()) {
+                lastTagScanned = tag.getFiducialId();
                 return (tag.getFiducialId());
             }
+            motors.limelight.stop();
         }
-        return 0;
+        return lastTagScanned;
     }
 }
