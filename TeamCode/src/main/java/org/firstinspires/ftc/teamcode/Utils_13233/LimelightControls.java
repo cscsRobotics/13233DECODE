@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class LimelightControls {
     private final MotorConstructor motors;
+    private final int aprilTagPipeline = 0;
 
     /**
      * Constructor for the LimelightControls class
@@ -23,7 +24,7 @@ public class LimelightControls {
      * @return Returns the ID of the tag that is being seen by the limelight
      */
     public int getTagID() {
-        motors.limelight.pipelineSwitch(0);
+        motors.limelight.pipelineSwitch(aprilTagPipeline);
         motors.limelight.start();
 
         LLResult result = motors.limelight.getLatestResult();

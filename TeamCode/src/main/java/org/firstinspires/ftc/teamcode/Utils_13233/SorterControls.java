@@ -17,6 +17,8 @@ public class SorterControls {
     public int LaunchPos3 = 356;
 
 
+    ballColors[] currentSorterStates = {ballColors.NULL, ballColors.NULL, ballColors.GREEN};
+
     // Motor Speed
     float motorSpeed = 1.0f;
 
@@ -29,7 +31,7 @@ public class SorterControls {
      *
      * @param pos Enum to determine what positon to move to
      */
-    void moveToIntakePos(intakePos pos) {
+    private void moveToIntakePos(intakePos pos) {
         switch (pos) {
             case INTAKE_POS_1:
                 motors.Sorter.setTargetPosition(intakePos1);
@@ -55,7 +57,7 @@ public class SorterControls {
      *
      * @param pos Enum to determine what positon to move to
      */
-    void moveToLaunchPos(launchPos pos) {
+    private void moveToLaunchPos(launchPos pos) {
         switch (pos) {
             case LAUNCH_POS_1:
                 motors.Sorter.setTargetPosition(LaunchPos1);
@@ -119,26 +121,66 @@ public class SorterControls {
         }
     }
 
+    /**
+     * Sorts through the balls in the sorter and moves a green ball to the launch position
+     * automatically
+     */
+    public void moveGreenToLaunchPos() {
+        for (int i = 0; i < currentSorterStates.length; i++) {
+            if (currentSorterStates[i] == ballColors.GREEN) {
+                moveSorterToPos(sorterModes.LAUNCH, i + 1);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Sorts through the balls in the sorter and moves a purple ball to the launch position
+     * automatically
+     */
+    public void moveToPurpleLaunchPos() {
+        for (int i = 0; i < currentSorterStates.length; i++) {
+            if (currentSorterStates[i] == ballColors.PURPLE) {
+                moveSorterToPos(sorterModes.LAUNCH, i + 1);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Intake positions
+     */
     public enum intakePos {
         INTAKE_POS_1,
         INTAKE_POS_2,
         INTAKE_POS_3
     }
 
+    /**
+     * Launch positions
+     */
     public enum launchPos {
         LAUNCH_POS_1,
         LAUNCH_POS_2,
         LAUNCH_POS_3
     }
 
+
+    /**
+     * Different modes that the sorter can be moved to
+     */
     public enum sorterModes {
         INTAKE,
         LAUNCH
     }
 
+    /**
+     * Possible colors that the balls can be
+     */
     public enum ballColors {
         PURPLE,
-        GREEN
+        GREEN,
+        NULL
     }
 
 
