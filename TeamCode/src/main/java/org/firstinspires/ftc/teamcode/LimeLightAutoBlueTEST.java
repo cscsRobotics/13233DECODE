@@ -30,7 +30,7 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        // ---------- INIT ----------
+        //INIT
         drive = new DriveControls(hardwareMap);
         launch = new LaunchControls(hardwareMap);
         motors = new MotorConstructor(hardwareMap);
@@ -43,20 +43,20 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
 
         if (isStopRequested()) return;
 
-        // ---------- PHASE 1: MOVE TO SEE TAG ----------
+        // - PHASE 1: MOVE TO SEE TAG
         preMove();
 
-        // ---------- PHASE 2: DETECT TAG ----------
+        // - PHASE 2: DETECT TAG
         int tagID = scanTag();
 
         telemetry.addData("ID", limelightCont.getTagID());
         telemetry.update();
         sleep(500);
 
-        // ---------- PHASE 3: RUN AUTO ----------
+        //  PHASE 3: RUN AUTO
         runAuto(tagID);
 
-        // ---------- END ----------
+        //  END
         requestOpModeStop();
     }
 
