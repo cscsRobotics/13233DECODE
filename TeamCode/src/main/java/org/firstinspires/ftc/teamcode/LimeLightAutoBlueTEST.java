@@ -116,6 +116,7 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
             default:
                 telemetry.addLine("AUTO: DEFAULT (NO TAG)");
                 telemetry.update();
+                auto24();
                 break;
         }
     }
@@ -259,6 +260,56 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         sleep(1000);
         drive.setDrivePower(1.0f);//strafes over to balls, ensuring ally has space to shoot, and moves off line
         sleep(1000);
-        // PUT YOUR EXISTING CASE 23 CODE HERE
+
     }
+
+
+    private void auto24() {
+        //runs default (PPG)
+        sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
+        //sets position to ensure the ball is correctly lined up
+        launch.setLaunchPower(true, 0.9f);
+
+        sleep(2500);//wait state to wait for launcher to spin up
+        motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
+        motors.Flipper.setPosition(0.0);
+        sleep(1000);//runs flipper servo into motor
+        motors.Flipper.setDirection(Servo.Direction.REVERSE);
+        motors.Flipper.setPosition(0.15);
+        sleep(2000);
+
+        //2nd ball code
+        sleep(750);//waits to spin turntable
+        sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
+        sleep(1500);//waits while turntable spins
+        motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
+        motors.Flipper.setPosition(0.0);
+        sleep(1000);
+        motors.Flipper.setDirection(Servo.Direction.REVERSE);
+        motors.Flipper.setPosition(0.15);//brings servo back up to avoid turn table collision
+        sleep(2000);
+
+        //3rd ball code
+        sleep(1000);
+        sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
+        sleep(1000);//turns off ramp
+        motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
+        motors.Flipper.setPosition(0.0);
+        sleep(1000);// sets servo back to init pos
+        motors.Flipper.setDirection(Servo.Direction.REVERSE);//runs servo forward, shooting 1st ball
+        motors.Flipper.setPosition(0.15);
+        sleep(1000);
+        sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);//brings sorter back to init
+        launch.setLaunchPower(false);//turns off launcher and ramp
+
+        //strafing section
+        drive.setDrivePower(0, 1.0f, 0, 0);
+        sleep(1000);
+        drive.setDrivePower(1.0f);//strafes over to balls, ensuring ally has space to shoot, and moves off line
+        sleep(1000);
+    }
+
+
 }
+
+
