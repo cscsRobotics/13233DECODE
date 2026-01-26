@@ -19,7 +19,7 @@ public class SorterControls {
     public sorterPositions currentSorterPosition;
 
 
-    ballColors[] currentSorterStates = {ballColors.NULL, ballColors.NULL, ballColors.GREEN};
+    public ballColors[] currentSorterStates = {ballColors.NULL, ballColors.NULL, ballColors.GREEN};
 
     // Motor Speed
     float motorSpeed = 1.0f;
@@ -105,7 +105,7 @@ public class SorterControls {
                 default:
                     // throw error when pos is not 1, 2 or 3
                     throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
-                            "say run it?");
+                        "say run it?");
             }
         } else if (mode == sorterModes.LAUNCH) {
             switch (pos) {
@@ -124,7 +124,7 @@ public class SorterControls {
                 default:
                     // throw error when pos is not 1, 2 or 3
                     throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
-                            "say run it?");
+                        "say run it?");
             }
         }
     }

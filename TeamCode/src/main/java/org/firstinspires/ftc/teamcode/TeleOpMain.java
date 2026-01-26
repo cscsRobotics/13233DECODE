@@ -50,6 +50,11 @@ public class TeleOpMain extends LinearOpMode {
             telemetry.addData("Current", motors.Sorter.getCurrentPosition());
             telemetry.addData("Busy", motors.Sorter.isBusy());
             telemetry.addData("Current Position", sorter.currentSorterPosition.toString());
+            telemetry.addData("", "");
+            telemetry.addData("Current Sorter Positions", ":");
+            telemetry.addData("Sorter Slot 1", sorter.currentSorterStates[0].toString());
+            telemetry.addData("Sorter Slot 2", sorter.currentSorterStates[1].toString());
+            telemetry.addData("Sorter Slot 3", sorter.currentSorterStates[2].toString());
             telemetry.update();
 
             // Set the power to the launch motors based while the x button is being pressed
