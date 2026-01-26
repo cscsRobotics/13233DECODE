@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Utils_13233.LimelightControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
-@Autonomous(name = "AprilTag Auto", group = "Auto")
+@Autonomous(name = "LimeLightBlueTEST ", group = "Auto")
 public class LimeLightAutoBlueTEST extends LinearOpMode {
 
     // ================= HARDWARE =================
@@ -44,10 +45,18 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         if (isStopRequested()) return;
 
         // - PHASE 1: MOVE TO SEE TAG
-        preMove();
+//        preMove();
+        drive.setDrivePower(0, -1.0f, 0, 0);//strafes over to launch
+        sleep(1400);
+
+        int tagID = scanTag();
+
+        drive.setDrivePower(0.0f, 0.0f, -1.0f, 0.0f);
+        sleep(550);
+
+        drive.setDrivePower(0.0f);
 
         // - PHASE 2: DETECT TAG
-        int tagID = scanTag();
 
         telemetry.addData("ID", limelightCont.getTagID());
         telemetry.update();
@@ -64,15 +73,8 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
     // ===================== PHASE METHODS ======================
     // ==========================================================
 
-    private void preMove() {
-        drive.setDrivePower(1.0f, 0, 0, 0);//strafes over to launch
-        sleep(1400);
-
-        drive.setDrivePower(0.0f, 0.0f, -1.0f, 0.0f);
-        sleep(750);
-
-        drive.setDrivePower(0.0f);
-    }
+//    private void preMove() {
+//    }
 
     private int scanTag() {
         int tagID = -1;
@@ -129,7 +131,7 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //runs GPP
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.9f);
+        launch.setLaunchPower(true, 0.8f);
 
         sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball

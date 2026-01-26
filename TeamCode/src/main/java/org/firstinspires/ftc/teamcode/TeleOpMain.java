@@ -94,9 +94,9 @@ public class TeleOpMain extends LinearOpMode {
                 motors.Flipper.setPosition(0.15);
             }
 
-            if (gamepad1.left_bumper) {
-                sorter.moveGreenToLaunchPos();
-            }
+//            if (gamepad1.left_bumper) {
+//                sorter.moveGreenToLaunchPos();
+//            }
 
             //Add option to enable brakes when sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.a);          //Add option to enable brakes when driver 1 holds the "a" button
