@@ -1,11 +1,8 @@
 // Import libraries
 package org.firstinspires.ftc.teamcode;
 
-import static com.qualcomm.robotcore.hardware.Gamepad.RUMBLE_DURATION_CONTINUOUS;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
@@ -89,22 +86,12 @@ public class TeleOpMain extends LinearOpMode {
 
             // Allows for driver Control of the sorter
             // Intake positions for the sorter
-            if (gamepad2.x) {
-                sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 1);
-            } else if (gamepad2.y) {
-                sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 2);
-            } else if (gamepad2.b) {
-                sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 3);
-            }
+            sorter.simpleSorterPosition(gamepad2.x, gamepad2.y, gamepad2.b,
+                SorterControls.sorterModes.INTAKE);
 
             // Launch positons for the sorter
-            if (gamepad2.dpad_left) {
-                sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
-            } else if (gamepad2.dpad_up) {
-                sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
-            } else if (gamepad2.dpad_right) {
-                sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
-            }
+            sorter.simpleSorterPosition(gamepad2.dpad_left, gamepad2.dpad_up, gamepad2.dpad_right,
+                SorterControls.sorterModes.LAUNCH);
 
             // Control the flipper and make sure that when the sorter is moving the flipper is set
             // to the not active positon

@@ -129,6 +129,17 @@ public class SorterControls {
         }
     }
 
+    public void simpleSorterPosition(boolean position1Button, boolean position2Button,
+                                     boolean position3Button, sorterModes mode) {
+        if (position1Button) {
+            moveSorterToPos(mode, 1);
+        } else if (position2Button) {
+            moveSorterToPos(mode, 2);
+        } else if (position3Button) {
+            moveSorterToPos(mode, 3);
+        }
+    }
+
     /**
      * Sorts through the balls in the sorter and moves a green ball to the launch position
      * automatically
