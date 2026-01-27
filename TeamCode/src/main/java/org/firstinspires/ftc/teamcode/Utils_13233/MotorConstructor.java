@@ -1,62 +1,47 @@
 package org.firstinspires.ftc.teamcode.Utils_13233;
 
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 /**
  * Class holds motors and servos that are used throughout the code
  */
 public class MotorConstructor {
-    /**
-     * Front left drive motor
-     */
+
+    // Drive Motor
     public DcMotor leftFront;
-    /**
-     * Front right drive motor
-     */
     public DcMotor rightFront;
-    /**
-     * Back left drive motor
-     */
     public DcMotor leftBack;
-    /**
-     * Right back drive motor
-     */
     public DcMotor rightBack;
 
 
-    /**
-     * The motor for that controls the ball intake
-     */
+    // Intake
     public DcMotor intake;
 
-    /**
-     * One of the motors used to shoot the balls
-     */
+    // Launch motors to shoot the balls out of the robot
     public DcMotor Launcher;
-    /**
-     * One of the motors used to shoot the balls
-     */
     public DcMotor Launcher2;
 
+    // The motor that controls the sorter position
+    public DcMotor Sorter;
 
-    /**
-     * One of the servos used to carry the balls up the ramp
-     */
-    public CRServo rampServo1;
-    /**
-     * One of the servos used to carry the balls up the ramp
-     */
-    public CRServo rampServo2;
-    public CRServo rampServo3;
-    public CRServo rampServo4;
+    // The servo the pushes the balls into the launcher flywheels
+    public Servo Flipper;
 
+    // The battery voltage sensor
     public VoltageSensor VoltSens;
+
+    //Rotation Sensor on the Control hub
     public IMU imu;
+
+    // The limelight 3a used for scanning April Tags
+    public Limelight3A limelight;
 
     public MotorConstructor(HardwareMap hardwareMap) {
         // Map main Drive Motors
@@ -72,11 +57,8 @@ public class MotorConstructor {
         Launcher = hardwareMap.get(DcMotor.class, "Launcher");
         Launcher2 = hardwareMap.get(DcMotor.class, "Launcher2");
 
-        // Map the ramp servos
-        rampServo1 = hardwareMap.get(CRServo.class, "rampServo1");
-        rampServo2 = hardwareMap.get(CRServo.class, "rampServo2");
-        rampServo3 = hardwareMap.get(CRServo.class, "rampServo3");
-        rampServo4 = hardwareMap.get(CRServo.class, "rampServo4");
+        Sorter = hardwareMap.get(DcMotor.class, "sorter");
+        Flipper = hardwareMap.get(Servo.class, "flipper");
 
         // Control hub voltage sensor
         // Used to move at a constant speed in auto regardless of battery voltage
@@ -96,12 +78,28 @@ public class MotorConstructor {
         Launcher2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set the launch motors to run using encoders
-        Launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        Launcher2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Launcher.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        Launcher2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        Launcher.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Launcher2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        Sorter.setDirection(DcMotorSimple.Direction.REVERSE);
+        Sorter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Sorter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Sorter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        limelight.pipelineSwitch(0);
+        limelight.start();
+
+
+        //Flipper.setDirection(Servo.Direction.REVERSE);
 
 
         // Set the direction of the intake motor
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
+    public void leftFront(float v) {
+    }
 }

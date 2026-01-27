@@ -4,13 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
-import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 
 @Autonomous(name = "QuickAuto")
-public class QuickAuto extends LinearOpMode {
+public class QuickAutoForward extends LinearOpMode {
     private final DriveControls drive;
 
-    public QuickAuto(HardwareMap hardwareMap) {
+    public QuickAutoForward(HardwareMap hardwareMap) {
         this.drive = new DriveControls(hardwareMap);
     }
 
