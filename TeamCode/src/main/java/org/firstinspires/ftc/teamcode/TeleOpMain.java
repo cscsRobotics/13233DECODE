@@ -13,6 +13,30 @@ import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
+/*
+    Current Controls:
+    Gamepad1:
+        Left  Stick Y: Forward backward movement
+        Left  Stick X: Left right strafe movement
+        Right Stick X: Turn the entier robot left and right
+
+        A:   Move the flipper to push the artifact
+        B:   Set the drive motors to brake
+        X:   Set launch wheels to 0.7 power
+        Left Bumper: Set launch wheels to 1.0 power
+
+    Gamepad2:
+        D-Pad:
+            Left:  Move sorter to launch position 1
+            Up:    Move sorter to launch position 2
+            Right: Move sorter to launch position 3
+
+        X: Move sorter to intake position 1
+        Y: Move sorter to intake position 2
+        B: Move sorter to intake position 3
+
+ */
+
 
 @TeleOp(name = "TeleOpMain", group = "Drive")
 public class TeleOpMain extends LinearOpMode {
@@ -45,12 +69,13 @@ public class TeleOpMain extends LinearOpMode {
         while (opModeIsActive()) {
             // Add status data to driver hub display
             telemetry.addData("Status", "opModeIsActive");
+            telemetry.addLine();
             telemetry.addData("Sorter ", "Stats");
             telemetry.addData("Target", motors.Sorter.getTargetPosition());
             telemetry.addData("Current", motors.Sorter.getCurrentPosition());
             telemetry.addData("Busy", motors.Sorter.isBusy());
             telemetry.addData("Current Position", sorter.currentSorterPosition.toString());
-            telemetry.addData("", "");
+            telemetry.addLine();
             telemetry.addData("Current Sorter Positions", ":");
             telemetry.addData("Sorter Slot 1", sorter.currentSorterStates[0].toString());
             telemetry.addData("Sorter Slot 2", sorter.currentSorterStates[1].toString());
@@ -59,19 +84,11 @@ public class TeleOpMain extends LinearOpMode {
 
             // Set the power to the launch motors based while the x button is being pressed
             // and rumble to let the driver know that the launch motors are being controlled
-            // launch.setLaunchPower(gamepad1.x, true, gamepad1);
-            if (gamepad1.x) {
-                launch.setLaunchPower(gamepad1.x, 0.7f);
-            } else if (gamepad1.left_bumper) {
-                launch.setLaunchPower(gamepad1.left_bumper, 1.0f);
-            } else {
-                launch.setLaunchPower(false);
-            }
+            launch.setLaunchPower(gamepad1.x, 0.7f);
+            launch.setLaunchPower(gamepad1.left_bumper, 1.0f);
 
-//            sleep(100);
-
-            // Sorter Controls
-            // Intake positions
+            // Allows for driver Control of the sorter
+            // Intake positions for the sorter
             if (gamepad2.x) {
                 sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 1);
             } else if (gamepad2.y) {
@@ -80,7 +97,7 @@ public class TeleOpMain extends LinearOpMode {
                 sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 3);
             }
 
-            // Launch positons
+            // Launch positons for the sorter
             if (gamepad2.dpad_left) {
                 sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
             } else if (gamepad2.dpad_up) {
@@ -104,13 +121,7 @@ public class TeleOpMain extends LinearOpMode {
 //            }
 
             //Add option to enable brakes when sharbell holds a
-            drive.setDriveMotorZeroPowerBehavior(gamepad1.a);          //Add option to enable brakes when driver 1 holds the "a" button
-            drive.setDriveMotorZeroPowerBehavior(gamepad1.a);
-
-            // Wait for motors to speed up before changing value
-            // While it is bad practice to put a sleep in a loop it is the only way to (that I know)
-            // to make the intake not jitter I also
-
+            drive.setDriveMotorZeroPowerBehavior(gamepad1.b);
 
             // Sets the power to the drive motors based on current gamepad inputs
             drive.setDrivePower(gamepad1.left_stick_y, gamepad1.left_stick_x,
