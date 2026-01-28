@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
 import java.util.List;
 
-@Autonomous(name = "LimeLightAutoBlue", group = "Auto")
+//@Autonomous(name = "LimeLightAutoBlue", group = "Auto")
 
 public class LimeLightAutoBlue extends LinearOpMode {
 
@@ -207,7 +207,8 @@ public class LimeLightAutoBlue extends LinearOpMode {
                     break;
 
             }
-        }switch (limelightCont.getTagID()) {
+        }
+        switch (limelightCont.getTagID()) {
             case 23:
                 //runs PPG
                 telemetry.addLine("AUTO: Purple Purple Green");
@@ -254,6 +255,6 @@ public class LimeLightAutoBlue extends LinearOpMode {
                 sleep(1000);
                 drive.setDrivePower(1.0f);//strafes over to balls, ensuring ally has space to shoot, and moves off line
                 sleep(1000);
+        }
     }
-}
 }

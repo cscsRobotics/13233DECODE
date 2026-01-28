@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
 
-@Autonomous(name = "QuickAuto")
+@Autonomous(name = "ForwardAuto")
 public class QuickAutoForward extends LinearOpMode {
     private final DriveControls drive;
 

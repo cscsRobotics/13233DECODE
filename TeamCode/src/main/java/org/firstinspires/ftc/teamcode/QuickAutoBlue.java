@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
-@Autonomous(name = "QuickAutoBlue", group = "Autonomous")
+//@Autonomous(name = "QuickAutoBlue", group = "Autonomous")
 public class QuickAutoBlue extends LinearOpMode {
     // Constructors for the utils classes
     private DriveControls drive;

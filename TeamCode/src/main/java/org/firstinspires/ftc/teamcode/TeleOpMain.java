@@ -86,12 +86,14 @@ public class TeleOpMain extends LinearOpMode {
             // Set the power to the launch motors based while the x button is being pressed
             // and rumble to let the driver know that the launch motors are being controlled
             if (gamepad1.right_bumper) {
-                launch.setLaunchPower(gamepad1.right_bumper, 0.7f);
+                launch.setLaunchPower(true, 0.7f);
             } else if (gamepad1.left_bumper) {
-                launch.setLaunchPower(gamepad1.left_bumper, 1.0f);
+                launch.setLaunchPower(true);
+            } else {
+                launch.setLaunchPower(false);
             }
+
             sleep(50);
-            launch.setLaunchPower(gamepad1.left_bumper, 1.0f);
 
             // Allows for driver Control of the sorter
             // Intake positions for the sorter
