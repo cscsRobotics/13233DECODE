@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
+import org.firstinspires.ftc.teamcode.Utils_13233.IntakeControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
@@ -43,6 +44,7 @@ public class TeleOpMain extends LinearOpMode {
     private LaunchControls launch;
     private SorterControls sorter;
     private MotorConstructor motors;
+    private IntakeControls intake;
 
 
     //This function is executed when this Op Mode is selected from the Driver Station
@@ -53,6 +55,8 @@ public class TeleOpMain extends LinearOpMode {
         launch = new LaunchControls(hardwareMap);
         motors = new MotorConstructor(hardwareMap);
         sorter = new SorterControls(motors);
+        intake = new IntakeControls(hardwareMap);
+
 
         sorter.currentSorterPosition = SorterControls.sorterPositions.LAUNCH_POS_1;
 
@@ -81,7 +85,12 @@ public class TeleOpMain extends LinearOpMode {
 
             // Set the power to the launch motors based while the x button is being pressed
             // and rumble to let the driver know that the launch motors are being controlled
-            launch.setLaunchPower(gamepad1.x, 0.7f);
+            if (gamepad1.right_bumper) {
+                launch.setLaunchPower(gamepad1.right_bumper, 0.7f);
+            } else if (gamepad1.left_bumper) {
+                launch.setLaunchPower(gamepad1.left_bumper, 1.0f);
+            }
+            sleep(50);
             launch.setLaunchPower(gamepad1.left_bumper, 1.0f);
 
             // Allows for driver Control of the sorter
@@ -107,6 +116,7 @@ public class TeleOpMain extends LinearOpMode {
 //                sorter.moveGreenToLaunchPos();
 //            }
 
+            intake.setIntakeDirection(gamepad2.left_bumper, gamepad2.right_bumper);
             //Add option to enable brakes when sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.b);
 
