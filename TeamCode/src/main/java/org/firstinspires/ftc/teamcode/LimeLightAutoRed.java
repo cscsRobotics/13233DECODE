@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.Utils_13233.LimelightControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
-@Autonomous(name = "LimeLightBlue", group = "Auto")
-public class LimeLightAutoBlueTEST extends LinearOpMode {
+@Autonomous(name = "LimeLightRed", group = "Auto")
+public class LimeLightAutoRed extends LinearOpMode {
 
     // ================= HARDWARE =================
 
@@ -46,12 +46,12 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
 
         // - PHASE 1: MOVE TO SEE TAG
 //        preMove();
-        drive.setDrivePower(0, -1.0f, 0, 0);//strafes over to launch
+        drive.setDrivePower(0, 1.0f, 0, 0);//strafes over to launch
         sleep(1400);
 
         int tagID = scanTag();
 
-        drive.setDrivePower(0.0f, 0.0f, -1.0f, 0.0f);
+        drive.setDrivePower(0.0f, 0.0f, 1.0f, 0.0f);
         sleep(550);
 
         drive.setDrivePower(0.0f);
@@ -166,7 +166,7 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         launch.setLaunchPower(false);//turns off launcher and ramp
 
         //strafing section
-        drive.setDrivePower(0, 1.0f, 0, 0);
+        drive.setDrivePower(0, -1.0f, 0, 0);
         sleep(1000);
         drive.setDrivePower(1.0f);//strafes over to balls, ensuring ally has space to shoot, and moves off line
         sleep(1000);
@@ -212,7 +212,7 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         launch.setLaunchPower(false);//turns off launcher and ramp
 
         //strafing section
-        drive.setDrivePower(0, 1.0f, 0, 0);
+        drive.setDrivePower(0, -1.0f, 0, 0);
         sleep(1000);
         drive.setDrivePower(1.0f);//strafes over to balls, ensuring ally has space to shoot, and moves off line
         sleep(1000);
@@ -258,7 +258,7 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         launch.setLaunchPower(false);//turns off launcher and ramp
 
         //strafing section
-        drive.setDrivePower(0, 1.0f, 0, 0);
+        drive.setDrivePower(0, -1.0f, 0, 0);
         sleep(1000);
         drive.setDrivePower(1.0f);//strafes over to balls, ensuring ally has space to shoot, and moves off line
         sleep(1000);
@@ -305,7 +305,7 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         launch.setLaunchPower(false);//turns off launcher and ramp
 
         //strafing section
-        drive.setDrivePower(0, 1.0f, 0, 0);
+        drive.setDrivePower(0, -1.0f, 0, 0);
         sleep(1000);
         drive.setDrivePower(1.0f);//strafes over to balls, ensuring ally has space to shoot, and moves off line
         sleep(1000);
