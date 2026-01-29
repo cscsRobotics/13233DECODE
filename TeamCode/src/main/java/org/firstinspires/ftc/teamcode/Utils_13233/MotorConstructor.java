@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Utils_13233;
 
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -43,6 +44,8 @@ public class MotorConstructor {
     // The limelight 3a used for scanning April Tags
     public Limelight3A limelight;
 
+    public ColorSensor colorSens;
+
     public MotorConstructor(HardwareMap hardwareMap) {
         // Map main Drive Motors
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
@@ -66,6 +69,8 @@ public class MotorConstructor {
 
         // IC2 port 0 on a Core Device Interface Module
         imu = hardwareMap.get(IMU.class, "imu");
+
+        colorSens = hardwareMap.get(ColorSensor.class, "colorSens");
 
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);

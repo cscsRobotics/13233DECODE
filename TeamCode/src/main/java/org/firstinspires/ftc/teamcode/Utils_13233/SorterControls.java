@@ -168,6 +168,17 @@ public class SorterControls {
 
 
     /**
+     * Gets the colors from the color sensor
+     *
+     * @return Returns an array of colors from the color sensor in the order red, green, blue
+     * so index 0 is red, index 1 is green and index 2 is blue
+     */
+    public int[] getColors() {
+        return new int[]{motors.colorSens.red(), motors.colorSens.green(), motors.colorSens.blue()};
+    }
+
+
+    /**
      * Possible intake positions
      */
     public enum intakePos {
