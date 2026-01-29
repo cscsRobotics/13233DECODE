@@ -16,10 +16,14 @@ public class SorterControls {
     public int LaunchPos2 = 180;
     public int LaunchPos3 = 356;
 
+    public int greenBallColor[] = {0, 200, 0};
+    public int purpleBallColor[] = {150, 0, 150};
+
+
     public sorterPositions currentSorterPosition;
 
 
-    public ballColors[] currentSorterStates = {ballColors.NULL, ballColors.NULL, ballColors.GREEN};
+    public ballColors[] currentSorterStates = {ballColors.NULL, ballColors.NULL, ballColors.NULL};
 
     // Motor Speed
     float motorSpeed = 1.0f;
@@ -177,6 +181,67 @@ public class SorterControls {
         return new int[]{motors.colorSens.red(), motors.colorSens.green(), motors.colorSens.blue()};
     }
 
+    /**
+     * Scans the color of the current ball in order to allow for tracking of the location of those
+     * balls in the sorter, will do nothing if the manual override has been activated
+     *
+     * @throws RuntimeException Throws a runtime error if something goes wrong I don't even know how
+     *                          you would get to the error its here as a safety net if you get it
+     *                          look to the code in depth and consider your life choices
+     */
+    public void scanCurrentBall() {
+        int[] colors = getColors();
+        if (colors[1] > greenBallColor[1]) {
+            switch (currentSorterPosition) {
+                case INTAKE_POS_1:
+                    currentSorterStates[0] = ballColors.GREEN;
+                    break;
+                case INTAKE_POS_2:
+                    currentSorterStates[1] = ballColors.GREEN;
+                    break;
+                case INTAKE_POS_3:
+                    currentSorterStates[2] = ballColors.GREEN;
+                    break;
+                case MANUAL_OVERRIDE:
+                    break;
+                default:
+                    throw new RuntimeException("If you get here something has gone terribly wrong");
+            }
+        } else if (colors[0] > purpleBallColor[0] && colors[2] < purpleBallColor[2]) {
+            switch (currentSorterPosition) {
+                case INTAKE_POS_1:
+                    currentSorterStates[0] = ballColors.PURPLE;
+                    break;
+                case INTAKE_POS_2:
+                    currentSorterStates[1] = ballColors.PURPLE;
+                    break;
+                case INTAKE_POS_3:
+                    currentSorterStates[2] = ballColors.PURPLE;
+                    break;
+                case MANUAL_OVERRIDE:
+                    break;
+                default:
+                    throw new RuntimeException("If you get here something has gone terribly wrong");
+            }
+        } else {
+            switch (currentSorterPosition) {
+                case INTAKE_POS_1:
+                    currentSorterStates[0] = ballColors.NULL;
+                    break;
+                case INTAKE_POS_2:
+                    currentSorterStates[1] = ballColors.NULL;
+                    break;
+                case INTAKE_POS_3:
+                    currentSorterStates[2] = ballColors.NULL;
+                    break;
+                case MANUAL_OVERRIDE:
+                    break;
+                default:
+                    throw new RuntimeException("If you get here something has gone terribly wrong");
+            }
+        }
+    }
+
 
     /**
      * Possible intake positions
@@ -220,7 +285,8 @@ public class SorterControls {
         INTAKE_POS_3,
         LAUNCH_POS_1,
         LAUNCH_POS_2,
-        LAUNCH_POS_3
+        LAUNCH_POS_3,
+        MANUAL_OVERRIDE
     }
 
 
