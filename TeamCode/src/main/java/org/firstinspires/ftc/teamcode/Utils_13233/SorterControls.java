@@ -166,8 +166,9 @@ public class SorterControls {
         }
     }
 
+
     /**
-     * Intake positions
+     * Possible intake positions
      */
     public enum intakePos {
         INTAKE_POS_1,
@@ -176,7 +177,7 @@ public class SorterControls {
     }
 
     /**
-     * Launch positions
+     * Possible launch positions
      */
     public enum launchPos {
         LAUNCH_POS_1,
