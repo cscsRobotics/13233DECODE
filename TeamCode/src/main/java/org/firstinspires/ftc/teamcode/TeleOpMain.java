@@ -85,9 +85,9 @@ public class TeleOpMain extends LinearOpMode {
 
             // Set the power to the launch motors based while the x button is being pressed
             // and rumble to let the driver know that the launch motors are being controlled
-            if (gamepad1.right_bumper) {
+            if (gamepad1.x) {
                 launch.setLaunchPower(true, 0.7f);
-            } else if (gamepad1.left_bumper) {
+            } else if (gamepad1.y) {
                 launch.setLaunchPower(true);
             } else {
                 launch.setLaunchPower(false);
@@ -104,6 +104,12 @@ public class TeleOpMain extends LinearOpMode {
             sorter.simpleSorterPosition(gamepad2.dpad_left, gamepad2.dpad_up, gamepad2.dpad_right,
                 SorterControls.sorterModes.LAUNCH);
 
+            // Scans the color of the current ball in the sorter if the sorter is in the intake
+            // positon
+            if (gamepad2.a && !motors.Sorter.isBusy() && sorter.isCurrentSorterIntake()) {
+                sorter.scanCurrentBall();
+            }
+
             // Control the flipper and make sure that when the sorter is moving the flipper is set
             // to the not active positon
             if (gamepad1.a && !motors.Sorter.isBusy()) {
@@ -114,11 +120,16 @@ public class TeleOpMain extends LinearOpMode {
                 motors.Flipper.setPosition(0.15);
             }
 
-//            if (gamepad1.left_bumper) {
-//                sorter.moveGreenToLaunchPos();
-//            }
+            if (gamepad2.back) {
+                sorter.moveGreenToLaunchPos();
+            }
 
-            intake.setIntakeDirection(gamepad2.left_bumper, gamepad2.right_bumper);
+            if (gamepad2.start) {
+                sorter.moveToPurpleLaunchPos();
+            }
+
+
+            intake.setIntakeDirection(gamepad1.left_bumper, gamepad1.right_bumper);
             //Add option to enable brakes when sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.b);
 

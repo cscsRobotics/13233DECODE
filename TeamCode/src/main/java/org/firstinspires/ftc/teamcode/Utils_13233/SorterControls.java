@@ -242,6 +242,17 @@ public class SorterControls {
         }
     }
 
+    public boolean isCurrentSorterIntake() {
+        if (currentSorterPosition == sorterPositions.INTAKE_POS_1 ||
+            currentSorterPosition == sorterPositions.INTAKE_POS_2 ||
+            currentSorterPosition == sorterPositions.INTAKE_POS_3) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 
     /**
      * Possible intake positions
