@@ -120,12 +120,22 @@ public class TeleOpMain extends LinearOpMode {
                 motors.Flipper.setPosition(0.15);
             }
 
+            // Move a green ball to the launch position
             if (gamepad2.back) {
                 sorter.moveGreenToLaunchPos();
             }
 
+            // Move a purple ball to the launch position
             if (gamepad2.start) {
                 sorter.moveToPurpleLaunchPos();
+            }
+
+            if (gamepad2.guide) {
+                sorter.currentSorterPosition = SorterControls.sorterPositions.MANUAL_OVERRIDE;
+            }
+
+            if (sorter.currentSorterPosition == SorterControls.sorterPositions.MANUAL_OVERRIDE) {
+                motors.Sorter.setPower(gamepad2.left_stick_y);
             }
 
 

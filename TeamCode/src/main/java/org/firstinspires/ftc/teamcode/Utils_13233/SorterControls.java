@@ -38,23 +38,26 @@ public class SorterControls {
      * @param pos Enum to determine what positon to move to
      */
     private void moveToIntakePos(intakePos pos) {
-        switch (pos) {
-            case INTAKE_POS_1:
-                motors.Sorter.setTargetPosition(intakePos1);
-                motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(motorSpeed);
-                break;
-            case INTAKE_POS_2:
-                motors.Sorter.setTargetPosition(intakePos2);
-                motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(motorSpeed);
-                break;
-            case INTAKE_POS_3:
-                motors.Sorter.setTargetPosition(intakePos3);
-                motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(motorSpeed);
-                break;
+        if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
+            switch (pos) {
+                case INTAKE_POS_1:
+                    motors.Sorter.setTargetPosition(intakePos1);
+                    motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motors.Sorter.setPower(motorSpeed);
+                    break;
+                case INTAKE_POS_2:
+                    motors.Sorter.setTargetPosition(intakePos2);
+                    motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motors.Sorter.setPower(motorSpeed);
+                    break;
+                case INTAKE_POS_3:
+                    motors.Sorter.setTargetPosition(intakePos3);
+                    motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motors.Sorter.setPower(motorSpeed);
+                    break;
+            }
         }
+
     }
 
 
@@ -64,23 +67,26 @@ public class SorterControls {
      * @param pos Enum to determine what positon to move to
      */
     private void moveToLaunchPos(launchPos pos) {
-        switch (pos) {
-            case LAUNCH_POS_1:
-                motors.Sorter.setTargetPosition(LaunchPos1);
-                motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(motorSpeed);
-                break;
-            case LAUNCH_POS_2:
-                motors.Sorter.setTargetPosition(LaunchPos2);
-                motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(motorSpeed);
-                break;
-            case LAUNCH_POS_3:
-                motors.Sorter.setTargetPosition(LaunchPos3);
-                motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                motors.Sorter.setPower(motorSpeed);
-                break;
+        if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
+            switch (pos) {
+                case LAUNCH_POS_1:
+                    motors.Sorter.setTargetPosition(LaunchPos1);
+                    motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motors.Sorter.setPower(motorSpeed);
+                    break;
+                case LAUNCH_POS_2:
+                    motors.Sorter.setTargetPosition(LaunchPos2);
+                    motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motors.Sorter.setPower(motorSpeed);
+                    break;
+                case LAUNCH_POS_3:
+                    motors.Sorter.setTargetPosition(LaunchPos3);
+                    motors.Sorter.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    motors.Sorter.setPower(motorSpeed);
+                    break;
+            }
         }
+
     }
 
 
@@ -92,56 +98,62 @@ public class SorterControls {
      * @throws RuntimeException Throws a runtime error if pos is not 1, 2 or 3
      */
     public void moveSorterToPos(sorterModes mode, int pos) {
-        if (mode == sorterModes.INTAKE) {
-            switch (pos) {
-                case 1:
-                    moveToIntakePos(intakePos.INTAKE_POS_1);
-                    currentSorterPosition = sorterPositions.INTAKE_POS_1;
-                    break;
-                case 2:
-                    moveToIntakePos(intakePos.INTAKE_POS_2);
-                    currentSorterPosition = sorterPositions.INTAKE_POS_2;
-                    break;
-                case 3:
-                    moveToIntakePos(intakePos.INTAKE_POS_3);
-                    currentSorterPosition = sorterPositions.INTAKE_POS_3;
-                    break;
-                default:
-                    // throw error when pos is not 1, 2 or 3
-                    throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
-                        "say run it?");
-            }
-        } else if (mode == sorterModes.LAUNCH) {
-            switch (pos) {
-                case 1:
-                    moveToLaunchPos(launchPos.LAUNCH_POS_1);
-                    currentSorterPosition = sorterPositions.LAUNCH_POS_1;
-                    break;
-                case 2:
-                    moveToLaunchPos(launchPos.LAUNCH_POS_2);
-                    currentSorterPosition = sorterPositions.LAUNCH_POS_2;
-                    break;
-                case 3:
-                    moveToLaunchPos(launchPos.LAUNCH_POS_3);
-                    currentSorterPosition = sorterPositions.LAUNCH_POS_3;
-                    break;
-                default:
-                    // throw error when pos is not 1, 2 or 3
-                    throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
-                        "say run it?");
+        if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
+            if (mode == sorterModes.INTAKE) {
+                switch (pos) {
+                    case 1:
+                        moveToIntakePos(intakePos.INTAKE_POS_1);
+                        currentSorterPosition = sorterPositions.INTAKE_POS_1;
+                        break;
+                    case 2:
+                        moveToIntakePos(intakePos.INTAKE_POS_2);
+                        currentSorterPosition = sorterPositions.INTAKE_POS_2;
+                        break;
+                    case 3:
+                        moveToIntakePos(intakePos.INTAKE_POS_3);
+                        currentSorterPosition = sorterPositions.INTAKE_POS_3;
+                        break;
+                    default:
+                        // throw error when pos is not 1, 2 or 3
+                        throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
+                            "say run it?");
+                }
+            } else if (mode == sorterModes.LAUNCH) {
+                switch (pos) {
+                    case 1:
+                        moveToLaunchPos(launchPos.LAUNCH_POS_1);
+                        currentSorterPosition = sorterPositions.LAUNCH_POS_1;
+                        break;
+                    case 2:
+                        moveToLaunchPos(launchPos.LAUNCH_POS_2);
+                        currentSorterPosition = sorterPositions.LAUNCH_POS_2;
+                        break;
+                    case 3:
+                        moveToLaunchPos(launchPos.LAUNCH_POS_3);
+                        currentSorterPosition = sorterPositions.LAUNCH_POS_3;
+                        break;
+                    default:
+                        // throw error when pos is not 1, 2 or 3
+                        throw new RuntimeException("Not a valid position must be 1, 2, or 3, did you" +
+                            "say run it?");
+                }
             }
         }
+
     }
 
     public void simpleSorterPosition(boolean position1Button, boolean position2Button,
                                      boolean position3Button, sorterModes mode) {
-        if (position1Button) {
-            moveSorterToPos(mode, 1);
-        } else if (position2Button) {
-            moveSorterToPos(mode, 2);
-        } else if (position3Button) {
-            moveSorterToPos(mode, 3);
+        if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
+            if (position1Button) {
+                moveSorterToPos(mode, 1);
+            } else if (position2Button) {
+                moveSorterToPos(mode, 2);
+            } else if (position3Button) {
+                moveSorterToPos(mode, 3);
+            }
         }
+
     }
 
     /**
@@ -149,10 +161,12 @@ public class SorterControls {
      * automatically
      */
     public void moveGreenToLaunchPos() {
-        for (int i = 0; i < currentSorterStates.length; i++) {
-            if (currentSorterStates[i] == ballColors.GREEN) {
-                moveSorterToPos(sorterModes.LAUNCH, i + 1);
-                break;
+        if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
+            for (int i = 0; i < currentSorterStates.length; i++) {
+                if (currentSorterStates[i] == ballColors.GREEN) {
+                    moveSorterToPos(sorterModes.LAUNCH, i + 1);
+                    break;
+                }
             }
         }
     }
@@ -162,12 +176,15 @@ public class SorterControls {
      * automatically
      */
     public void moveToPurpleLaunchPos() {
-        for (int i = 0; i < currentSorterStates.length; i++) {
-            if (currentSorterStates[i] == ballColors.PURPLE) {
-                moveSorterToPos(sorterModes.LAUNCH, i + 1);
-                break;
+        if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
+            for (int i = 0; i < currentSorterStates.length; i++) {
+                if (currentSorterStates[i] == ballColors.PURPLE) {
+                    moveSorterToPos(sorterModes.LAUNCH, i + 1);
+                    break;
+                }
             }
         }
+
     }
 
 
@@ -190,67 +207,72 @@ public class SorterControls {
      *                          look to the code in depth and consider your life choices
      */
     public void scanCurrentBall() {
-        int[] colors = getColors();
-        if (colors[1] > greenBallColor[1]) {
-            switch (currentSorterPosition) {
-                case INTAKE_POS_1:
-                    currentSorterStates[0] = ballColors.GREEN;
-                    break;
-                case INTAKE_POS_2:
-                    currentSorterStates[1] = ballColors.GREEN;
-                    break;
-                case INTAKE_POS_3:
-                    currentSorterStates[2] = ballColors.GREEN;
-                    break;
-                case MANUAL_OVERRIDE:
-                    break;
-                default:
-                    throw new RuntimeException("If you get here something has gone terribly wrong");
-            }
-        } else if (colors[0] > purpleBallColor[0] && colors[2] < purpleBallColor[2]) {
-            switch (currentSorterPosition) {
-                case INTAKE_POS_1:
-                    currentSorterStates[0] = ballColors.PURPLE;
-                    break;
-                case INTAKE_POS_2:
-                    currentSorterStates[1] = ballColors.PURPLE;
-                    break;
-                case INTAKE_POS_3:
-                    currentSorterStates[2] = ballColors.PURPLE;
-                    break;
-                case MANUAL_OVERRIDE:
-                    break;
-                default:
-                    throw new RuntimeException("If you get here something has gone terribly wrong");
-            }
-        } else {
-            switch (currentSorterPosition) {
-                case INTAKE_POS_1:
-                    currentSorterStates[0] = ballColors.NULL;
-                    break;
-                case INTAKE_POS_2:
-                    currentSorterStates[1] = ballColors.NULL;
-                    break;
-                case INTAKE_POS_3:
-                    currentSorterStates[2] = ballColors.NULL;
-                    break;
-                case MANUAL_OVERRIDE:
-                    break;
-                default:
-                    throw new RuntimeException("If you get here something has gone terribly wrong");
+        if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
+            int[] colors = getColors();
+            if (colors[1] > greenBallColor[1]) {
+                switch (currentSorterPosition) {
+                    case INTAKE_POS_1:
+                        currentSorterStates[0] = ballColors.GREEN;
+                        break;
+                    case INTAKE_POS_2:
+                        currentSorterStates[1] = ballColors.GREEN;
+                        break;
+                    case INTAKE_POS_3:
+                        currentSorterStates[2] = ballColors.GREEN;
+                        break;
+                    case MANUAL_OVERRIDE:
+                        break;
+                    default:
+                        throw new RuntimeException("If you get here something has gone terribly wrong");
+                }
+            } else if (colors[0] > purpleBallColor[0] && colors[2] < purpleBallColor[2]) {
+                switch (currentSorterPosition) {
+                    case INTAKE_POS_1:
+                        currentSorterStates[0] = ballColors.PURPLE;
+                        break;
+                    case INTAKE_POS_2:
+                        currentSorterStates[1] = ballColors.PURPLE;
+                        break;
+                    case INTAKE_POS_3:
+                        currentSorterStates[2] = ballColors.PURPLE;
+                        break;
+                    case MANUAL_OVERRIDE:
+                        break;
+                    default:
+                        throw new RuntimeException("If you get here something has gone terribly wrong");
+                }
+            } else {
+                switch (currentSorterPosition) {
+                    case INTAKE_POS_1:
+                        currentSorterStates[0] = ballColors.NULL;
+                        break;
+                    case INTAKE_POS_2:
+                        currentSorterStates[1] = ballColors.NULL;
+                        break;
+                    case INTAKE_POS_3:
+                        currentSorterStates[2] = ballColors.NULL;
+                        break;
+                    case MANUAL_OVERRIDE:
+                        break;
+                    default:
+                        throw new RuntimeException("If you get here something has gone terribly wrong");
+                }
             }
         }
+
     }
 
     public boolean isCurrentSorterIntake() {
-        if (currentSorterPosition == sorterPositions.INTAKE_POS_1 ||
-            currentSorterPosition == sorterPositions.INTAKE_POS_2 ||
-            currentSorterPosition == sorterPositions.INTAKE_POS_3) {
-            return true;
-        } else {
-            return false;
+        if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
+            if (currentSorterPosition == sorterPositions.INTAKE_POS_1 ||
+                currentSorterPosition == sorterPositions.INTAKE_POS_2 ||
+                currentSorterPosition == sorterPositions.INTAKE_POS_3) {
+                return true;
+            } else {
+                return false;
+            }
         }
-
+        return false;
     }
 
 
@@ -299,6 +321,4 @@ public class SorterControls {
         LAUNCH_POS_3,
         MANUAL_OVERRIDE
     }
-
-
 }
