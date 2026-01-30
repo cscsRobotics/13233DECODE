@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
@@ -44,7 +45,7 @@ public class MotorConstructor {
     // The limelight 3a used for scanning April Tags
     public Limelight3A limelight;
 
-    public ColorSensor colorSens;
+    public NormalizedColorSensor colorSens;
 
     public MotorConstructor(HardwareMap hardwareMap) {
         // Map main Drive Motors
@@ -70,7 +71,7 @@ public class MotorConstructor {
         // IC2 port 0 on a Core Device Interface Module
         imu = hardwareMap.get(IMU.class, "imu");
 
-        colorSens = hardwareMap.get(ColorSensor.class, "colorSens");
+        colorSens = hardwareMap.get(NormalizedColorSensor.class, "colorSens");
 
         // Set direction of the main drive motors
         leftFront.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -103,6 +104,8 @@ public class MotorConstructor {
 
         // Set the direction of the intake motor
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        colorSens.setGain(5);
     }
 
     public void leftFront(float v) {

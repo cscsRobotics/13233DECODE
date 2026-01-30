@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
@@ -81,6 +82,10 @@ public class TeleOpMain extends LinearOpMode {
             telemetry.addData("Sorter Slot 1", sorter.currentSorterStates[0].toString());
             telemetry.addData("Sorter Slot 2", sorter.currentSorterStates[1].toString());
             telemetry.addData("Sorter Slot 3", sorter.currentSorterStates[2].toString());
+            telemetry.addLine();
+            telemetry.addData("Color Sensor Red", sorter.getColors()[0]);
+            telemetry.addData("Color Sensor Green", sorter.getColors()[1]);
+            telemetry.addData("Color Sensor Blue", sorter.getColors()[2]);
             telemetry.update();
 
             // Set the power to the launch motors based while the x button is being pressed
@@ -92,8 +97,6 @@ public class TeleOpMain extends LinearOpMode {
             } else {
                 launch.setLaunchPower(false);
             }
-
-            sleep(50);
 
             // Allows for driver Control of the sorter
             // Intake positions for the sorter
@@ -135,6 +138,7 @@ public class TeleOpMain extends LinearOpMode {
             }
 
             if (sorter.currentSorterPosition == SorterControls.sorterPositions.MANUAL_OVERRIDE) {
+                motors.Sorter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 motors.Sorter.setPower(gamepad2.left_stick_y);
             }
 

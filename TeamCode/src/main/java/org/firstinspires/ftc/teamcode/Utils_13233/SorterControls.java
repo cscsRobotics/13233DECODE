@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Utils_13233;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 
 
 public class SorterControls {
@@ -16,7 +17,7 @@ public class SorterControls {
     public int LaunchPos2 = 180;
     public int LaunchPos3 = 356;
 
-    public int greenBallColor[] = {0, 200, 0};
+    public int greenBallColor[] = {0, 1800, 0};
     public int purpleBallColor[] = {150, 0, 150};
 
 
@@ -194,8 +195,10 @@ public class SorterControls {
      * @return Returns an array of colors from the color sensor in the order red, green, blue
      * so index 0 is red, index 1 is green and index 2 is blue
      */
-    public int[] getColors() {
-        return new int[]{motors.colorSens.red(), motors.colorSens.green(), motors.colorSens.blue()};
+    public float[] getColors() {
+        NormalizedRGBA colors = motors.colorSens.getNormalizedColors();
+
+        return new float[]{colors.red * 255, colors.green * 255, colors.blue * 255};
     }
 
     /**
@@ -208,7 +211,7 @@ public class SorterControls {
      */
     public void scanCurrentBall() {
         if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
-            int[] colors = getColors();
+            float[] colors = getColors();
             if (colors[1] > greenBallColor[1]) {
                 switch (currentSorterPosition) {
                     case INTAKE_POS_1:
