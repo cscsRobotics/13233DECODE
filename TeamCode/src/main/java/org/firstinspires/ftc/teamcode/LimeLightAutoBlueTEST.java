@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Utils_13233.LimelightControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
-@Autonomous(name = "LimeLightBlue", group = "Auto")
+@Autonomous(name = "CloseBlue", group = "Auto")
 public class LimeLightAutoBlueTEST extends LinearOpMode {
 
     // ================= HARDWARE =================
@@ -52,7 +52,7 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         int tagID = scanTag();
 
         drive.setDrivePower(0.0f, 0.0f, -1.0f, 0.0f);
-        sleep(550);
+        sleep(400);
 
         drive.setDrivePower(0.0f);
 
@@ -81,8 +81,8 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         long startTime = System.currentTimeMillis();
 
         while (opModeIsActive()
-            && tagID == -1
-            && System.currentTimeMillis() - startTime < 2000) {
+                && tagID == -1
+                && System.currentTimeMillis() - startTime < 2000) {
 
             tagID = limelightCont.getTagID();
 
@@ -132,8 +132,11 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
         //sets position to ensure the ball is correctly lined up
         launch.setLaunchPower(true, 0.8f);
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
 
-        sleep(2500);//wait state to wait for launcher to spin up
+//        sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);//runs flipper servo into motor
@@ -144,7 +147,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //2nd ball code
         sleep(750);//waits to spin turntable
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
-        sleep(1500);//waits while turntable spins
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
+//        sleep(1500);//waits while turntable spins
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);
@@ -155,7 +161,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //3rd ball code
         sleep(1000);
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
-        sleep(1000);//turns off ramp
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
+//        sleep(1000);//turns off ramp
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);// sets servo back to init pos
@@ -177,9 +186,12 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //runs PGP
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.9f);
+        launch.setLaunchPower(true, 0.8f);
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
 
-        sleep(2500);//wait state to wait for launcher to spin up
+//        sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);//runs flipper servo into motor
@@ -190,7 +202,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //2nd ball code
         sleep(750);//waits to spin turntable
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
-        sleep(1500);//waits while turntable spins
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
+//        sleep(1500);//waits while turntable spins
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);
@@ -201,7 +216,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //3rd ball code
         sleep(1000);
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
-        sleep(1000);//turns off ramp
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
+//        sleep(1000);//turns off ramp
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);// sets servo back to init pos
@@ -223,7 +241,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
 
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.9f);
+        launch.setLaunchPower(true, 0.8f);
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
 
         sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
@@ -236,7 +257,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //2nd ball code
         sleep(750);//waits to spin turntable
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
-        sleep(1500);//waits while turntable spins
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
+//        sleep(1500);//waits while turntable spins
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);
@@ -247,7 +271,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //3rd ball code
         sleep(1000);
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
-        sleep(1000);//turns off ramp
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
+//        sleep(1000);//turns off ramp
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);// sets servo back to init pos
@@ -270,9 +297,12 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //runs default (PPG)
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.9f);
+        launch.setLaunchPower(true, 0.8f);
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
 
-        sleep(2500);//wait state to wait for launcher to spin up
+//        sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);//runs flipper servo into motor
@@ -283,7 +313,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //2nd ball code
         sleep(750);//waits to spin turntable
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
-        sleep(1500);//waits while turntable spins
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
+//        sleep(1500);//waits while turntable spins
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);
@@ -294,7 +327,10 @@ public class LimeLightAutoBlueTEST extends LinearOpMode {
         //3rd ball code
         sleep(1000);
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
-        sleep(1000);//turns off ramp
+        while (motors.Sorter.isBusy()) {
+            sleep(250);
+        }
+//        sleep(1000);//turns off ramp
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);// sets servo back to init pos

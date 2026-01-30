@@ -7,7 +7,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name = "Limelight AprilTag Test")
+//removed so the DS is cleaner
+//@Autonomous(name = "Limelight AprilTag Test")
 public class limeLightTest extends LinearOpMode {
 
     private Limelight3A limelight;
