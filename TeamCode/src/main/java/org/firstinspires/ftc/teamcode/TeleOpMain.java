@@ -139,7 +139,7 @@ public class TeleOpMain extends LinearOpMode {
 
             if (sorter.currentSorterPosition == SorterControls.sorterPositions.MANUAL_OVERRIDE) {
                 motors.Sorter.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                motors.Sorter.setPower(gamepad2.left_stick_y);
+                motors.Sorter.setPower(gamepad2.left_stick_y / 3);
             }
 
 
