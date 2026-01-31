@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.Utils_13233.LimelightControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
 
-@Autonomous(name = "FarBlue", group = "Auto")
+@Autonomous(name = "FarRed", group = "Auto")
 public class RedAutoFar extends LinearOpMode {
 
     // ================= HARDWARE =================
