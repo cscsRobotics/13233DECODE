@@ -107,7 +107,5 @@ public class MotorConstructor {
 
         colorSens.setGain(5);
     }
-
-    public void leftFront(float v) {
-    }
+    
 }
