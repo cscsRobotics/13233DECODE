@@ -47,7 +47,7 @@ public class LimeLightAutoRed extends LinearOpMode {
         // - PHASE 1: MOVE TO SEE TAG
 //        preMove();
         drive.setDrivePower(0, 1.0f, 0, 0);//strafes over to launch
-        sleep(1400);
+        sleep(1900);
 
         int tagID = scanTag();
 
@@ -131,7 +131,7 @@ public class LimeLightAutoRed extends LinearOpMode {
         //runs GPP
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.8f);
+        launch.setLaunchPower(true, 0.75f);
 
         sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
@@ -177,7 +177,7 @@ public class LimeLightAutoRed extends LinearOpMode {
         //runs PGP
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.9f);
+        launch.setLaunchPower(true, 0.75f);
 
         sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
@@ -223,7 +223,7 @@ public class LimeLightAutoRed extends LinearOpMode {
 
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.9f);
+        launch.setLaunchPower(true, 0.75f);
 
         sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
@@ -270,7 +270,7 @@ public class LimeLightAutoRed extends LinearOpMode {
         //runs default (PPG)
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.9f);
+        launch.setLaunchPower(true, 0.75f);
 
         sleep(2500);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball

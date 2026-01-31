@@ -135,7 +135,7 @@ public class BlueAutoFar extends LinearOpMode {
         //runs GPP
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 1);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.95f);
+        launch.setLaunchPower(true, 0.9f);
 
 //        sleep(2500);//wait state to wait for launcher to spin up
         while (motors.Sorter.isBusy()) {
@@ -188,7 +188,7 @@ public class BlueAutoFar extends LinearOpMode {
         //runs PGP
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.95f);
+        launch.setLaunchPower(true, 0.9f);
 
         while (motors.Sorter.isBusy()) {
             sleep(250);
@@ -242,7 +242,7 @@ public class BlueAutoFar extends LinearOpMode {
 
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 2);
         //sets position to ensure the ball is correctly lined up
-        launch.setLaunchPower(true, 0.95f);
+        launch.setLaunchPower(true, 0.9f);
 
         while (motors.Sorter.isBusy()) {
             sleep(250);

@@ -46,8 +46,7 @@ public class LimeLightAutoBlue extends LinearOpMode {
             drive.setDrivePower(-1.0f);
             sleep(1600);
             // turns to view april tag tower
-            drive.setDrivePower(0.0f, 0.0f, 1.0f,
-                0.0f);
+            drive.setDrivePower(0.0f, 0.0f, 1.0f, 0.0f);
             sleep(550);//turns
             drive.setDrivePower(0.0f);
 
@@ -56,8 +55,7 @@ public class LimeLightAutoBlue extends LinearOpMode {
 
             sleep(1000);
             // turns back viewing goal
-            drive.setDrivePower(0.0f, 0.0f, -1.0f,
-                0.0f);
+            drive.setDrivePower(0.0f, 0.0f, -1.0f, 0.0f);
             sleep(550);
             drive.setDrivePower(0.0f);
 
