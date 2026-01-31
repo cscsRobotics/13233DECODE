@@ -120,7 +120,7 @@ public class TeleOpMain extends LinearOpMode {
                 motors.Flipper.setPosition(0.0);
             } else {
                 motors.Flipper.setDirection(Servo.Direction.REVERSE);
-                motors.Flipper.setPosition(0.15);
+                motors.Flipper.setPosition(0.12);
             }
 
             // Move a green ball to the launch position

@@ -46,13 +46,21 @@ public class BlueAutoFar extends LinearOpMode {
 
         // - PHASE 1: MOVE UP AND SCAN
 //      preMove();
+
+        //code for team with greased lighting
+        sleep(5000);
+        //delay
+        drive.setDrivePower(0.0f, -1.0f, 0.0f, 0.0f);
+        sleep(500);
+
+
         int tagID = scanTag();
 
         drive.setDrivePower(0.6f, 0.0f, 0, 0);//strafes over to launch
-        sleep(600);
+        sleep(400);
 
         drive.setDrivePower(0.0f, 0.0f, -0.3f, 0.0f);
-        sleep(400);
+        sleep(500);
 
         drive.setDrivePower(0.0f);
 
@@ -137,11 +145,11 @@ public class BlueAutoFar extends LinearOpMode {
         //sets position to ensure the ball is correctly lined up
         launch.setLaunchPower(true, 0.9f);
 
-//        sleep(2500);//wait state to wait for launcher to spin up
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
 
+        sleep(1000);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);//runs flipper servo into motor
@@ -155,7 +163,7 @@ public class BlueAutoFar extends LinearOpMode {
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
-//        sleep(2000);//waits while turntable spins
+        sleep(250);//waits while turntable spins
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);
@@ -169,7 +177,7 @@ public class BlueAutoFar extends LinearOpMode {
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
-//        sleep(2000);//turns off ramp
+        sleep(250);//turns off ramp
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);// sets servo back to init pos
@@ -194,7 +202,7 @@ public class BlueAutoFar extends LinearOpMode {
             sleep(250);
         }
 
-//        sleep(2500);//wait state to wait for launcher to spin up
+        sleep(250);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);//runs flipper servo into motor
@@ -208,7 +216,7 @@ public class BlueAutoFar extends LinearOpMode {
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
-//        sleep(2000);//waits while turntable spins
+        sleep(250);//waits while turntable spins
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);
@@ -222,7 +230,7 @@ public class BlueAutoFar extends LinearOpMode {
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
-//        sleep(2000);//turns off ramp
+        sleep(250);//turns off ramp
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);// sets servo back to init pos
@@ -248,7 +256,7 @@ public class BlueAutoFar extends LinearOpMode {
             sleep(250);
         }
 
-//        sleep(2500);//wait state to wait for launcher to spin up
+        sleep(250);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);//runs flipper servo into motor
@@ -262,7 +270,7 @@ public class BlueAutoFar extends LinearOpMode {
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
-//        sleep(2000);//waits while turntable spins
+        sleep(250);//waits while turntable spins
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);
@@ -276,7 +284,7 @@ public class BlueAutoFar extends LinearOpMode {
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
-//        sleep(2000);//turns off ramp
+        sleep(250);//turns off ramp
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);// sets servo back to init pos
@@ -302,7 +310,7 @@ public class BlueAutoFar extends LinearOpMode {
             sleep(250);
         }
 
-//        sleep(2500);//wait state to wait for launcher to spin up
+        sleep(250);//wait state to wait for launcher to spin up
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 1st ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);//runs flipper servo into motor
@@ -316,7 +324,7 @@ public class BlueAutoFar extends LinearOpMode {
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
-//        sleep(2000);//waits while turntable spins
+        sleep(250);//waits while turntable spins
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 2nd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);
@@ -330,7 +338,7 @@ public class BlueAutoFar extends LinearOpMode {
         while (motors.Sorter.isBusy()) {
             sleep(250);
         }
-//        sleep(2000);//turns off ramp
+        sleep(250);//turns off ramp
         motors.Flipper.setDirection(Servo.Direction.FORWARD);//runs servo forward, shooting 3rd ball
         motors.Flipper.setPosition(0.0);
         sleep(1000);// sets servo back to init pos

@@ -48,11 +48,11 @@ public class RedAutoFar extends LinearOpMode {
 //      preMove();
         int tagID = scanTag();
 
-        drive.setDrivePower(-0.6f, 0.0f, 0, 0);//strafes over to launch
-        sleep(600);
+        drive.setDrivePower(0.6f, 0.0f, 0, 0);//strafes over to launch
+        sleep(400);
 
         drive.setDrivePower(0.0f, 0.0f, 0.3f, 0.0f);
-        sleep(400);
+        sleep(520);
 
         drive.setDrivePower(0.0f);
 
