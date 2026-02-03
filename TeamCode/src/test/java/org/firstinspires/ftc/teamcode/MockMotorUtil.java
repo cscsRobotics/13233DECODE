@@ -18,7 +18,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 public class MockMotorUtil {
-    public DcMotor launcher, launcher2, intake, rightFront, leftFront, leftBack, rightBack, Sorter;
+    public DcMotor launcher, launcher2, rightFront, leftFront, leftBack, rightBack, Sorter;
     public Servo Flipper;
     public HardwareMap hardwareMap;
     public IMU imu;
@@ -37,7 +37,7 @@ public class MockMotorUtil {
 
         hardwareMap = mock(HardwareMap.class);
 
-        intake = mock(DcMotor.class);
+        // intake = mock(DcMotor.class);
 
         leftFront = mock(DcMotor.class);
         rightFront = mock(DcMotor.class);
@@ -57,7 +57,8 @@ public class MockMotorUtil {
 
 
         // Mock the motors
-        when(hardwareMap.get(DcMotor.class, "intake")).thenReturn(intake);
+        //
+        // when(hardwareMap.get(DcMotor.class, "intake")).thenReturn(intake);
 
         when(hardwareMap.get(DcMotor.class, "leftFront")).thenReturn(leftFront);
         when(hardwareMap.get(DcMotor.class, "rightFront")).thenReturn(rightFront);

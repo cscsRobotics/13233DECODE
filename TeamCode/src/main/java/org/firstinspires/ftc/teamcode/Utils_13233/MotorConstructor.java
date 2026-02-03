@@ -24,7 +24,7 @@ public class MotorConstructor {
 
 
     // Intake
-    public DcMotor intake;
+    //public DcMotor intake;
 
     // Launch motors to shoot the balls out of the robot
     public DcMotor Launcher;
@@ -55,7 +55,7 @@ public class MotorConstructor {
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
 
         // Map Intake Motor
-        intake = hardwareMap.get(DcMotor.class, "intake");
+        //intake = hardwareMap.get(DcMotor.class, "intake");
 
         // Map the launcher Prototype
         Launcher = hardwareMap.get(DcMotor.class, "Launcher");
@@ -103,9 +103,9 @@ public class MotorConstructor {
 
 
         // Set the direction of the intake motor
-        intake.setDirection(DcMotorSimple.Direction.REVERSE);
+        //intake.setDirection(DcMotorSimple.Direction.REVERSE);
 
         colorSens.setGain(5);
     }
-    
+
 }

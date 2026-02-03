@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Utils_13233.DriveControls;
-import org.firstinspires.ftc.teamcode.Utils_13233.IntakeControls;
+//import org.firstinspires.ftc.teamcode.Utils_13233.IntakeControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.MotorConstructor;
 import org.firstinspires.ftc.teamcode.Utils_13233.LaunchControls;
 import org.firstinspires.ftc.teamcode.Utils_13233.SorterControls;
@@ -45,7 +45,7 @@ public class TeleOpMain extends LinearOpMode {
     private LaunchControls launch;
     private SorterControls sorter;
     private MotorConstructor motors;
-    private IntakeControls intake;
+    //private IntakeControls intake;
 
 
     //This function is executed when this Op Mode is selected from the Driver Station
@@ -56,7 +56,7 @@ public class TeleOpMain extends LinearOpMode {
         launch = new LaunchControls(hardwareMap);
         motors = new MotorConstructor(hardwareMap);
         sorter = new SorterControls(motors);
-        intake = new IntakeControls(hardwareMap);
+        //intake = new IntakeControls(hardwareMap);
 
 
         sorter.currentSorterPosition = SorterControls.sorterPositions.LAUNCH_POS_1;
@@ -143,7 +143,7 @@ public class TeleOpMain extends LinearOpMode {
             }
 
 
-            intake.setIntakeDirection(gamepad1.left_bumper, gamepad1.right_bumper);
+            //  intake.setIntakeDirection(gamepad1.left_bumper, gamepad1.right_bumper);
             //Add option to enable brakes when sharbell holds a
             drive.setDriveMotorZeroPowerBehavior(gamepad1.b);
 
