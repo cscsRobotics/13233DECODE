@@ -54,7 +54,7 @@ public class TeleOpMain extends LinearOpMode {
         drive = new DriveControls(hardwareMap);
         launch = new LaunchControls(hardwareMap);
         motors = new MotorConstructor(hardwareMap);
-        sorter = new SorterControls(motors);
+        sorter = new SorterControls(hardwareMap);
         intake = new IntakeControls(hardwareMap);
 
 

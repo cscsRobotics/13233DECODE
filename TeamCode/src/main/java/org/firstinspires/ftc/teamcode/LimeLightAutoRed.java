@@ -36,7 +36,7 @@ public class LimeLightAutoRed extends LinearOpMode {
         launch = new LaunchControls(hardwareMap);
         motors = new MotorConstructor(hardwareMap);
         limelightCont = new LimelightControls(hardwareMap);
-        sorter = new SorterControls(motors);
+        sorter = new SorterControls(hardwareMap);
         telemetry.addLine("Initialized. Waiting for start...");
         telemetry.update();
 
