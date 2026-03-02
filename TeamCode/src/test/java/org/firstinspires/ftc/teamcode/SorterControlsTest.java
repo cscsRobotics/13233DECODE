@@ -124,5 +124,59 @@ public class SorterControlsTest {
 
         verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos3);
     }
+
+    @DisplayName("should set the sorter to the intake position 1")
+    @Test
+    void testMoveSimpleSorterToPos_intake_pos1() {
+        sorter.simpleSorterPosition(true, false,
+            false, SorterControls.sorterModes.INTAKE);
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.intakePos1);
+    }
+
+    @DisplayName("should set the sorter to the intake position 1")
+    @Test
+    void testMoveSimpleSorterToPos_intake_pos2() {
+        sorter.simpleSorterPosition(false, true,
+            false, SorterControls.sorterModes.INTAKE);
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.intakePos2);
+    }
+
+    @DisplayName("should set the sorter to the intake position 1")
+    @Test
+    void testMoveSimpleSorterToPos_intake_pos3() {
+        sorter.simpleSorterPosition(false, false,
+            true, SorterControls.sorterModes.INTAKE);
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.intakePos3);
+    }
+
+    @DisplayName("should set the sorter to the intake position 1")
+    @Test
+    void testMoveSimpleSorterToPos_launch_pos1() {
+        sorter.simpleSorterPosition(true, false,
+            false, SorterControls.sorterModes.LAUNCH);
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos1);
+    }
+
+    @DisplayName("should set the sorter to the intake position 1")
+    @Test
+    void testMoveSimpleSorterToPos_launch_pos2() {
+        sorter.simpleSorterPosition(false, true,
+            false, SorterControls.sorterModes.LAUNCH);
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos2);
+    }
+
+    @DisplayName("should set the sorter to the intake position 1")
+    @Test
+    void testMoveSimpleSorterToPos_launch_pos3() {
+        sorter.simpleSorterPosition(false, false,
+            true, SorterControls.sorterModes.LAUNCH);
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos3);
+    }
 }
 
