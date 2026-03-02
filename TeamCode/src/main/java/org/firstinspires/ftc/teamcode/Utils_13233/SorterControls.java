@@ -17,8 +17,9 @@ public class SorterControls {
     public int LaunchPos2 = 180;
     public int LaunchPos3 = 356;
 
-    public int greenBallColor[] = {0, 1800, 0};
-    public int purpleBallColor[] = {150, 0, 150};
+    public int[] greenBallColor = {0, 230, 0};
+    public int[] purpleBallColor = {100, 0, 150};
+    public int[] nullBallColor = {10, 10, 10};
 
 
     public sorterPositions currentSorterPosition;
@@ -212,7 +213,7 @@ public class SorterControls {
     public void scanCurrentBall() {
         if (currentSorterPosition != sorterPositions.MANUAL_OVERRIDE) {
             float[] colors = getColors();
-            if (colors[1] > greenBallColor[1]) {
+            if (colors[1] > 230) {
                 switch (currentSorterPosition) {
                     case INTAKE_POS_1:
                         currentSorterStates[0] = ballColors.GREEN;
@@ -228,7 +229,7 @@ public class SorterControls {
                     default:
                         throw new RuntimeException("If you get here something has gone terribly wrong");
                 }
-            } else if (colors[0] > purpleBallColor[0] && colors[2] < purpleBallColor[2]) {
+            } else if (colors[0] > purpleBallColor[0] && colors[2] > purpleBallColor[2]) {
                 switch (currentSorterPosition) {
                     case INTAKE_POS_1:
                         currentSorterStates[0] = ballColors.PURPLE;

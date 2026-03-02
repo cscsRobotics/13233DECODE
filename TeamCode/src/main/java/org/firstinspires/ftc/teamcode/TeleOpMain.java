@@ -109,7 +109,7 @@ public class TeleOpMain extends LinearOpMode {
 
             // Scans the color of the current ball in the sorter if the sorter is in the intake
             // positon
-            if (gamepad2.a && !motors.Sorter.isBusy() && sorter.isCurrentSorterIntake()) {
+            if (gamepad2.a && sorter.isCurrentSorterIntake()) {
                 sorter.scanCurrentBall();
             }
 
