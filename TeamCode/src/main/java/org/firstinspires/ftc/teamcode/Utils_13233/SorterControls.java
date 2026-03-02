@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Utils_13233;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
 public class SorterControls {
@@ -24,8 +25,8 @@ public class SorterControls {
     // Motor Speed
     float motorSpeed = 1.0f;
 
-    public SorterControls(MotorConstructor motors) {
-        this.motors = motors;
+    public SorterControls(HardwareMap hardwareMap) {
+        this.motors = new MotorConstructor(hardwareMap);
     }
 
     /**
@@ -33,7 +34,7 @@ public class SorterControls {
      *
      * @param pos Enum to determine what positon to move to
      */
-    private void moveToIntakePos(intakePos pos) {
+    public void moveToIntakePos(intakePos pos) {
         switch (pos) {
             case INTAKE_POS_1:
                 motors.Sorter.setTargetPosition(intakePos1);
@@ -59,7 +60,7 @@ public class SorterControls {
      *
      * @param pos Enum to determine what positon to move to
      */
-    private void moveToLaunchPos(launchPos pos) {
+    public void moveToLaunchPos(launchPos pos) {
         switch (pos) {
             case LAUNCH_POS_1:
                 motors.Sorter.setTargetPosition(LaunchPos1);
