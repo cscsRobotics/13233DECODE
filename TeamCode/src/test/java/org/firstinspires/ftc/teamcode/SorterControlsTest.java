@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -72,6 +73,7 @@ public class SorterControlsTest {
         verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos3);
     }
 
+
     // Test Move to sorter position
     @DisplayName("should set the sorter to the intake position 1")
     @Test
@@ -99,6 +101,14 @@ public class SorterControlsTest {
         verify(mockMotor.Sorter).setTargetPosition(sorter.intakePos3);
     }
 
+    @DisplayName("should throw a runtime exception")
+    @Test
+    void testMoveSorterToPos_intake_runtimeException() {
+        assertThrows(RuntimeException.class, () -> {
+            sorter.moveSorterToPos(SorterControls.sorterModes.INTAKE, 4);
+        });
+    }
+
     @DisplayName("should set the sorter to the intake position 1")
     @Test
     void testMoveSorterToPos_launch_pos1() {
@@ -123,6 +133,14 @@ public class SorterControlsTest {
         sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 3);
 
         verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos3);
+    }
+
+    @DisplayName("should throw a runtime exception")
+    @Test
+    void testMoveSorterToPos_launch_runtimeException() {
+        assertThrows(RuntimeException.class, () -> {
+            sorter.moveSorterToPos(SorterControls.sorterModes.LAUNCH, 4);
+        });
     }
 
     @DisplayName("should set the sorter to the intake position 1")
@@ -175,6 +193,68 @@ public class SorterControlsTest {
     void testMoveSimpleSorterToPos_launch_pos3() {
         sorter.simpleSorterPosition(false, false,
             true, SorterControls.sorterModes.LAUNCH);
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos3);
+    }
+
+    @DisplayName("should set the sorter to the launch position 1")
+    @Test
+    void testMoveGreenToLaunchPos_1() {
+        sorter.currentSorterStates[0] = SorterControls.ballColors.GREEN;
+
+        sorter.moveGreenToLaunchPos();
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos1);
+    }
+
+    @DisplayName("should set the sorter to the launch position 1")
+    @Test
+    void testMoveGreenToLaunchPos_2() {
+        sorter.currentSorterStates[1] = SorterControls.ballColors.GREEN;
+
+        sorter.moveGreenToLaunchPos();
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos2);
+    }
+
+    @DisplayName("should set the sorter to the launch position 1")
+    @Test
+    void testMoveGreenToLaunchPos_3() {
+        sorter.currentSorterStates[2] = SorterControls.ballColors.GREEN;
+
+        sorter.moveGreenToLaunchPos();
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos3);
+    }
+
+    @DisplayName("should set the sorter to the launch position 1")
+    @Test
+    void testMovePurpleToLaunchPos_1() {
+        sorter.currentSorterStates[0] = SorterControls.ballColors.PURPLE;
+
+        sorter.moveToPurpleLaunchPos();
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos1);
+    }
+
+    @DisplayName("should set the sorter to the launch position 1")
+    @Test
+    void testMovePurpleToLaunchPos_2() {
+        sorter.currentSorterStates[1] = SorterControls.ballColors.PURPLE;
+
+        sorter.moveToPurpleLaunchPos();
+
+        verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos2);
+    }
+
+    @DisplayName("should set the sorter to the launch position 1")
+    @Test
+    void testMovePurpleToLaunchPos_3() {
+        sorter.currentSorterStates[0] = SorterControls.ballColors.NULL;
+        sorter.currentSorterStates[1] = SorterControls.ballColors.NULL;
+        sorter.currentSorterStates[2] = SorterControls.ballColors.PURPLE;
+
+        sorter.moveToPurpleLaunchPos();
 
         verify(mockMotor.Sorter).setTargetPosition(sorter.LaunchPos3);
     }
