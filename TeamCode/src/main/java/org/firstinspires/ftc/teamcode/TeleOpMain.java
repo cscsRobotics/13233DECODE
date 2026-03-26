@@ -148,8 +148,12 @@ public class TeleOpMain extends LinearOpMode {
             drive.setDriveMotorZeroPowerBehavior(gamepad1.b);
 
             // Sets the power to the drive motors based on current gamepad inputs
-            drive.setDrivePower(gamepad1.left_stick_y, gamepad1.left_stick_x,
+            drive.setDrivePower(-gamepad1.left_stick_y, -gamepad1.left_stick_x,
                 gamepad1.right_stick_x, gamepad1.left_trigger);
+
+            telemetry.addLine();
+            telemetry.addData("Turn", gamepad1.right_stick_x);
+            telemetry.addLine();
 
             // Slow down the loop because for some reason it goes to fast and causes the motors to
             // not work properly
