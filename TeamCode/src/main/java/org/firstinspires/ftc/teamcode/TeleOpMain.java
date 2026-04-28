@@ -97,10 +97,16 @@ public class TeleOpMain extends LinearOpMode {
 
             // Allows for driver Control of the sorter
             // Intake positions for the sorter
+            // gamepad2.x is intake sorter position 1
+            // gamepad2.y is intake sorter position 2
+            // gamepad2.b is intake sorter position 3
             sorter.simpleSorterPosition(gamepad2.x, gamepad2.y, gamepad2.b,
                 SorterControls.sorterModes.INTAKE);
 
             // Launch positons for the sorter
+            // gamepad2.x is launch sorter position 1
+            // gamepad2.y is launch sorter position 2
+            // gamepad2.b is launch sorter position 3
             sorter.simpleSorterPosition(gamepad2.dpad_left, gamepad2.dpad_up, gamepad2.dpad_right,
                 SorterControls.sorterModes.LAUNCH);
 
@@ -113,10 +119,6 @@ public class TeleOpMain extends LinearOpMode {
                 motors.Flipper.setDirection(Servo.Direction.REVERSE);
                 motors.Flipper.setPosition(0.15);
             }
-
-//            if (gamepad1.left_bumper) {
-//                sorter.moveGreenToLaunchPos();
-//            }
 
             intake.setIntakeDirection(gamepad2.left_bumper, gamepad2.right_bumper);
             //Add option to enable brakes when sharbell holds a

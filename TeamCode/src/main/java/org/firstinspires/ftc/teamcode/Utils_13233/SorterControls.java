@@ -17,9 +17,10 @@ public class SorterControls {
     public int LaunchPos2 = 180;
     public int LaunchPos3 = 356;
 
+    // Create an instance of the sorterPositons enum to track the current position of the sorter
     public sorterPositions currentSorterPosition;
 
-
+    // Array of the current sorter states 0 is sorter position one and so on
     public ballColors[] currentSorterStates = {ballColors.NULL, ballColors.NULL, ballColors.GREEN};
 
     // Motor Speed
@@ -130,6 +131,15 @@ public class SorterControls {
         }
     }
 
+    /**
+     * Allows for easier control of sorter positions in teleop allowing for the binding of
+     * controller buttons to the sorter positions
+     *
+     * @param position1Button Button to move to position 1
+     * @param position2Button Button to move to position 2
+     * @param position3Button Button to move to position 3
+     * @param mode            the mode of the position either INTAKE or LAUNCH
+     */
     public void simpleSorterPosition(boolean position1Button, boolean position2Button,
                                      boolean position3Button, sorterModes mode) {
         if (position1Button) {
@@ -143,7 +153,10 @@ public class SorterControls {
 
     /**
      * Sorts through the balls in the sorter and moves a green ball to the launch position
-     * automatically
+     * automatically, it does this by iterating through all index positions in currentSorterStates
+     * <p>
+     * May cause some performance impact due to the use of a for loop however it is simple enough
+     * that it should be fine and thus far has not caused any issues
      */
     public void moveGreenToLaunchPos() {
         for (int i = 0; i < currentSorterStates.length; i++) {
@@ -156,7 +169,10 @@ public class SorterControls {
 
     /**
      * Sorts through the balls in the sorter and moves a purple ball to the launch position
-     * automatically
+     * automatically, it does this by iterating through all index positions in currentSorterStates
+     * <p>
+     * May cause some performance impact due to the use of a for loop however it is simple enough
+     * that it should be fine and thus far has not caused any issues
      */
     public void moveToPurpleLaunchPos() {
         for (int i = 0; i < currentSorterStates.length; i++) {
@@ -211,6 +227,4 @@ public class SorterControls {
         LAUNCH_POS_2,
         LAUNCH_POS_3
     }
-
-
 }
